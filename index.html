@@ -38,6 +38,15 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
+
+    <!-- Alpine JS -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"
+    ></script>
+
+    <!-- App Data -->
+    <script src="src/src.js"></script>
   </head>
 
   <body>
@@ -183,7 +192,7 @@
                     >
                       <img
                         src="./assets/images/cakebahagia.png"
-                        alt="Pixstock - Stock Media App"
+                        alt="Cake Bahagia"
                         width="334"
                         height="180"
                         class="img-cover"
@@ -212,20 +221,22 @@
             >
               <div class="container">
                 <h2 class="section-title title-medium">Experience</h2>
-                <ul class="list">
-                  <li class="resume-item">
-                    <div class="resume-card">
-                      <p class="body-large">Web Development Projects</p>
-                      <span class="label-medium card-subtitle"
-                        >2023 - 2024</span
-                      >
-                      <span class="body-medium card-text"
-                        >During my college studies, I worked on several web
-                        development projects that showcase my skills in
-                        front-end and back-end development.
-                      </span>
-                    </div>
-                  </li>
+                <ul class="list" x-data="experiences">
+                  <template x-for="(item, index) in items" x-key="index">
+                    <li class="resume-item">
+                      <div class="resume-card">
+                        <p class="body-large" x-text="item.name"></p>
+                        <span
+                          class="label-medium card-subtitle"
+                          x-text="item.date"
+                        ></span>
+                        <span
+                          class="body-medium card-text"
+                          x-text="item.desc"
+                        ></span>
+                      </div>
+                    </li>
+                  </template>
                 </ul>
 
                 <h2 class="section-title title-medium">Education</h2>
@@ -251,7 +262,7 @@
                     <div class="resume-card">
                       <p class="body-large">Teman Coding</p>
                       <span class="body-medium card-text"
-                        >HTML CSS Basic Webin ar</span
+                        >HTML CSS Basic Webinar</span
                       >
                       <span class="label-medium card-subtitle">2025</span>
                       <div class="btn-wrapper view-doc-btn">
@@ -272,115 +283,21 @@
                 <h2 class="section-title title-medium">
                   Skills and Technologies
                 </h2>
-                <ul class="resume-bottom-list">
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/laravel.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="Laravel"
-                      class="icon"
-                    />
-                    <span class="label-medium">Laravel</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/codeigniter.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="CodeIgniter"
-                      class="icon"
-                    />
-                    <span class="label-medium">CodeIgniter</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/javascript.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="JavaScript"
-                      class="icon"
-                    />
-                    <span class="label-medium">JavaScript</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/php.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="PHP"
-                      class="icon"
-                    />
-                    <span class="label-medium">PHP</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/bootstrap.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="Bootstrap"
-                      class="icon"
-                    />
-                    <span class="label-medium">Bootstrap</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/sql.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="SQL"
-                      class="icon"
-                    />
-                    <span class="label-medium">SQL</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/git.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="Git"
-                      class="icon"
-                    />
-                    <span class="label-medium">Git</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/github.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="Github"
-                      class="icon"
-                    />
-                    <span class="label-medium">Github</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
-                  <li class="resume-bottom-item">
-                    <img
-                      src="./assets/icons/figma.svg"
-                      width="28"
-                      height="28"
-                      loading="lazy"
-                      alt="Figma"
-                      class="icon"
-                    />
-                    <span class="label-medium">Figma</span>
-                    <span href="#" class="state-layer"></span>
-                  </li>
+                <ul class="resume-bottom-list" x-data="skills">
+                  <template x-for="(item, index) in items" x-key="index">
+                    <li class="resume-bottom-item">
+                      <img
+                        :src="`./assets/icons/${item.img}`"
+                        width="28"
+                        height="28"
+                        loading="lazy"
+                        :alt="item.name"
+                        class="icon"
+                      />
+                      <span class="label-medium" x-text="item.name"></span>
+                      <span href="#" class="state-layer"></span>
+                    </li>
+                  </template>
                 </ul>
               </div>
             </section>
@@ -574,10 +491,10 @@
       </div>
     </footer>
 
-    <!-- Custom JS Link -->
-    <script src="./js/script.js"></script>
-
     <!-- Tilt JS -->
     <script src="js/vanilla-tilt.js "></script>
+
+    <!-- Custom JS Link -->
+    <script src="./js/script.js"></script>
   </body>
 </html>
