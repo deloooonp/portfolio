@@ -16,10 +16,12 @@ Hey! This is my personal portfolio where I showcase my projects, skills, and exp
 
 🚀 Getting Started
 1. Clone this repo:
-  git clone https://github.com/yourusername/your-portfolio.git
-  cd your-portfolio
+   
+  git clone https://github.com/deloooonp/portfolio.git
+  
+  cd portfolio
 
-2. Open index.html in your browser—that’s it!
+3. Open index.html in your browser—that’s it!
    
 🛠 Deployment
 This site is hosted on GitHub Pages and Netlify:
