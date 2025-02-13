@@ -17,9 +17,9 @@ Hey! This is my personal portfolio where I showcase my projects, skills, and exp
 🚀 Getting Started
 1. Clone this repo:
    
-  git clone https://github.com/deloooonp/portfolio.git
+     git clone https://github.com/deloooonp/portfolio.git
   
-  cd portfolio
+     cd portfolio
 
 3. Open index.html in your browser—that’s it!
    
