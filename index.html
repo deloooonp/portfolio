@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta Tags -->
+    <title>Delon Pratama - Portfolio</title>
+    <meta name="title" content="deloooonp - Web Developer Portfolio" />
+    <meta name="description" content="My own personal portfolio" />
+
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="assets/images/logo.jpg" />
+
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&family=Open+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Material Icon Link -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Email JS -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <!-- Website Loader -->
+    <h1 class="counter">0</h1>
+
+    <div class="overlay">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+
+    <script src="js/gsap.min.js"></script>
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <a href="#" class="logo">
+        <h2 class="brand-logo">deloooonp</h2>
+      </a>
+
+      <button class="icon-btn theme-btn" data-theme-btn>
+        <span class="material-symbols-outlined dark" aria-hidden="true">
+          dark_mode
+        </span>
+        <span class="material-symbols-outlined light" aria-hidden="true">
+          light_mode
+        </span>
+
+        <div class="state-layer"></div>
+      </button>
+    </header>
+
+    <main>
+      <article>
+        <!-- HERO -->
+        <section class="section hero">
+          <div class="container">
+            <figure
+              class="hero-banner img-holder"
+              style="--width: 240; --height: 240"
+            >
+              <img
+                src="./assets/images/profile.jpg"
+                width="240"
+                height="240"
+                alt="Delon Pratama"
+                class="img-cover"
+              />
+            </figure>
+
+            <div class="hero-content">
+              <h1 class="display-medium hero-name">Delon Pratama</h1>
+              <span class="body-large section-subtitle">Web Developer</span>
+              <p class="body-large section-text">
+                I am currently pursuing a degree at Universitas Bina Sarana
+                Informatika, with a strong foundation in web development.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- MAIN CONTENT -->
+        <div class="article">
+          <div class="about-card">
+            <h2 class="card-title title-medium">About</h2>
+            <p class="body-medium card-text">
+              I have hands-on experience in building and contributing to web
+              projects. I bring dedication and passion for creating
+              user-friendly webites.
+            </p>
+            <ul class="about-list">
+              <li class="list-item">
+                <span class="material-symbols-outlined" aria-hidden="true">
+                  location_on
+                </span>
+                <span class="label-medium">Kota Bekasi, Indonesia</span>
+              </li>
+              <li class="list-item">
+                <span class="material-symbols-outlined" aria-hidden="true">
+                  book
+                </span>
+                <span class="label-medium">BSI University</span>
+              </li>
+              <li class="list-item">
+                <span class="material-symbols-outlined" aria-hidden="true">
+                  captive_portal
+                </span>
+                <a href="https://deloooonp.netlify.app/" class="label-medium"
+                  >deloooonp.netlify.app</a
+                >
+              </li>
+              <div class="btn-wrapper">
+                <a
+                  href="assets/pdf/Delon_Pratama_CV.pdf"
+                  downloads=""
+                  target="_blank"
+                  class="chip"
+                >
+                  <span class="label-large">Download CV</span>
+                  <div class="state-layer"></div>
+                </a>
+              </div>
+            </ul>
+          </div>
+
+          <div>
+            <!-- PRIMARY TABS -->
+            <div class="primary-tabs">
+              <button class="tab-btn active" data-tab-btn="project">
+                <span class="tab-text title-small">Projects</span>
+                <div class="state-layer"></div>
+              </button>
+
+              <button class="tab-btn" data-tab-btn="resume">
+                <span class="tab-text title-small">Resume</span>
+                <div class="state-layer"></div>
+              </button>
+
+              <button class="tab-btn" data-tab-btn="contact">
+                <span class="tab-text title-small">Contact</span>
+                <div class="state-layer"></div>
+              </button>
+            </div>
+
+            <!-- PROJECTS -->
+            <section
+              class="section tab-content active"
+              data-tab-content="project"
+            >
+              <div class="container">
+                <div class="project-list">
+                  <div class="card" data-tilt>
+                    <figure
+                      class="card-banner img-holder"
+                      style="--width: 334; --height: 180"
+                    >
+                      <img
+                        src="./assets/images/cakebahagia.png"
+                        alt="Pixstock - Stock Media App"
+                        width="334"
+                        height="180"
+                        class="img-cover"
+                      />
+                    </figure>
+                    <div class="card-content">
+                      <span class="label-large card-subtitle">Web App</span>
+                      <h3 class="title-large card-title">
+                        CakeBahagia - Cake Store Web
+                      </h3>
+                    </div>
+                    <a
+                      href="https://deloooonp.github.io/cakebahagia/"
+                      target="_blank"
+                      class="state-layer"
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- RESUME -->
+            <section
+              class="section tab-content resume-tab"
+              data-tab-content="resume"
+            >
+              <div class="container">
+                <h2 class="section-title title-medium">Experience</h2>
+                <ul class="list">
+                  <li class="resume-item">
+                    <div class="resume-card">
+                      <p class="body-large">Web Development Projects</p>
+                      <span class="label-medium card-subtitle"
+                        >2023 - 2024</span
+                      >
+                      <span class="body-medium card-text"
+                        >During my college studies, I worked on several web
+                        development projects that showcase my skills in
+                        front-end and back-end development.
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+
+                <h2 class="section-title title-medium">Education</h2>
+                <ul class="list">
+                  <li class="resume-item">
+                    <div class="resume-card">
+                      <p class="body-large">
+                        Universitas Bina Sarana Informatika
+                      </p>
+                      <span class="body-medium card-text"
+                        >Bachelor's Degree in Systems Information</span
+                      >
+                      <span class="label-medium card-subtitle"
+                        >2023 - 2027</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+
+                <h2 class="section-title title-medium">Certificates</h2>
+                <ul class="list">
+                  <li class="resume-item">
+                    <div class="resume-card">
+                      <p class="body-large">Teman Coding</p>
+                      <span class="body-medium card-text"
+                        >HTML CSS Basic Webinar</span
+                      >
+                      <span class="label-medium card-subtitle">2025</span>
+                      <div class="btn-wrapper view-doc-btn">
+                        <a
+                          href="assets/sertif/Delon_Pratama.jpg"
+                          downloads=""
+                          target="_blank"
+                          class="chip"
+                        >
+                          <span class="label-large">View Document</span>
+                          <div class="state-layer"></div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+
+                <h2 class="section-title title-medium">
+                  Skills and Technologies
+                </h2>
+                <ul class="resume-bottom-list">
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/laravel.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="JavaScript"
+                      class="icon"
+                    />
+                    <span class="label-medium">Laravel</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/codeigniter.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="JavaScript"
+                      class="icon"
+                    />
+                    <span class="label-medium">CodeIgniter</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/javascript.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="JavaScript"
+                      class="icon"
+                    />
+                    <span class="label-medium">JavaScript</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/php.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="MongoDB"
+                      class="icon"
+                    />
+                    <span class="label-medium">PHP</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/bootstrap.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="MongoDB"
+                      class="icon"
+                    />
+                    <span class="label-medium">Bootstrap</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/sql.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="MongoDB"
+                      class="icon"
+                    />
+                    <span class="label-medium">SQL</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/git.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="ReactJS"
+                      class="icon"
+                    />
+                    <span class="label-medium">Git</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/github.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="Github"
+                      class="icon"
+                    />
+                    <span class="label-medium">Github</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                  <li class="resume-bottom-item">
+                    <img
+                      src="./assets/icons/figma.svg"
+                      width="28"
+                      height="28"
+                      loading="lazy"
+                      alt="VSCode"
+                      class="icon"
+                    />
+                    <span class="label-medium">Figma</span>
+                    <span href="#" class="state-layer"></span>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section
+              class="section tab-content contact-tab"
+              data-tab-content="contact"
+            >
+              <div class="container">
+                <div class="contact-info">
+                  <h4 class="section-title title-small">Contact info</h4>
+                  <ul class="contact-info-list">
+                    <li class="contact-info-item">
+                      <div class="icon-box">
+                        <span
+                          class="material-symbols-outlined"
+                          aria-hidden="true"
+                        >
+                          mail
+                        </span>
+                      </div>
+                      <div class="info-content">
+                        <p class="label-large info-title">Mail Me</p>
+                        <a
+                          href="mailto:delonpratama1009@gmail.com"
+                          class="label-large info-text"
+                          >delonpratama1009@gmail.com</a
+                        >
+                      </div>
+                    </li>
+
+                    <li class="contact-info-item">
+                      <div class="icon-box">
+                        <span
+                          class="material-symbols-outlined"
+                          aria-hidden="true"
+                        >
+                          call
+                        </span>
+                      </div>
+                      <div class="info-content">
+                        <p class="label-large info-title">Contact Me</p>
+                        <a
+                          href="tel:+62895333689022"
+                          class="label-large info-text"
+                          >+62 895-3336-89022</a
+                        >
+                      </div>
+                    </li>
+
+                    <li class="contact-info-item">
+                      <div class="icon-box">
+                        <span
+                          class="material-symbols-outlined"
+                          aria-hidden="true"
+                        >
+                          location_on
+                        </span>
+                      </div>
+                      <div class="info-content">
+                        <p class="label-large info-title">Address</p>
+                        <a
+                          href="https://maps.app.goo.gl/xUdHTXVNtcTuLiF89"
+                          class="label-large info-text"
+                          target="_blank"
+                          >Kota Bekasi, Indonesia</a
+                        >
+                      </div>
+                    </li>
+                  </ul>
+                  <h4 class="title-small">Social Info</h4>
+                  <div class="social-list">
+                    <a
+                      href="https://www.linkedin.com/in/delon-pratama-38592229a/"
+                      target="_blank"
+                      class="social-item"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="currentColor"
+                        class="bi bi-linkedin"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://www.instagram.com/deloooonp/"
+                      target="_blank"
+                      class="social-item"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clip-path="url(#clip0_66_1657)">
+                          <mask
+                            id="mask0_66_1657"
+                            style="mask-type: luminance"
+                            maskUnits="userSpaceOnUse"
+                            x="0"
+                            y="0"
+                            width="24"
+                            height="24"
+                          >
+                            <path
+                              d="M0 7.05719e-05H23.9999V24H0V7.05719e-05Z"
+                              fill="white"
+                            />
+                          </mask>
+                          <g mask="url(#mask0_66_1657)">
+                            <path
+                              d="M23.062 12C23.0596 12.9866 23.0485 13.9731 23.035 14.9596C23.0187 16.1498 23.0003 17.3405 22.7018 18.5103C22.3888 19.7371 21.7715 20.795 20.811 21.5783C19.7989 22.4036 18.5755 22.8375 17.2552 22.9178C15.5039 23.0243 13.7519 23.0664 12 23.0622C10.248 23.0664 8.496 23.0243 6.7448 22.9178C5.42443 22.8375 4.20109 22.4036 3.18897 21.5783C2.2285 20.795 1.61116 19.7371 1.29813 18.5103C0.999629 17.3405 0.981255 16.1498 0.964989 14.9596C0.951489 13.9731 0.940285 12.9866 0.937988 12C0.940285 11.0135 0.951489 10.0269 0.964989 9.04045C0.981255 7.85025 0.999629 6.65954 1.29813 5.48973C1.61116 4.26301 2.2285 3.20505 3.18897 2.42182C4.20109 1.59644 5.42443 1.16262 6.7448 1.08232C8.496 0.97582 10.248 0.933726 12 0.937851C13.7519 0.933726 15.5039 0.97582 17.2552 1.08232C18.5755 1.16262 19.7989 1.59644 20.811 2.42182C21.7715 3.20505 22.3888 4.26301 22.7018 5.48973C23.0003 6.65954 23.0187 7.85025 23.035 9.04045C23.0485 10.0269 23.0596 11.0135 23.062 12Z"
+                              style="stroke: var(--on-surface-variant)"
+                              stroke-width="1.5"
+                              stroke-miterlimit="10"
+                            />
+                            <path
+                              d="M16.875 12C16.875 14.7183 14.6714 16.9219 11.9531 16.9219C9.23484 16.9219 7.03125 14.7183 7.03125 12C7.03125 9.28174 9.23484 7.07815 11.9531 7.07815C14.6714 7.07815 16.875 9.28174 16.875 12Z"
+                              style="stroke: var(--on-surface-variant)"
+                              stroke-width="1.5"
+                              stroke-miterlimit="10"
+                            />
+                            <path
+                              d="M19.875 5.67188C19.875 6.4485 19.2454 7.07812 18.4687 7.07812C17.6921 7.07812 17.0625 6.4485 17.0625 5.67188C17.0625 4.89526 17.6921 4.26563 18.4687 4.26563C19.2454 4.26563 19.875 4.89526 19.875 5.67188Z"
+                              style="fill: var(--on-surface-variant)"
+                            />
+                          </g>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_66_1657">
+                            <rect width="24" height="24" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="contact-form">
+                  <h3 class="title-large">Let's Work Together.</h3>
+                  <form action="" class="input-wrapper" id="contact-form">
+                    <input
+                      type="text"
+                      name="user_name"
+                      placeholder="Name"
+                      required
+                      class="input-field"
+                    />
+                    <input
+                      type="email"
+                      name="user_email"
+                      placeholder="Email"
+                      required
+                      class="input-field"
+                    />
+                    <textarea
+                      name="user_message"
+                      placeholder="Message"
+                      required
+                      class="textarea"
+                    ></textarea>
+                    <button type="submit" class="btn">
+                      <span class="label-large">Send Message</span>
+                      <div class="state-layer"></div>
+                    </button>
+                    <p class="contact-message" id="contact-message"></p>
+                  </form>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      <div class="container">
+        <p class="body-medium">
+          &COPY; Copyright 2025. All right reserved by deloooonp
+        </p>
+      </div>
+    </footer>
+
+    <!-- Custom JS Link -->
+    <script src="./js/script.js"></script>
+
+    <!-- Tilt JS -->
+    <script src="js/vanilla-tilt.js "></script>
+  </body>
+</html>
