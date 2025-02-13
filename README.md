@@ -1,5 +1,5 @@
 📌 My Portfolio Website
-🚀 Live Demo: deloooonp.netlify.app
+🚀 Live Demo: [deloooonp.netlify.app](https://deloooonp.netlify.app/)
 
 📝 About
 Hey! This is my personal portfolio where I showcase my projects, skills, and experience. It’s built with HTML, CSS, and JavaScript.
