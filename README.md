@@ -28,5 +28,7 @@ This site is hosted on GitHub Pages and Netlify:
 - Netlify: Just connect the repo, and it auto-deploys from there.
   
 📬 Contact
+
 📧 Email: delonpratama1009@gmail.com
+
 🔗 LinkedIn : https://www.linkedin.com/in/delon-pratama-38592229a/
