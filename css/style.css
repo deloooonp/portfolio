@@ -346,6 +346,10 @@ body {
   'opsz' 24;
 }
 
+.icon-m {
+  margin-right: 3.25px;
+}
+
 :has(> .state-layer) {
   position: relative;
   overflow: hidden;

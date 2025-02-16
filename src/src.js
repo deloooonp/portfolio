@@ -6,11 +6,12 @@ document.addEventListener("alpine:init", () => {
       { id: 2, name: "CodeIgniter", img: "codeigniter.svg" },
       { id: 3, name: "Bootstrap", img: "bootstrap.svg" },
       { id: 4, name: "JavaScript", img: "javascript.svg" },
-      { id: 5, name: "PHP", img: "php.svg" },
-      { id: 6, name: "SQL", img: "sql.svg" },
-      { id: 7, name: "Git", img: "git.svg" },
-      { id: 8, name: "GitHub", img: "github.svg" },
-      { id: 9, name: "Figma", img: "figma.svg" },
+      { id: 5, name: "Alpine.js", img: "alpinejs.svg" },
+      { id: 6, name: "PHP", img: "php.svg" },
+      { id: 7, name: "SQL", img: "sql.svg" },
+      { id: 8, name: "Git", img: "git.svg" },
+      { id: 9, name: "GitHub", img: "github.svg" },
+      { id: 10, name: "Figma", img: "figma.svg" },
     ],
   }));
 });
