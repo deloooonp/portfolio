@@ -7,6 +7,7 @@ document.addEventListener("alpine:init", () => {
       { name: "Bootstrap", img: "bootstrap.svg" },
       { name: "JavaScript", img: "javascript.svg" },
       { name: "Alpine.js", img: "alpinejs.svg" },
+      { name: "GSAP", img: "gsap.svg" },
       { name: "PHP", img: "php.svg" },
       { name: "MySQL", img: "mysql.svg" },
       { name: "SQL", img: "sql.svg" },
