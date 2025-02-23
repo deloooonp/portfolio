@@ -24,10 +24,10 @@ Hey! This is my personal portfolio where I showcase my projects, skills, and exp
 3. Open index.html in your browser—that’s it!
    
 🛠 Deployment
-This site is hosted on GitHub Pages and Netlify:
+This site is hosted on GitHub Pages and Vercel:
 
 - GitHub Pages: Push changes to main, and it updates automatically.
-- Netlify: Just connect the repo, and it auto-deploys from there.
+- Vercel: Just connect the repo, and it auto-deploys from there.
   
 📬 Contact
 
