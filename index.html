@@ -39,6 +39,9 @@
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
 
+    <!-- Typed JS -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
     <!-- Alpine JS -->
     <script
       defer
@@ -51,7 +54,7 @@
 
   <body>
     <!-- Website Loader -->
-    <h1 class="counter">0</h1>
+    <!-- <h1 class="counter">0</h1>
 
     <div class="overlay">
       <div class="bar"></div>
@@ -66,7 +69,7 @@
       <div class="bar"></div>
     </div>
 
-    <script src="js/gsap.min.js"></script>
+    <script src="js/gsap.min.js"></script> -->
 
     <!-- TOP BAR -->
     <header class="topbar">
@@ -106,7 +109,19 @@
 
             <div class="hero-content">
               <h1 class="display-medium hero-name">Delon Pratama</h1>
-              <span class="body-large section-subtitle">Web Developer</span>
+              <div class="type-container">
+                <span class="title-large section-subtitle">
+                  <span class="auto-type"></span>Developer
+                </span>
+              </div>
+              <script>
+                var typed = new Typed(".auto-type", {
+                  strings: ["Frontend", "Backend"],
+                  typeSpeed: 100,
+                  backSpeed: 100,
+                  loop: true,
+                });
+              </script>
               <p class="body-large section-text">
                 I'm a web developer with experience in CodeIgniter, Bootstrap,
                 and JavaScript. I build responsive and functional websites,
@@ -131,30 +146,42 @@
                   class="material-symbols-outlined icon-m"
                   aria-hidden="true"
                 >
-                  <img src="assets/icons/github.svg" alt="github">
+                  <img src="assets/icons/github.svg" alt="github" />
                 </span>
                 <span class="label-large">github.com/deloooonp</span>
-                <a href="https://github.com/deloooonp" class="state-layer" target="_blank"></a>
+                <a
+                  href="https://github.com/deloooonp"
+                  class="state-layer"
+                  target="_blank"
+                ></a>
               </li>
               <li class="resume-bottom-item">
                 <span
                   class="material-symbols-outlined icon-m"
                   aria-hidden="true"
                 >
-                  <img src="assets/icons/linkedin.svg" alt="github">
+                  <img src="assets/icons/linkedin.svg" alt="github" />
                 </span>
                 <span class="label-large">linkedin.com/in/delon-pratama</span>
-                <a href="https://www.linkedin.com/in/delon-pratama-38592229a/" class="state-layer" target="_blank"></a>
+                <a
+                  href="https://www.linkedin.com/in/delon-pratama-38592229a/"
+                  class="state-layer"
+                  target="_blank"
+                ></a>
               </li>
               <li class="resume-bottom-item">
                 <span
                   class="material-symbols-outlined icon-m"
                   aria-hidden="true"
                 >
-                  <img src="assets/icons/instagram.svg" alt="github">
+                  <img src="assets/icons/instagram.svg" alt="github" />
                 </span>
                 <span class="label-large">instagram.com/deloooonp</span>
-                <a href="https://www.instagram.com/deloooonp/" class="state-layer" target="_blank"></a>
+                <a
+                  href="https://www.instagram.com/deloooonp/"
+                  class="state-layer"
+                  target="_blank"
+                ></a>
               </li>
               <div class="btn-wrapper">
                 <a

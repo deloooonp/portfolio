@@ -12,6 +12,7 @@ Hey! This is my personal portfolio where I showcase my projects, skills, and exp
 
 🛠 Tech Stack
 - Frontend: HTML, CSS, JavaScript
+- Backend: Tiltjs, Alpinejs, Emailjs, GSAP, Typedjs
 - Hosting: GitHub Pages & Netlify
 
 🚀 Getting Started

@@ -622,6 +622,19 @@ body {
   margin-bottom: auto;
  }
 
+ .type-container span {
+  display: inline-block;
+  vertical-align: top;
+ }
+
+ .auto-type {
+  color: var(--on-surface);
+ }
+
+ .typed-cursor {
+  color: var(--on-surface);
+ }
+
 .hero .section-subtitle { 
   color:var(--on-surface-variant); 
   font-weight: 700;
@@ -631,7 +644,6 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-weight: 500;
-  /* font-family: "Orbitron", sans-serif; */
 }
 
 .hero .section-text {
