@@ -11,8 +11,7 @@ Hey! This is my personal portfolio where I showcase my projects, skills, and exp
 - Easy-to-use contact form
 
 🛠 Tech Stack
-- Frontend: HTML, CSS, JavaScript
-- Backend: Tiltjs, Alpinejs, Emailjs, GSAP, Typedjs
+- Frontend: HTML, CSS, JavaScript, Tiltjs, Alpinejs, Emailjs, GSAP, Typedjs
 - Hosting: GitHub Pages & Netlify
 
 🚀 Getting Started
