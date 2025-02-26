@@ -134,7 +134,7 @@ contactForm.addEventListener('submit', sendEmail)
 // Typed JS
 var typed = new Typed(".auto-type", {
   strings: ["Frontend", "Backend"],
-  typeSpeed: 150,
-  backSpeed: 150,
+  typeSpeed: 160,
+  backSpeed: 120,
   loop: true,
 });
