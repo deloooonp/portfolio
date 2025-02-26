@@ -130,3 +130,11 @@ const sendEmail = (e) =>{
 }
 
 contactForm.addEventListener('submit', sendEmail)
+
+// Typed JS
+var typed = new Typed(".auto-type", {
+  strings: ["Frontend", "Backend"],
+  typeSpeed: 150,
+  backSpeed: 150,
+  loop: true,
+});
