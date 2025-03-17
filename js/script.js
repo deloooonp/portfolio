@@ -134,7 +134,7 @@ gsap.to(".loader", {
 
 gsap.to(".loading-screen", {
   opacity: 0,
-  duration: 0.5,
+  duration: 0.25,
   delay: 4.75,
   ease: "power1.inOut",
 });
