@@ -7,6 +7,7 @@ document.addEventListener("alpine:init", () => {
       { name: "Bootstrap", img: "bootstrap.svg" },
       { name: "TailwindCSS", img: "tailwindcss.svg" },
       { name: "JavaScript", img: "javascript.svg" },
+      { name: "Node.js", img: "node.js.svg" },
       { name: "Alpine.js", img: "alpinejs.svg" },
       { name: "GSAP", img: "gsap.svg" },
       { name: "PHP", img: "php.svg" },
