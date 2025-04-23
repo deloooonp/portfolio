@@ -105,6 +105,21 @@ gsap.to(".loading-screen", {
   ease: "power1.inOut",
 });
 
+gsap.from(".hero, .hero-content", 1.5, {
+  delay: 4,
+  y: -400,
+  ease: "power4.inOut",
+  stagger: {
+    amount: 0.25,
+  },
+});
+
+gsap.from(".about-card", 1.5, {
+  delay: 4,
+  x: -900,
+  ease: "power4.inOut",
+});
+
 // Email JS
 const contactForm = document.getElementById("contact-form"),
   contactMessage = document.getElementById("contact-message");
