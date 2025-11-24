@@ -49,8 +49,8 @@ const Dock = () => {
     dock.addEventListener("mouseleave", resetIcons);
 
     return () => {
-      dock.addEventListener("mousemove", handleMouseMove);
-      dock.addEventListener("mouseleave", resetIcons);
+      dock.removeEventListener("mousemove", handleMouseMove);
+      dock.removeEventListener("mouseleave", resetIcons);
     };
   }, []);
 
