@@ -1,2 +1,2 @@
-- [x] Update Draggable.create in WindowWrapper.jsx to target the window header instead of the entire window
-- [x] Test the dragging behavior to ensure only the header is draggable and moves the entire window
+- [x] Add e.stopPropagation() to close button onClick in WindowControls.jsx to prevent bubbling to section onMouseDown
+- [x] Add onPress to Draggable in WindowWrapper.jsx to focus window when pressing header
