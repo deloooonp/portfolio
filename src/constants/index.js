@@ -396,7 +396,7 @@ const ABOUT_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-10 left-5 object-cover",
+      position: "top-10 left-5",
       imageUrl: "/images/delon.jpg",
     },
     {

@@ -341,14 +341,14 @@ body {
       @apply flex-1 p-8 bg-white max-w-2xl relative;
 
       li {
-        @apply absolute flex items-center flex-col gap-3;
+        @apply absolute flex items-center flex-col gap-3 cursor-pointer;
 
         img {
-          @apply object-contain object-center size-16 relative group-hover:scale-105;
+          @apply object-contain object-center size-17 relative group-hover:scale-105 group-hover:bg-gray-950/10 p-1 rounded-md transition-all;
         }
 
         p {
-          @apply text-sm text-center font-medium w-40;
+          @apply text-sm text-center font-medium px-2 max-w-40 group-hover:bg-gray-800/10 rounded-md;
         }
       }
     }
