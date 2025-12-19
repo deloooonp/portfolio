@@ -188,19 +188,19 @@ const photosLinks = [
 const gallery = [
   {
     id: 1,
-    img: "/images/gal1.png",
+    img: "/images/delon.jpg",
   },
   {
     id: 2,
-    img: "/images/gal2.png",
+    img: "/images/delon2.jpg",
   },
   {
     id: 3,
-    img: "/images/gal3.png",
+    img: "/images/delon3.jpg",
   },
   {
     id: 4,
-    img: "/images/gal4.png",
+    img: "/images/delon4.jpg",
   },
 ];
 
@@ -396,8 +396,8 @@ const ABOUT_LOCATION = {
       icon: "/images/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-10 left-5",
-      imageUrl: "/images/adrian.jpg",
+      position: "top-10 left-5 object-cover",
+      imageUrl: "/images/delon.jpg",
     },
     {
       id: 2,

@@ -1,0 +1,2 @@
+- [x] Update Draggable.create in WindowWrapper.jsx to target the window header instead of the entire window
+- [x] Test the dragging behavior to ensure only the header is draggable and moves the entire window
