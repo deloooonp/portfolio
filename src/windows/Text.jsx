@@ -19,7 +19,7 @@ const Text = () => {
 
       <div className="p-5 space-y-6 bg-white">
         {image ? (
-          <div className="w-full">
+          <div className="w-full max-h-[400px] overflow-hidden mb-4">
             <img src={image} alt={name} className="w-full h-auto rounded" />
           </div>
         ) : null}
