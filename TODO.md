@@ -1,0 +1,2 @@
+- [x] Add e.stopPropagation() to close button onClick in WindowControls.jsx to prevent bubbling to section onMouseDown
+- [x] Add onPress to Draggable in WindowWrapper.jsx to focus window when pressing header

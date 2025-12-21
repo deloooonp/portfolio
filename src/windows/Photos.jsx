@@ -20,7 +20,7 @@ const Photos = () => {
       </div>
 
       <div className="flex w-full">
-        <div className="sidebar">
+        {/* <div className="sidebar">
           <h2>Photos</h2>
           <ul>
             {photosLinks.map(({ id, icon, title }) => (
@@ -30,7 +30,7 @@ const Photos = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         <div className="gallery">
           <ul>

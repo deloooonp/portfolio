@@ -44,6 +44,7 @@ const Safari = () => {
         </div>
       </div>
 
+      {/* Commented out original blog section
       <div className="blog">
         <h2>My Developer Blog</h2>
         <div className="space-y-8">
@@ -61,6 +62,16 @@ const Safari = () => {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+      */}
+
+      <div className="flex-center min-h-[400px]">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Page Under Development</h2>
+          <p className="text-gray-600">
+            This page is not finished yet. Future development in progress.
+          </p>
         </div>
       </div>
     </>
