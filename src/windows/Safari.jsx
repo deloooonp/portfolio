@@ -1,11 +1,9 @@
-import { WindowControls } from "#components";
-import { blogPosts } from "#constants";
-import WindowWrapper from "#hoc/WindowWrapper";
+import { WindowControls } from "@/components";
+import WindowWrapper from "@/hoc/WindowWrapper";
 import {
   ChevronLeft,
   ChevronRight,
   Copy,
-  MoveRight,
   PanelLeft,
   Plus,
   Search,

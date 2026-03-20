@@ -1,6 +1,6 @@
-import { WindowControls } from "#components";
-import { socials } from "#constants";
-import WindowWrapper from "#hoc/WindowWrapper";
+import { WindowControls } from "@/components";
+import { SOCIALS } from "@/constants";
+import WindowWrapper from "@/hoc/WindowWrapper";
 
 const Contact = () => {
   return (
@@ -21,7 +21,7 @@ const Contact = () => {
         <p>delonpratama1009@gmail.com</p>
 
         <ul>
-          {socials.map(({ id, bg, link, icon, text }) => (
+          {SOCIALS.map(({ id, bg, link, icon, text }) => (
             <li key={id} style={{ backgroundColor: bg }}>
               <a
                 href={link}

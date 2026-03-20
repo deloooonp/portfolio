@@ -1,14 +1,14 @@
 import { Download } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 
-import { WindowControls } from "#components";
-import WindowWrapper from "#hoc/WindowWrapper";
+import { WindowControls } from "@/components";
+import WindowWrapper from "@/hoc/WindowWrapper";
 
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
+  import.meta.url,
 ).toString();
 
 const Resume = () => {
