@@ -1,9 +1,9 @@
 import { Mail, Search } from "lucide-react";
 
-import WindowWrapper from "#hoc/WindowWrapper";
-import { WindowControls } from "#components";
-import { gallery, photosLinks } from "#constants";
-import useWindowStore from "#store/window";
+import WindowWrapper from "@/hoc/WindowWrapper";
+import { WindowControls } from "@/components";
+import { GALLERY_IMAGES, PHOTOS_LINKS } from "@/data";
+import useWindowStore from "@/store/window";
 
 const Photos = () => {
   const { openWindow } = useWindowStore();
@@ -34,7 +34,7 @@ const Photos = () => {
 
         <div className="gallery">
           <ul>
-            {gallery.map(({ id, img }) => (
+            {GALLERY_IMAGES.map(({ id, img }) => (
               <li
                 key={id}
                 onClick={() =>

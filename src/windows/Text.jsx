@@ -1,6 +1,6 @@
-import WindowWrapper from "#hoc/WindowWrapper";
-import { WindowControls } from "#components";
-import useWindowStore from "#store/window";
+import { WindowControls } from "@/components";
+import WindowWrapper from "@/hoc/WindowWrapper";
+import useWindowStore from "@/store/window";
 
 const Text = () => {
   const { windows } = useWindowStore();

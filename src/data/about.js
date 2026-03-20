@@ -1,0 +1,43 @@
+export const ABOUT_LOCATION = {
+  id: 2,
+  type: "about",
+  name: "About me",
+  icon: "/icons/info.svg",
+  kind: "folder",
+  children: [
+    {
+      id: 1,
+      name: "me.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-10 left-5",
+      imageUrl: "/images/delon.jpg",
+    },
+    {
+      id: 2,
+      name: "christmas-me.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-28 right-72",
+      imageUrl: "/images/delon5.jpeg",
+    },
+    {
+      id: 3,
+      name: "about-me.txt",
+      icon: "/images/txt.png",
+      kind: "file",
+      fileType: "txt",
+      position: "top-45 right-24",
+      subtitle: "Meet the Developer Behind the Code",
+      image: "/images/delon4.jpg",
+      description: [
+        "Hi, I’m Delon — a web developer focused on building interfaces that are clean, responsive, and actually usable.",
+        "I work mainly with JavaScript, React, and Next.js, turning designs into fast, functional experiences without unnecessary fluff.",
+        "I care about solid UI, thoughtful UX, and code that’s readable enough to survive future me.",
+        "When I’m not coding, I’m usually refining layouts, overthinking small details, or convincing myself that one more tech purchase is justified.",
+      ],
+    },
+  ],
+};

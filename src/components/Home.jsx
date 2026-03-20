@@ -1,10 +1,10 @@
 import { useGSAP } from "@gsap/react";
-import { Draggable } from "gsap/Draggable";
 import clsx from "clsx";
+import { Draggable } from "gsap/Draggable";
 
-import { locations } from "#constants";
-import useLocationStore from "#store/location";
-import useWindowStore from "#store/window";
+import { locations } from "@/data";
+import useLocationStore from "@/store/location";
+import useWindowStore from "@/store/window";
 
 const projects = locations.work?.children ?? [];
 

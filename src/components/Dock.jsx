@@ -1,10 +1,10 @@
-import { useRef } from "react";
-import { Tooltip } from "react-tooltip";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useRef } from "react";
+import { Tooltip } from "react-tooltip";
 
-import { dockApps } from "#constants";
-import useWindowStore from "#store/window";
+import { dockApps } from "@/constants";
+import useWindowStore from "@/store/window";
 
 const Dock = () => {
   const dockRef = useRef(null);
@@ -44,7 +44,7 @@ const Dock = () => {
           y: 0,
           duration: 0.3,
           ease: "power1.out",
-        })
+        }),
       );
     dock.addEventListener("mousemove", handleMouseMove);
     dock.addEventListener("mouseleave", resetIcons);
