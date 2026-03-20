@@ -62,7 +62,7 @@ export const WORK_LOCATION = {
       icon: "/images/folder.png",
       kind: "folder",
       position: "top-56 left-48",
-      windowPosition: "top-[15vh] left-30",
+      windowPosition: "top-[15vh] left-45",
       children: [
         {
           id: 1,
