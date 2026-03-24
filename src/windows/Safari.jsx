@@ -16,7 +16,8 @@ import {
 } from "lucide-react";
 
 import { WindowControls } from "@/components";
-import { PROJECTS, ALL_TAGS } from "@/data";
+import { TECH_STACK } from "@/constants";
+import { PROJECTS } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 
 const ProjectCard = ({ project, onClick }) => (
@@ -101,7 +102,9 @@ const Safari = () => {
         p.name.toLowerCase().includes(query.toLowerCase()) ||
         p.summary.toLowerCase().includes(query.toLowerCase()) ||
         p.tags.some((t) => t.toLowerCase().includes(query.toLowerCase()));
-      const matchesTag = activeTag === null || p.tags.includes(activeTag);
+
+      const matchesTag = activeTag === null || p.type === activeTag;
+
       return matchesQuery && matchesTag;
     });
   }, [query, activeTag]);
@@ -166,7 +169,6 @@ const Safari = () => {
       </div>
 
       <div className="safari-catalogue">
-        {/* Sidebar */}
         <div className={`safari-sidebar ${isSidebarOpen ? "open" : ""}`}>
           <h4 className="safari-sidebar-title">Favorites</h4>
           <div className="safari-sidebar-list">
@@ -176,7 +178,10 @@ const Safari = () => {
                 className="safari-sidebar-item"
                 onClick={() => handleSelectProject(project)}
               >
-                <Star size={14} className="text-yellow-400 fill-yellow-400" />
+                <Star
+                    size={14}
+                    className="flex-none text-yellow-400 fill-yellow-400"
+                  />
                 <span className="truncate">{project.name}</span>
               </button>
             ))}
@@ -193,24 +198,19 @@ const Safari = () => {
                 setSelectedProject(null);
               }}
             >
-              <Folder size={14} className="text-blue-400 fill-blue-400" />
+              <Folder
+                size={14}
+                className="flex-none text-blue-400 fill-blue-400"
+              />
               All Projects
             </button>
           </div>
 
-          <h4 className="safari-sidebar-title">Tags</h4>
+          <h4 className="safari-sidebar-title">Type</h4>
           <div className="safari-sidebar-list">
-            {ALL_TAGS.map((tag, i) => {
-              const colors = [
-                "bg-red-400",
-                "bg-orange-400",
-                "bg-yellow-400",
-                "bg-green-400",
-                "bg-blue-400",
-                "bg-purple-400",
-                "bg-gray-400",
-              ];
-              const dotColor = colors[i % colors.length];
+            {["Frontend", "Backend", "Fullstack"].map((tag, i) => {
+              const colors = ["bg-blue-400", "bg-purple-400", "bg-green-400"];
+              const dotColor = colors[i];
 
               return (
                 <button
@@ -233,7 +233,6 @@ const Safari = () => {
           </div>
         </div>
 
-        {/* Main Content Area */}
         <div className="safari-catalogue-content">
           {selectedProject ? (
             <DetailView project={selectedProject} onBack={handleBack} />

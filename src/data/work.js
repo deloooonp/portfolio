@@ -1,150 +1,53 @@
+import { PROJECTS } from "./projects";
+
 export const WORK_LOCATION = {
   id: 1,
   type: "work",
   name: "Work",
   icon: "/icons/work.svg",
   kind: "folder",
-  children: [
-    {
-      id: 5,
-      name: "iPhone 15 Pro — Motion-Driven Landing Page",
+  children: PROJECTS.map((project, index) => {
+    const slug =
+      project.name
+        .split(" ")[0]
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "") || `project${project.id}`;
+
+    return {
+      id: project.id + 4,
+      name: project.name,
       icon: "/images/folder.png",
       kind: "folder",
-      position: "top-12 left-12",
-      windowPosition: "top-[10vh] left-10",
+      position:
+        project.desktopPosition || `top-${index * 12} left-${index * 12}`,
+      windowPosition: project.windowPosition || "top-[20vh] left-20",
       children: [
         {
           id: 1,
-          name: "iphone15.txt",
+          name: `${slug}.txt`,
           icon: "/images/txt.png",
           kind: "file",
           fileType: "txt",
-          position: "top-8 left-8",
-          description: [
-            "An interactive landing page inspired by the iPhone 15 Pro, focused on motion, depth, and visual storytelling.",
-            "The experience is driven by smooth scroll-based animations and subtle 3D elements to highlight the product’s materials and details.",
-            "Rather than static sections, the page uses motion to guide attention and create a sense of progression.",
-            "Built with React, GSAP, and Three.js to deliver high-performance animations with a polished, modern feel.",
-          ],
+          position: "top-12 left-12",
+          description: project.description,
         },
         {
           id: 2,
-          name: "iphone15.com",
+          name: `${slug}.com`,
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://iphone15-deloooonp.vercel.app/",
-          position: "top-20 right-32",
-        },
-        {
-          id: 4,
-          name: "iphone15.png",
-          icon: "/images/image.png",
-          kind: "file",
-          fileType: "img",
-          position: "top-48 right-16",
-          imageUrl: "/images/project-1.png",
-        },
-        {
-          id: 5,
-          name: "README.md",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "url",
-          href: "https://github.com/deloooonp/iPhone-15-Pro-Website-Clone",
-          position: "top-60 left-24",
-        },
-      ],
-    },
-    {
-      id: 6,
-      name: "ECOVEST Digital Waste Bank",
-      icon: "/images/folder.png",
-      kind: "folder",
-      position: "top-56 left-48",
-      windowPosition: "top-[15vh] left-45",
-      children: [
-        {
-          id: 1,
-          name: "ecovest.txt",
-          icon: "/images/txt.png",
-          kind: "file",
-          fileType: "txt",
-          position: "top-16 left-32",
-          description: [
-            "Ecovest is a digital waste bank platform designed to support community-based waste management in Indonesia.",
-            "The platform helps users record waste deposits, track balances, and understand the value of recyclable materials through a clear interface.",
-            "This project was developed for a national competition and achieved 2nd place, highlighting its real-world relevance and execution.",
-            "Built using Next.js and Tailwind CSS, with a focus on performance, responsiveness, and accessibility.",
-          ],
-        },
-        {
-          id: 2,
-          name: "ecovest.com",
-          icon: "/images/safari.png",
-          kind: "file",
-          fileType: "url",
-          href: "https://ecovest-bank-sampah.vercel.app/",
-          position: "top-40 right-24",
-        },
-        {
-          id: 4,
-          name: "ecovest.png",
-          icon: "/images/image.png",
-          kind: "file",
-          fileType: "img",
-          position: "top-4 left-64",
-          imageUrl: "/images/project-2.png",
-        },
-        {
-          id: 5,
-          name: "README.md",
-          icon: "/images/plain.png",
-          kind: "file",
-          fileType: "url",
-          href: "https://github.com/deloooonp/webdesign_RaxiemStudio_technoversary25",
-          position: "top-64 right-8",
-        },
-      ],
-    },
-    {
-      id: 7,
-      name: ">private_chat",
-      icon: "/images/folder.png",
-      kind: "folder",
-      position: "top-32 right-24",
-      windowPosition: "top-[25vh] left-10",
-      children: [
-        {
-          id: 1,
-          name: "private-chat.txt",
-          icon: "/images/txt.png",
-          kind: "file",
-          fileType: "txt",
-          position: "top-12 right-12",
-          description: [
-            "Private Chat is a secure, self-destructing chat room application built with Next.js and ElysiaJS.",
-            "Each room supports a maximum of 2 users, is ephemeral by design, and includes bot protection with anonymized identities.",
-            "Powered by Upstash Redis for real-time state, with Tailwind CSS v4 and React Query on the frontend.",
-          ],
-        },
-        {
-          id: 2,
-          name: "private-chat.com",
-          icon: "/images/safari.png",
-          kind: "file",
-          fileType: "url",
-          href: "https://privatechat-next.vercel.app/",
+          href: project.liveUrl,
           position: "top-32 left-8",
         },
         {
           id: 4,
-          name: "private-chat.png",
+          name: `${slug}.png`,
           icon: "/images/image.png",
           kind: "file",
           fileType: "img",
           position: "top-56 right-48",
-          imageUrl: "/images/project-3.png",
+          imageUrl: project.thumbnail,
         },
         {
           id: 5,
@@ -152,10 +55,10 @@ export const WORK_LOCATION = {
           icon: "/images/plain.png",
           kind: "file",
           fileType: "url",
-          href: "https://github.com/deloooonp/nextjs-chat-app",
+          href: project.githubUrl,
           position: "top-24 left-64",
         },
       ],
-    },
-  ],
+    };
+  }),
 };
