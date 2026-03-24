@@ -2,7 +2,7 @@ export const NAV_LINKS = [
   {
     id: 1,
     name: "Projects",
-    type: "finder",
+    type: "safari",
   },
   {
     id: 3,
