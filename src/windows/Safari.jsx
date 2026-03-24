@@ -4,12 +4,14 @@ import {
   ChevronRight,
   Copy,
   ExternalLink,
+  Folder,
   Github,
   PanelLeft,
   Plus,
   Search,
   Share,
   ShieldHalf,
+  Star,
   X,
 } from "lucide-react";
 
@@ -88,18 +90,21 @@ const DetailView = ({ project, onBack }) => (
 
 const Safari = () => {
   const [query, setQuery] = useState("");
+  const [activeTag, setActiveTag] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const filtered = useMemo(() => {
     return PROJECTS.filter((p) => {
-      return (
+      const matchesQuery =
         query === "" ||
         p.name.toLowerCase().includes(query.toLowerCase()) ||
         p.summary.toLowerCase().includes(query.toLowerCase()) ||
-        p.tags.some((t) => t.toLowerCase().includes(query.toLowerCase()))
-      );
+        p.tags.some((t) => t.toLowerCase().includes(query.toLowerCase()));
+      const matchesTag = activeTag === null || p.tags.includes(activeTag);
+      return matchesQuery && matchesTag;
     });
-  }, [query]);
+  }, [query, activeTag]);
 
   const handleSelectProject = (project) => setSelectedProject(project);
   const handleBack = () => setSelectedProject(null);
@@ -108,7 +113,12 @@ const Safari = () => {
     <>
       <div id="window-header">
         <WindowControls target="safari" />
-        <PanelLeft className="ml-10 icon" />
+        <PanelLeft
+          className={`ml-10 icon cursor-pointer transition-colors ${
+            isSidebarOpen ? "text-blue-500" : ""
+          }`}
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
 
         <div className="flex items-center gap-1 ml-5">
           {selectedProject ? (
@@ -155,12 +165,79 @@ const Safari = () => {
         </div>
       </div>
 
-      {selectedProject ? (
-        <DetailView project={selectedProject} onBack={handleBack} />
-      ) : (
-        <div className="safari-catalogue">
-          {/* Project grid */}
-          {filtered.length > 0 ? (
+      <div className="safari-catalogue">
+        {/* Sidebar */}
+        <div className={`safari-sidebar ${isSidebarOpen ? "open" : ""}`}>
+          <h4 className="safari-sidebar-title">Favorites</h4>
+          <div className="safari-sidebar-list">
+            {PROJECTS.slice(0, 2).map((project) => (
+              <button
+                key={`fav-${project.id}`}
+                className="safari-sidebar-item"
+                onClick={() => handleSelectProject(project)}
+              >
+                <Star size={14} className="text-yellow-400 fill-yellow-400" />
+                <span className="truncate">{project.name}</span>
+              </button>
+            ))}
+          </div>
+
+          <h4 className="safari-sidebar-title">Locations</h4>
+          <div className="safari-sidebar-list">
+            <button
+              className={`safari-sidebar-item ${
+                activeTag === null ? "active" : ""
+              }`}
+              onClick={() => {
+                setActiveTag(null);
+                setSelectedProject(null);
+              }}
+            >
+              <Folder size={14} className="text-blue-400 fill-blue-400" />
+              All Projects
+            </button>
+          </div>
+
+          <h4 className="safari-sidebar-title">Tags</h4>
+          <div className="safari-sidebar-list">
+            {ALL_TAGS.map((tag, i) => {
+              const colors = [
+                "bg-red-400",
+                "bg-orange-400",
+                "bg-yellow-400",
+                "bg-green-400",
+                "bg-blue-400",
+                "bg-purple-400",
+                "bg-gray-400",
+              ];
+              const dotColor = colors[i % colors.length];
+
+              return (
+                <button
+                  key={tag}
+                  className={`safari-sidebar-item ${
+                    activeTag === tag ? "active" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveTag(tag);
+                    setSelectedProject(null);
+                  }}
+                >
+                  <span
+                    className={`flex-none w-2.5 h-2.5 rounded-full ${dotColor}`}
+                  />
+                  <span className="truncate">{tag}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Main Content Area */}
+        <div className="safari-catalogue-content">
+          {selectedProject ? (
+            <DetailView project={selectedProject} onBack={handleBack} />
+          ) : filtered.length > 0 ? (
             <div className="safari-grid">
               {filtered.map((project) => (
                 <ProjectCard
@@ -174,15 +251,21 @@ const Safari = () => {
             <div className="safari-empty">
               <Search size={32} className="text-gray-300 mb-3" />
               <p>
-                No projects match <strong>"{query}"</strong>
+                No projects match <strong>"{query || activeTag}"</strong>
               </p>
-              <button className="safari-clear-btn" onClick={() => setQuery("")}>
+              <button
+                className="safari-clear-btn"
+                onClick={() => {
+                  setQuery("");
+                  setActiveTag(null);
+                }}
+              >
                 Clear search
               </button>
             </div>
           )}
         </div>
-      )}
+      </div>
     </>
   );
 };

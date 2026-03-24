@@ -131,11 +131,45 @@ body {
 
     /* ── Catalogue view ─────────────────────────────── */
     .safari-catalogue {
-      @apply flex flex-col h-full max-h-[560px] overflow-hidden bg-[#FAFAFA];
+      @apply flex flex-row h-full max-h-[560px] overflow-hidden bg-[#FAFAFA];
+    }
+
+    /* ── Sidebar (Premium Filter) ───────────────────── */
+    .safari-sidebar {
+      @apply w-0 overflow-hidden bg-white border-r border-transparent flex-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)];
+      
+      &.open {
+        @apply w-56 border-gray-100;
+      }
+    }
+
+    .safari-sidebar-title {
+      @apply text-[10px] font-bold text-gray-400 uppercase tracking-widest px-6 pt-6 pb-2;
+    }
+
+    .safari-sidebar-list {
+      @apply flex flex-col gap-1 px-3 pb-6;
+    }
+
+    .safari-sidebar-item {
+      @apply flex items-center gap-2 text-[13px] font-medium text-gray-700 px-3 py-1.5 rounded-lg text-left transition-colors cursor-pointer w-full;
+      
+      &:hover {
+        @apply bg-gray-50 text-gray-900;
+      }
+
+      &.active {
+        @apply bg-blue-50 text-blue-700 font-semibold;
+      }
+    }
+
+    /* Main Content Area */
+    .safari-catalogue-content {
+      @apply flex-1 overflow-hidden flex flex-col;
     }
 
     .safari-grid {
-      @apply grid grid-cols-2 gap-8 p-10 overflow-y-auto;
+      @apply grid grid-cols-2 gap-8 p-10 overflow-y-auto flex-1;
       scrollbar-width: thin;
       scrollbar-color: #e5e7eb transparent;
     }

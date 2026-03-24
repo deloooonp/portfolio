@@ -109,11 +109,11 @@ export const TECH_STACK = [
   },
   {
     category: "Backend",
-    items: ["Node.js", "Laravel"],
+    items: ["Node.js", "Laravel", "Express.js", "ElysiaJS"],
   },
   {
     category: "Database",
-    items: ["Supabase", "MySQL"],
+    items: ["Supabase", "MySQL", "PostgreSQL"],
   },
   {
     category: "Dev Tools",
