@@ -122,43 +122,152 @@ body {
     @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     .search {
-      @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
+      @apply flex items-center gap-3 w-2/3 bg-gray-100 rounded-lg px-3 py-2;
 
       input {
-        @apply placeholder:text-gray-400;
+        @apply placeholder:text-gray-400 bg-transparent outline-none flex-1 min-w-0;
       }
     }
 
-    .blog {
-      @apply bg-white p-10 max-w-3xl mx-auto;
+    /* ── Catalogue view ─────────────────────────────── */
+    .safari-catalogue {
+      @apply flex flex-row h-full max-h-[560px] overflow-hidden bg-[#FAFAFA];
+    }
 
-      h2 {
-        @apply text-xl font-bold text-pink-600 mb-10;
+    /* ── Sidebar (Premium Filter) ───────────────────── */
+    .safari-sidebar {
+      @apply w-0 overflow-hidden bg-white border-r border-transparent flex-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)];
+
+      &.open {
+        @apply w-56 border-gray-100;
+      }
+    }
+
+    .safari-sidebar-title {
+      @apply text-[10px] font-bold text-gray-400 uppercase tracking-widest px-6 pt-6 pb-2;
+    }
+
+    .safari-sidebar-list {
+      @apply flex flex-col gap-1 px-3 pb-6;
+    }
+
+    .safari-sidebar-item {
+      @apply flex items-center gap-2 text-[13px] font-medium text-gray-700 px-3 py-1.5 rounded-lg text-left transition-colors cursor-pointer w-full;
+
+      &:hover {
+        @apply bg-gray-50 text-gray-900;
       }
 
-      .blog-post {
-        @apply grid grid-cols-12 space-x-5;
+      &.active {
+        @apply bg-blue-50 text-blue-700 font-semibold;
+      }
+    }
+
+    /* Main Content Area */
+    .safari-catalogue-content {
+      @apply flex-1 overflow-hidden flex flex-col;
+    }
+
+    .safari-grid {
+      @apply grid grid-cols-2 gap-8 p-10 overflow-y-auto flex-1;
+      scrollbar-width: thin;
+      scrollbar-color: #e5e7eb transparent;
+    }
+
+    /* ── Project card (Premium Editorial) ───────────── */
+    .safari-card {
+      @apply cursor-pointer flex flex-col gap-4;
+
+      .safari-card-thumb {
+        @apply h-56 rounded-xl overflow-hidden bg-gray-100 shadow-sm transition-all duration-500 ease-out;
 
         img {
-          @apply size-full rounded-md object-cover;
-        }
-
-        .content {
-          @apply col-span-10 space-y-3;
-
-          p {
-            @apply text-xs text-gray-500;
-          }
-
-          h3 {
-            @apply font-semibold text-base text-gray-800;
-          }
-
-          a {
-            @apply text-blue-600 text-xs hover:underline flex items-center gap-3;
-          }
+          @apply w-full h-full object-cover object-top transition-transform duration-700 ease-out;
         }
       }
+
+      &:hover .safari-card-thumb {
+        @apply shadow-xl shadow-gray-200/50 -translate-y-1;
+      }
+
+      &:hover .safari-card-thumb img {
+        @apply scale-105;
+      }
+
+      .safari-card-body {
+        @apply px-1;
+      }
+
+      .safari-card-year,
+      .safari-card-tech {
+        @apply text-[11px] font-medium text-gray-400 uppercase tracking-widest;
+      }
+
+      .safari-card-name {
+        @apply text-lg font-bold text-gray-900 leading-snug tracking-tight;
+      }
+    }
+
+    /* ── Empty state ────────────────────────────────── */
+    .safari-empty {
+      @apply flex flex-col items-center justify-center py-24 text-gray-400 text-sm;
+      p {
+        @apply mb-3;
+      }
+    }
+
+    .safari-clear-btn {
+      @apply text-xs flex items-center gap-2 text-gray-500 hover:text-black transition-colors cursor-pointer px-4 py-2 bg-gray-100 rounded-full;
+    }
+
+    /* ── Detail view (Immersive Hero) ───────────────── */
+    .safari-detail {
+      @apply flex flex-col h-[560px] overflow-y-auto bg-white;
+      scrollbar-width: thin;
+      scrollbar-color: #e5e7eb transparent;
+    }
+
+    .safari-detail-hero {
+      @apply relative h-80 w-full overflow-hidden flex-none bg-gray-100;
+    }
+
+    .safari-detail-img {
+      @apply w-full h-full object-cover object-top;
+    }
+
+    .safari-back-overlay {
+      @apply absolute top-5 left-5 flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full 
+             bg-white/70 backdrop-blur-md text-gray-800 hover:bg-white hover:scale-105 transition-all cursor-pointer shadow-sm;
+    }
+
+    .safari-detail-content {
+      @apply p-12 max-w-4xl mx-auto w-full pb-20;
+    }
+
+    .safari-detail-header {
+      @apply mb-10;
+    }
+
+    .safari-detail-meta {
+      @apply text-sm font-semibold text-blue-600 uppercase tracking-widest mb-3;
+    }
+
+    .safari-detail-title {
+      @apply text-5xl font-bold text-gray-900 leading-tight tracking-tighter;
+    }
+
+    .safari-detail-actions {
+      @apply pt-4 border-t border-gray-100;
+    }
+
+    .safari-action-primary {
+      @apply flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-white font-medium 
+             hover:bg-gray-800 hover:scale-105 transition-all shadow-md;
+    }
+
+    .safari-action-secondary {
+      @apply flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium 
+             hover:bg-gray-50 hover:scale-105 transition-all;
     }
   }
 

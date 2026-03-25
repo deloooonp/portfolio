@@ -1,6 +1,6 @@
 export * from "./about";
-export * from "./blog";
 export * from "./gallery";
+export * from "./projects";
 export * from "./resume";
 export * from "./trash";
 export * from "./work";
