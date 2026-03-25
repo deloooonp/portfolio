@@ -137,7 +137,7 @@ body {
     /* ── Sidebar (Premium Filter) ───────────────────── */
     .safari-sidebar {
       @apply w-0 overflow-hidden bg-white border-r border-transparent flex-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)];
-      
+
       &.open {
         @apply w-56 border-gray-100;
       }
@@ -153,7 +153,7 @@ body {
 
     .safari-sidebar-item {
       @apply flex items-center gap-2 text-[13px] font-medium text-gray-700 px-3 py-1.5 rounded-lg text-left transition-colors cursor-pointer w-full;
-      
+
       &:hover {
         @apply bg-gray-50 text-gray-900;
       }
@@ -198,7 +198,8 @@ body {
         @apply px-1;
       }
 
-      .safari-card-year, .safari-card-tech {
+      .safari-card-year,
+      .safari-card-tech {
         @apply text-[11px] font-medium text-gray-400 uppercase tracking-widest;
       }
 
@@ -210,7 +211,9 @@ body {
     /* ── Empty state ────────────────────────────────── */
     .safari-empty {
       @apply flex flex-col items-center justify-center py-24 text-gray-400 text-sm;
-      p { @apply mb-3; }
+      p {
+        @apply mb-3;
+      }
     }
 
     .safari-clear-btn {

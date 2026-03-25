@@ -42,7 +42,7 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    name: ">private_chat",
+    name: "Private Chat App",
     type: "Fullstack",
     summary:
       "Ephemeral 2-person chat rooms with self-destructing messages and bot protection.",
@@ -61,12 +61,9 @@ export const PROJECTS = [
   },
 ];
 
-export const ALL_TAGS = [
-  "React",
-  "Next.js",
-  "GSAP",
-  "Three.js",
-  "Tailwind CSS",
-  "ElysiaJS",
-  "Upstash Redis",
-];
+export const PROJECT_TYPES = [...new Set(PROJECTS.map((p) => p.type))];
+export const TYPE_COLORS = {
+  Frontend: "bg-blue-400",
+  Backend: "bg-purple-400",
+  Fullstack: "bg-green-400",
+};

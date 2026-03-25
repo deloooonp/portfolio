@@ -1,4 +1,3 @@
-import { useState, useMemo } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -14,10 +13,10 @@ import {
   Star,
   X,
 } from "lucide-react";
+import { useMemo, useState } from "react";
 
 import { WindowControls } from "@/components";
-import { TECH_STACK } from "@/constants";
-import { PROJECTS } from "@/data";
+import { PROJECTS, PROJECT_TYPES, TYPE_COLORS } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 
 const ProjectCard = ({ project, onClick }) => (
@@ -179,9 +178,9 @@ const Safari = () => {
                 onClick={() => handleSelectProject(project)}
               >
                 <Star
-                    size={14}
-                    className="flex-none text-yellow-400 fill-yellow-400"
-                  />
+                  size={14}
+                  className="flex-none text-yellow-400 fill-yellow-400"
+                />
                 <span className="truncate">{project.name}</span>
               </button>
             ))}
@@ -208,9 +207,8 @@ const Safari = () => {
 
           <h4 className="safari-sidebar-title">Type</h4>
           <div className="safari-sidebar-list">
-            {["Frontend", "Backend", "Fullstack"].map((tag, i) => {
-              const colors = ["bg-blue-400", "bg-purple-400", "bg-green-400"];
-              const dotColor = colors[i];
+            {PROJECT_TYPES.map((tag) => {
+              const dotColor = TYPE_COLORS[tag] || "bg-gray-400";
 
               return (
                 <button
