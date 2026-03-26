@@ -1,19 +1,13 @@
 import { Check, Flag } from "lucide-react";
 
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import { TECH_STACK } from "@/constants";
 import WindowWrapper from "@/hoc/WindowWrapper";
-
-const HEADER_CLS =
-  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
 
 const Terminal = () => {
   return (
     <>
-      <div id="window-header" className={HEADER_CLS}>
-        <WindowControls target="terminal" />
-        <p>Tech Stack</p>
-      </div>
+      <WindowHeader target="terminal" title="Tech Stack" />
 
       <div className="text-sm font-roboto p-5">
         <p>

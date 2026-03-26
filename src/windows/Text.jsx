@@ -1,9 +1,6 @@
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import WindowWrapper from "@/hoc/WindowWrapper";
 import useWindowStore from "@/store/window";
-
-const HEADER_CLS =
-  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
 
 const Text = () => {
   const { windows } = useWindowStore();
@@ -15,10 +12,7 @@ const Text = () => {
 
   return (
     <>
-      <div id="window-header" className={HEADER_CLS}>
-        <WindowControls target="txtfile" />
-        <h2 className="font-bold text-sm text-center w-full">{name}</h2>
-      </div>
+      <WindowHeader target="txtfile" title={name} />
 
       <div className="p-5 space-y-6 bg-white">
         {image ? (

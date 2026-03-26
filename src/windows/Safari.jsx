@@ -15,12 +15,9 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import { PROJECTS, PROJECT_TYPES, TYPE_COLORS } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
-
-const HEADER_CLS =
-  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
 
 const SIDEBAR_ITEM_CLS =
   "flex items-center gap-2 text-[13px] font-medium text-gray-700 px-3 py-1.5 rounded-lg text-left transition-colors cursor-pointer w-full hover:bg-gray-50 hover:text-gray-900";
@@ -135,8 +132,7 @@ const Safari = () => {
 
   return (
     <>
-      <div id="window-header" className={HEADER_CLS}>
-        <WindowControls target="safari" />
+      <WindowHeader target="safari">
         <PanelLeft
           className={`ml-10 icon cursor-pointer transition-colors ${
             isSidebarOpen ? "text-blue-500" : ""
@@ -187,12 +183,12 @@ const Safari = () => {
           <Plus className="icon" />
           <Copy className="icon" />
         </div>
-      </div>
+      </WindowHeader>
 
       <div className="flex flex-row h-full max-h-[560px] overflow-hidden bg-[#FAFAFA]">
         {/* Sidebar */}
         <div
-          className={`overflow-hidden bg-white border-r flex-none transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+          className={`overflow-hidden bg-white border-r flex-none transition-all duration-300 ease-in-out ${
             isSidebarOpen ? "w-56 border-gray-100" : "w-0 border-transparent"
           }`}
         >
@@ -221,7 +217,9 @@ const Safari = () => {
           <div className="flex flex-col gap-1 px-3 pb-6">
             <button
               className={`${SIDEBAR_ITEM_CLS} ${
-                activeTag === null ? "bg-blue-50 text-blue-700 font-semibold" : ""
+                activeTag === null
+                  ? "bg-blue-50 text-blue-700 font-semibold"
+                  : ""
               }`}
               onClick={() => {
                 setActiveTag(null);

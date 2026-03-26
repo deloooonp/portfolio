@@ -1,17 +1,11 @@
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import { SOCIALS } from "@/constants";
 import WindowWrapper from "@/hoc/WindowWrapper";
-
-const HEADER_CLS =
-  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
 
 const Contact = () => {
   return (
     <>
-      <div id="window-header" className={HEADER_CLS}>
-        <WindowControls target="contact" />
-        <h2 className="font-bold text-sm text-center w-full">Contact Me</h2>
-      </div>
+      <WindowHeader target="contact" title="Contact Me" />
 
       <div className="p-5 space-y-5">
         <img

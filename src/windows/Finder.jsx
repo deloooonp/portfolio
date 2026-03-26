@@ -1,14 +1,11 @@
 import clsx from "clsx";
 import { Search } from "lucide-react";
 
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import { locations } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 import useLocationStore from "@/store/location";
 import useWindowStore from "@/store/window";
-
-const HEADER_CLS =
-  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
 
 const Finder = () => {
   const { openWindow } = useWindowStore();
@@ -48,10 +45,9 @@ const Finder = () => {
 
   return (
     <>
-      <div id="window-header" className={HEADER_CLS}>
-        <WindowControls target="finder" />
+      <WindowHeader target="finder">
         <Search className="icon" />
-      </div>
+      </WindowHeader>
       <div className="bg-white flex h-full">
         <div className="w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3">
           {renderList("Favorites", Object.values(locations))}

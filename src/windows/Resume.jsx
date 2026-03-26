@@ -1,7 +1,7 @@
 import { Download } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import WindowWrapper from "@/hoc/WindowWrapper";
 
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -11,16 +11,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url,
 ).toString();
 
-const HEADER_CLS =
-  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
-
 const Resume = () => {
   return (
     <>
-      <div id="window-header" className={HEADER_CLS}>
-        <WindowControls target="resume" />
-        <h2 className="font-bold text-sm text-center flex-1">Resume.pdf</h2>
-
+      <WindowHeader target="resume" title="Resume.pdf">
         <a
           href="files/resume.pdf"
           download
@@ -29,7 +23,7 @@ const Resume = () => {
         >
           <Download className="icon" />
         </a>
-      </div>
+      </WindowHeader>
       <Document file="files/resume.pdf">
         <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
       </Document>

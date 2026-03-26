@@ -1,25 +1,21 @@
 import { Mail, Search } from "lucide-react";
 
 import WindowWrapper from "@/hoc/WindowWrapper";
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import { GALLERY_IMAGES } from "@/data";
 import useWindowStore from "@/store/window";
-
-const HEADER_CLS =
-  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
 
 const Photos = () => {
   const { openWindow } = useWindowStore();
 
   return (
     <>
-      <div id="window-header" className={HEADER_CLS}>
-        <WindowControls target="photos" />
+      <WindowHeader target="photos">
         <div className="w-full flex justify-end items-center gap-3 text-gray-500">
           <Mail className="icon" />
           <Search className="icon" />
         </div>
-      </div>
+      </WindowHeader>
 
       <div className="flex w-full">
         <div className="p-5">
