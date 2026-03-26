@@ -2,6 +2,9 @@ import { WindowControls } from "@/components";
 import WindowWrapper from "@/hoc/WindowWrapper";
 import useWindowStore from "@/store/window";
 
+const HEADER_CLS =
+  "flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400";
+
 const Text = () => {
   const { windows } = useWindowStore();
   const data = windows.txtfile?.data;
@@ -12,9 +15,9 @@ const Text = () => {
 
   return (
     <>
-      <div id="window-header">
+      <div id="window-header" className={HEADER_CLS}>
         <WindowControls target="txtfile" />
-        <h2>{name}</h2>
+        <h2 className="font-bold text-sm text-center w-full">{name}</h2>
       </div>
 
       <div className="p-5 space-y-6 bg-white">
@@ -40,6 +43,10 @@ const Text = () => {
   );
 };
 
-const TextWindow = WindowWrapper(Text, "txtfile");
+const TextWindow = WindowWrapper(
+  Text,
+  "txtfile",
+  "w-md top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden",
+);
 
 export default TextWindow;
