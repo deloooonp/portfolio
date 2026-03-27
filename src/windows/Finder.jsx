@@ -1,8 +1,7 @@
-import clsx from "clsx";
 import { Search } from "lucide-react";
 
-import { WindowHeader } from "@/components";
-import { locations } from "@/data";
+import { WindowHeader, Sidebar } from "@/components";
+import { FINDER_SECTIONS } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 import useLocationStore from "@/store/location";
 import useWindowStore from "@/store/window";
@@ -20,45 +19,23 @@ const Finder = () => {
     openWindow(`${item.fileType}${item.kind}`, item);
   };
 
-  const renderList = (name, items) => (
-    <div>
-      <h3 className="text-xs font-medium text-gray-400 mb-1">{name}</h3>
-      <ul className="space-y-1">
-        {items.map((item) => (
-          <li
-            key={item.id}
-            onClick={() => setActiveLocation(item)}
-            className={clsx(
-              "flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors",
-              item.id === activeLocation.id
-                ? "bg-blue-100 text-blue-700"
-                : "text-gray-700 hover:bg-gray-200",
-            )}
-          >
-            <img src={item.icon} className="w-4" alt={item.name} />
-            <p className="text-sm font-medium truncate">{item.name}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-
   return (
     <>
       <WindowHeader target="finder">
         <Search className="icon" />
       </WindowHeader>
-      <div className="bg-white flex h-full">
-        <div className="w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3">
-          {renderList("Favorites", Object.values(locations))}
-          {renderList("My Projects", locations.work.children)}
-        </div>
+      <div className="bg-white flex h-full overflow-hidden">
+        <Sidebar
+          sections={FINDER_SECTIONS}
+          activeId={activeLocation?.id}
+          onSelect={(item) => setActiveLocation(item)}
+        />
 
         <ul className="flex-1 p-8 bg-white max-w-2xl relative">
           {activeLocation?.children.map((item) => (
             <li
               key={item.id}
-              className={clsx("group absolute flex items-center flex-col gap-3 cursor-pointer", item.position)}
+              className={`group absolute flex items-center flex-col gap-3 cursor-pointer ${item.position}`}
               onClick={() => openItem(item)}
             >
               <img
