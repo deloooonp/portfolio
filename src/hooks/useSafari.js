@@ -1,11 +1,20 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { PROJECTS } from "@/data";
+import useSafariStore from "@/store/safari";
 
 export const useSafari = () => {
-  const [query, setQuery] = useState("");
-  const [activeTag, setActiveTag] = useState(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const {
+    query,
+    setQuery,
+    activeTag,
+    setActiveTag,
+    isSidebarOpen,
+    setIsSidebarOpen,
+    selectedProject,
+    setSelectedProject,
+    handleBack,
+    handleClearSearch,
+  } = useSafariStore();
 
   const filteredProjects = useMemo(() => {
     return PROJECTS.filter((p) => {
@@ -21,13 +30,6 @@ export const useSafari = () => {
     });
   }, [query, activeTag]);
 
-  const handleSelectProject = (project) => setSelectedProject(project);
-  const handleBack = () => setSelectedProject(null);
-  const handleClearSearch = () => {
-    setQuery("");
-    setActiveTag(null);
-  };
-
   return {
     query,
     setQuery,
@@ -37,7 +39,7 @@ export const useSafari = () => {
     setIsSidebarOpen,
     selectedProject,
     filteredProjects,
-    handleSelectProject,
+    handleSelectProject: setSelectedProject,
     handleBack,
     handleClearSearch,
   };
