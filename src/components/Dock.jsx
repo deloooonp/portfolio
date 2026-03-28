@@ -72,13 +72,16 @@ const Dock = () => {
   };
 
   return (
-    <section id="dock">
-      <div ref={dockRef} className="dock-container">
+    <section className="absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden">
+      <div
+        ref={dockRef}
+        className="bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5"
+      >
         {dockApps.map(({ id, name, icon, canOpen }) => (
           <div key={id} className="relative flex justify-center">
             <button
               type="button"
-              className="dock-icon"
+              className="dock-icon size-14 3xl:size-20 cursor-pointer"
               aria-label={name}
               data-tooltip-id="dock-tooltip"
               data-tooltip-content={name}
@@ -95,7 +98,11 @@ const Dock = () => {
             </button>
           </div>
         ))}
-        <Tooltip id="dock-tooltip" place="top" className="tooltip" />
+        <Tooltip
+          id="dock-tooltip"
+          place="top"
+          className="py-1! px-3! w-fit! text-center! text-xs! rounded-md! bg-blue-200! text-blue-900! shadow-2xl!"
+        />
       </div>
     </section>
   );

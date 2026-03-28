@@ -1,5 +1,5 @@
 import WindowWrapper from "@/hoc/WindowWrapper";
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import useWindowStore from "@/store/window";
 
 const Image = () => {
@@ -12,26 +12,25 @@ const Image = () => {
 
   return (
     <>
-      <div id="window-header">
-        <WindowControls target="imgfile" />
-        <h2>{name}</h2>
-      </div>
+      <WindowHeader target="imgfile" title={name} />
 
-      <div className="p-5 bg-white">
+      <div className="p-2 bg-gray-200 max-h-[70vh]">
         {imageUrl ? (
-          <div className="w-full">
-            <img
-              src={imageUrl}
-              alt={name}
-              className="w-full h-auto max-h-[70vh] object-contain rounded"
-            />
-          </div>
+          <img
+            src={imageUrl}
+            alt={name}
+            className="w-full h-fit object-contain object-center"
+          />
         ) : null}
       </div>
     </>
   );
 };
 
-const ImageWindow = WindowWrapper(Image, "imgfile");
+const ImageWindow = WindowWrapper(
+  Image,
+  "imgfile",
+  "w-xl top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden",
+);
 
 export default ImageWindow;

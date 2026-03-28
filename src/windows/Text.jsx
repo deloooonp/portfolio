@@ -1,4 +1,4 @@
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import WindowWrapper from "@/hoc/WindowWrapper";
 import useWindowStore from "@/store/window";
 
@@ -12,10 +12,7 @@ const Text = () => {
 
   return (
     <>
-      <div id="window-header">
-        <WindowControls target="txtfile" />
-        <h2>{name}</h2>
-      </div>
+      <WindowHeader target="txtfile" title={name} />
 
       <div className="p-5 space-y-6 bg-white">
         {image ? (
@@ -40,6 +37,10 @@ const Text = () => {
   );
 };
 
-const TextWindow = WindowWrapper(Text, "txtfile");
+const TextWindow = WindowWrapper(
+  Text,
+  "txtfile",
+  "w-md top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden",
+);
 
 export default TextWindow;

@@ -2,119 +2,51 @@ import {
   ChevronLeft,
   ChevronRight,
   Copy,
-  ExternalLink,
-  Folder,
-  Github,
   PanelLeft,
   Plus,
   Search,
   Share,
   ShieldHalf,
-  Star,
   X,
 } from "lucide-react";
-import { useMemo, useState } from "react";
 
-import { WindowControls } from "@/components";
-import { PROJECTS, PROJECT_TYPES, TYPE_COLORS } from "@/data";
+import { Sidebar, WindowHeader } from "@/components";
+import DetailView from "@/components/safari/DetailView";
+import ProjectCard from "@/components/safari/ProjectCard";
+import { SAFARI_SECTIONS } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
-
-const ProjectCard = ({ project, onClick }) => (
-  <div className="safari-card group" onClick={() => onClick(project)}>
-    <div className="safari-card-thumb">
-      <img src={project.thumbnail} alt={project.name} />
-    </div>
-    <div className="safari-card-body">
-      <div className="flex items-center gap-2 mb-1">
-        <span className="safari-card-year">{project.year}</span>
-        <span className="w-1 h-1 bg-gray-300 rounded-full" />
-        <span className="safari-card-tech">{project.tags[0]}</span>
-      </div>
-      <h3 className="safari-card-name group-hover:text-blue-600 transition-colors">
-        {project.name}
-      </h3>
-    </div>
-  </div>
-);
-
-const DetailView = ({ project, onBack }) => (
-  <div className="safari-detail">
-    <div className="safari-detail-hero">
-      <img
-        src={project.thumbnail}
-        alt={project.name}
-        className="safari-detail-img"
-      />
-      <button className="safari-back-overlay" onClick={onBack}>
-        <ChevronLeft size={16} /> Return
-      </button>
-    </div>
-
-    <div className="safari-detail-content">
-      <div className="safari-detail-header">
-        <p className="safari-detail-meta">
-          {project.year} • {project.tags.join(", ")}
-        </p>
-        <h2 className="safari-detail-title">{project.name}</h2>
-      </div>
-
-      <div className="safari-detail-desc text-gray-600 text-lg leading-relaxed max-w-2xl">
-        {project.description.map((para, i) => (
-          <p key={i} className="mb-4">
-            {para}
-          </p>
-        ))}
-      </div>
-
-      <div className="safari-detail-actions mt-10 flex gap-4">
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="safari-action-primary"
-        >
-          View Live Site <ExternalLink size={16} />
-        </a>
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="safari-action-secondary"
-        >
-          Source Code <Github size={16} />
-        </a>
-      </div>
-    </div>
-  </div>
-);
+import { useSafari } from "@/hooks/useSafari";
 
 const Safari = () => {
-  const [query, setQuery] = useState("");
-  const [activeTag, setActiveTag] = useState(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const {
+    query,
+    setQuery,
+    activeTag,
+    setActiveTag,
+    isSidebarOpen,
+    setIsSidebarOpen,
+    selectedProject,
+    filteredProjects,
+    handleSelectProject,
+    handleBack,
+    handleClearSearch,
+  } = useSafari();
 
-  const filtered = useMemo(() => {
-    return PROJECTS.filter((p) => {
-      const matchesQuery =
-        query === "" ||
-        p.name.toLowerCase().includes(query.toLowerCase()) ||
-        p.summary.toLowerCase().includes(query.toLowerCase()) ||
-        p.tags.some((t) => t.toLowerCase().includes(query.toLowerCase()));
+  const handleSelectTag = (tag) => {
+    setActiveTag(tag);
+    handleBack();
+  };
 
-      const matchesTag = activeTag === null || p.type === activeTag;
+  const activeId = selectedProject ? `fav-${selectedProject.id}` : (activeTag || "all-projects");
 
-      return matchesQuery && matchesTag;
-    });
-  }, [query, activeTag]);
-
-  const handleSelectProject = (project) => setSelectedProject(project);
-  const handleBack = () => setSelectedProject(null);
+  const handleSidebarSelect = (item) => {
+    if (item.project) handleSelectProject(item.project);
+    else handleSelectTag(item.tag);
+  };
 
   return (
     <>
-      <div id="window-header">
-        <WindowControls target="safari" />
+      <WindowHeader target="safari">
         <PanelLeft
           className={`ml-10 icon cursor-pointer transition-colors ${
             isSidebarOpen ? "text-blue-500" : ""
@@ -134,7 +66,7 @@ const Safari = () => {
         <div className="flex-1 flex-center gap-3">
           <ShieldHalf className="icon" />
           <div
-            className="search"
+            className="flex items-center gap-3 w-2/3 bg-gray-100 rounded-lg px-3 py-2"
             onPointerDownCapture={(e) => e.stopPropagation()}
           >
             <Search className="icon" />
@@ -143,7 +75,7 @@ const Safari = () => {
               placeholder={
                 selectedProject ? selectedProject.name : "Search projects…"
               }
-              className="flex-1"
+              className="placeholder:text-gray-400 bg-transparent outline-none flex-1 min-w-0"
               value={selectedProject ? "" : query}
               onChange={(e) => {
                 if (!selectedProject) setQuery(e.target.value);
@@ -165,78 +97,22 @@ const Safari = () => {
           <Plus className="icon" />
           <Copy className="icon" />
         </div>
-      </div>
+      </WindowHeader>
 
-      <div className="safari-catalogue">
-        <div className={`safari-sidebar ${isSidebarOpen ? "open" : ""}`}>
-          <h4 className="safari-sidebar-title">Favorites</h4>
-          <div className="safari-sidebar-list">
-            {PROJECTS.slice(0, 2).map((project) => (
-              <button
-                key={`fav-${project.id}`}
-                className="safari-sidebar-item"
-                onClick={() => handleSelectProject(project)}
-              >
-                <Star
-                  size={14}
-                  className="flex-none text-yellow-400 fill-yellow-400"
-                />
-                <span className="truncate">{project.name}</span>
-              </button>
-            ))}
-          </div>
+      <div className="flex flex-row h-full max-h-[560px] overflow-hidden bg-[#FAFAFA]">
+        <Sidebar
+          sections={SAFARI_SECTIONS}
+          isOpen={isSidebarOpen}
+          activeId={activeId}
+          onSelect={handleSidebarSelect}
+        />
 
-          <h4 className="safari-sidebar-title">Locations</h4>
-          <div className="safari-sidebar-list">
-            <button
-              className={`safari-sidebar-item ${
-                activeTag === null ? "active" : ""
-              }`}
-              onClick={() => {
-                setActiveTag(null);
-                setSelectedProject(null);
-              }}
-            >
-              <Folder
-                size={14}
-                className="flex-none text-blue-400 fill-blue-400"
-              />
-              All Projects
-            </button>
-          </div>
-
-          <h4 className="safari-sidebar-title">Type</h4>
-          <div className="safari-sidebar-list">
-            {PROJECT_TYPES.map((tag) => {
-              const dotColor = TYPE_COLORS[tag] || "bg-gray-400";
-
-              return (
-                <button
-                  key={tag}
-                  className={`safari-sidebar-item ${
-                    activeTag === tag ? "active" : ""
-                  }`}
-                  onClick={() => {
-                    setActiveTag(tag);
-                    setSelectedProject(null);
-                  }}
-                >
-                  <span
-                    className={`flex-none w-2.5 h-2.5 rounded-full ${dotColor}`}
-                  />
-                  <span className="truncate">{tag}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="safari-catalogue-content">
+        <div className="flex-1 overflow-hidden flex flex-col">
           {selectedProject ? (
             <DetailView project={selectedProject} onBack={handleBack} />
-          ) : filtered.length > 0 ? (
-            <div className="safari-grid">
-              {filtered.map((project) => (
+          ) : filteredProjects.length > 0 ? (
+            <div className="grid grid-cols-2 gap-8 p-10 overflow-y-auto flex-1 thin-scrollbar">
+              {filteredProjects.map((project) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
@@ -245,17 +121,14 @@ const Safari = () => {
               ))}
             </div>
           ) : (
-            <div className="safari-empty">
+            <div className="flex flex-col items-center justify-center py-24 text-gray-400 text-sm">
               <Search size={32} className="text-gray-300 mb-3" />
-              <p>
+              <p className="mb-3">
                 No projects match <strong>"{query || activeTag}"</strong>
               </p>
               <button
-                className="safari-clear-btn"
-                onClick={() => {
-                  setQuery("");
-                  setActiveTag(null);
-                }}
+                className="text-xs flex items-center gap-2 text-gray-500 hover:text-black transition-colors cursor-pointer px-4 py-2 bg-gray-100 rounded-full"
+                onClick={handleClearSearch}
               >
                 Clear search
               </button>
@@ -267,6 +140,10 @@ const Safari = () => {
   );
 };
 
-const SafariWindow = WindowWrapper(Safari, "safari");
+const SafariWindow = WindowWrapper(
+  Safari,
+  "safari",
+  "w-4xl top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden",
+);
 
 export default SafariWindow;

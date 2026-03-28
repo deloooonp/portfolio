@@ -5,7 +5,7 @@ import { useLayoutEffect, useRef } from "react";
 
 import useWindowStore from "@/store/window";
 
-const WindowWrapper = (Component, windowKey) => {
+const WindowWrapper = (Component, windowKey, windowClassName = "") => {
   const Wrapped = (props) => {
     const { focusWindow, windows } = useWindowStore();
     const { isOpen, zIndex } = windows[windowKey];
@@ -51,7 +51,7 @@ const WindowWrapper = (Component, windowKey) => {
         id={windowKey}
         ref={ref}
         style={{ zIndex }}
-        className="absolute"
+        className={`absolute ${windowClassName}`}
         onMouseDownCapture={() => focusWindow(windowKey)}
       >
         <Component {...props} />

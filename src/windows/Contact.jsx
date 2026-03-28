@@ -1,14 +1,11 @@
-import { WindowControls } from "@/components";
+import { WindowHeader } from "@/components";
 import { SOCIALS } from "@/constants";
 import WindowWrapper from "@/hoc/WindowWrapper";
 
 const Contact = () => {
   return (
     <>
-      <div id="window-header">
-        <WindowControls target="contact" />
-        <h2>Contact Me</h2>
-      </div>
+      <WindowHeader target="contact" title="Contact Me" />
 
       <div className="p-5 space-y-5">
         <img
@@ -16,21 +13,26 @@ const Contact = () => {
           alt="Delon"
           className="w-20 h-20 object-cover rounded-full"
         />
-        <h3>Let's Connect</h3>
+        <h3 className="text-xl font-semibold">Let's Connect</h3>
         <p>Got an idea? A bug to squash? Or just wanna talk tech? I'm in.</p>
         <p>delonpratama1009@gmail.com</p>
 
-        <ul>
+        <ul className="flex items-center gap-3">
           {SOCIALS.map(({ id, bg, link, icon, text }) => (
-            <li key={id} style={{ backgroundColor: bg }}>
+            <li
+              key={id}
+              style={{ backgroundColor: bg }}
+              className="rounded-lg p-3 w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300"
+            >
               <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
                 title={text}
+                className="space-y-5"
               >
                 <img src={icon} alt={text} className="size-5" />
-                <p>{text}</p>
+                <p className="font-semibold text-sm text-white">{text}</p>
               </a>
             </li>
           ))}
@@ -40,6 +42,10 @@ const Contact = () => {
   );
 };
 
-const ContactWindow = WindowWrapper(Contact, "contact");
+const ContactWindow = WindowWrapper(
+  Contact,
+  "contact",
+  "max-w-2xl top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden",
+);
 
 export default ContactWindow;
