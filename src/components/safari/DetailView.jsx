@@ -1,8 +1,8 @@
 import { ChevronLeft, ExternalLink, Github } from "lucide-react";
 
 const DetailView = ({ project, onBack }) => (
-  <div className="flex flex-col h-[560px] overflow-y-auto bg-white thin-scrollbar">
-    <div className="relative h-80 w-full overflow-hidden flex-none bg-gray-100">
+  <div className="flex flex-col flex-1 overflow-y-auto bg-white thin-scrollbar">
+    <div className="relative aspect-video md:aspect-21/9 max-h-[60vh] w-full overflow-hidden flex-none bg-gray-100">
       <img
         src={project.thumbnail}
         alt={project.name}

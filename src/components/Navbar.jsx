@@ -12,13 +12,16 @@ const Navbar = () => {
         <p className="font-bold">deloooonp</p>
 
         <ul className="flex items-center gap-5 max-sm:hidden">
-          {navLinks.map(({ id, name, type }) => (
-            <li key={id} onClick={() => openWindow(type)}>
-              <p className="text-sm cursor-pointer hover:underline transition-all">
-                {name}
-              </p>
-            </li>
-          ))}
+          {navLinks.map(({ id, name, type }) => {
+            const isOpen = useWindowStore((state) => state.windows[type]?.isOpen);
+            return (
+              <li key={id} onClick={() => isOpen ? useWindowStore.getState().closeWindow(type) : useWindowStore.getState().openWindow(type)}>
+                <p className="text-sm cursor-pointer hover:underline transition-all">
+                  {name}
+                </p>
+              </li>
+            );
+          })}
         </ul>
       </div>
 

@@ -2,15 +2,13 @@ import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 
 import { Dock, Home, Navbar, Welcome } from "@/components";
+import { Contact, Image, Text } from "@/components/overlays";
 import {
-  Contact,
   Finder,
-  Image,
   Photos,
   Resume,
   Safari,
   Terminal,
-  Text,
 } from "@/windows";
 
 gsap.registerPlugin(Draggable);
