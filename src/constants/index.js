@@ -35,7 +35,7 @@ export const NAV_ICONS = [
   },
 ];
 
-export const dockApps = [
+export const DOCK_APPS = [
   {
     id: "finder",
     name: "Finder",
@@ -65,7 +65,7 @@ export const dockApps = [
     id: "trash",
     name: "Trash",
     icon: "trash.png",
-    canOpen: false,
+    canOpen: true,
   },
 ];
 
