@@ -3,7 +3,7 @@ const ProjectCard = ({ project, onClick }) => (
     className="cursor-pointer flex flex-col gap-4 group"
     onClick={() => onClick(project)}
   >
-    <div className="h-56 rounded-xl overflow-hidden bg-gray-100 shadow-sm transition-all duration-500 ease-out group-hover:shadow-xl group-hover:shadow-gray-200/50 group-hover:-translate-y-1">
+    <div className="aspect-video rounded-xl overflow-hidden bg-gray-100 shadow-sm transition-all duration-500 ease-out group-hover:shadow-xl group-hover:shadow-gray-200/50 group-hover:-translate-y-1">
       <img
         src={project.thumbnail}
         alt={project.name}

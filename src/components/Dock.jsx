@@ -3,12 +3,16 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
 
-import { dockApps } from "@/constants";
+import { DOCK_APPS } from "@/constants";
 import useWindowStore from "@/store/window";
+import useLocationStore from "@/store/location";
+import { locations } from "@/data";
 
 const Dock = () => {
   const dockRef = useRef(null);
-  const { openWindow, closeWindow, windows } = useWindowStore();
+  const { openWindow, closeWindow, startClosing, restoreWindow, windows } =
+    useWindowStore();
+  const { setActiveLocation } = useLocationStore();
 
   useGSAP(() => {
     const dock = dockRef.current;
@@ -57,15 +61,29 @@ const Dock = () => {
 
   const toggleApp = (app) => {
     if (!app.canOpen) return;
-    const window = windows[app.id];
 
-    if (!window) {
+    if (app.id === "trash") {
+      const finderWindow = windows["finder"];
+      if (!finderWindow?.isOpen) {
+        openWindow("finder");
+      } else if (finderWindow.isMinimized) {
+        restoreWindow("finder");
+      }
+      setActiveLocation(locations.trash);
+      return;
+    }
+
+    const win = windows[app.id];
+
+    if (!win) {
       console.error(`Window not found for app : ${app.id}`);
       return;
     }
 
-    if (window.isOpen) {
-      closeWindow(app.id);
+    if (win.isMinimized) {
+      restoreWindow(app.id);
+    } else if (win.isOpen) {
+      startClosing(app.id);
     } else {
       openWindow(app.id);
     }
@@ -77,7 +95,7 @@ const Dock = () => {
         ref={dockRef}
         className="bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5"
       >
-        {dockApps.map(({ id, name, icon, canOpen }) => (
+        {DOCK_APPS.map(({ id, name, icon, canOpen }) => (
           <div key={id} className="relative flex justify-center">
             <button
               type="button"

@@ -35,42 +35,36 @@ export const NAV_ICONS = [
   },
 ];
 
-export const dockApps = [
+export const DOCK_APPS = [
   {
     id: "finder",
-    name: "Portfolio", // was "Finder"
+    name: "Finder",
     icon: "finder.png",
     canOpen: true,
   },
   {
     id: "safari",
-    name: "Articles", // was "Safari"
+    name: "Safari",
     icon: "safari.png",
     canOpen: true,
   },
-  {
-    id: "photos",
-    name: "Gallery", // was "Photos"
-    icon: "photos.png",
-    canOpen: true,
-  },
-  {
-    id: "contact",
-    name: "Contact", // or "Get in touch"
-    icon: "contact.png",
-    canOpen: true,
-  },
+  // {
+  //   id: "photos",
+  //   name: "Photos",
+  //   icon: "photos.png",
+  //   canOpen: true,
+  // },
   {
     id: "terminal",
-    name: "Skills", // was "Terminal"
+    name: "Terminal",
     icon: "terminal.png",
     canOpen: true,
   },
   {
     id: "trash",
-    name: "Archive", // was "Trash"
+    name: "Trash",
     icon: "trash.png",
-    canOpen: false,
+    canOpen: true,
   },
 ];
 
@@ -124,12 +118,68 @@ export const TECH_STACK = [
 export const INITIAL_Z_INDEX = 1000;
 
 export const WINDOW_CONFIG = {
-  finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  finder: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
+  contact: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
+  resume: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
+  safari: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
+  photos: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
+  terminal: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
+  txtfile: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
+  imgfile: {
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    isClosing: false,
+    zIndex: INITIAL_Z_INDEX,
+    data: null,
+  },
 };
