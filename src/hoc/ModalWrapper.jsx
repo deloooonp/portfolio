@@ -17,12 +17,6 @@ const ModalWrapper = (Component, windowKey, options = {}) => {
     const ref = useRef(null);
     const isClosing = useRef(false);
 
-    useLayoutEffect(() => {
-      if (isStoreClosing && !isClosing.current) {
-        handleClose();
-      }
-    }, [isStoreClosing]);
-
     const handleClose = () => {
       if (isClosing.current || !isOpen) return;
 
@@ -48,6 +42,12 @@ const ModalWrapper = (Component, windowKey, options = {}) => {
         },
       });
     };
+
+    useLayoutEffect(() => {
+      if (isStoreClosing && !isClosing.current) {
+        handleClose();
+      }
+    }, [isStoreClosing, handleClose]);
 
     useGSAP(() => {
       const el = ref.current;

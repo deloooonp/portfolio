@@ -48,13 +48,12 @@ export const DOCK_APPS = [
     icon: "safari.png",
     canOpen: true,
   },
-  {
-    id: "photos",
-    name: "Photos",
-    icon: "photos.png",
-    canOpen: true,
-  },
-
+  // {
+  //   id: "photos",
+  //   name: "Photos",
+  //   icon: "photos.png",
+  //   canOpen: true,
+  // },
   {
     id: "terminal",
     name: "Terminal",

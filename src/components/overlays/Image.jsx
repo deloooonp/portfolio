@@ -9,6 +9,7 @@ const ImageOverlay = ({ data, onClose }) => {
     <div className="relative flex items-center justify-center p-8 md:p-16 max-w-full max-h-full">
       <button
         onClick={onClose}
+        aria-label="Close image preview"
         className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all cursor-pointer z-50 group border border-white/20"
       >
         <X size={20} className="group-hover:scale-110 transition-transform" />

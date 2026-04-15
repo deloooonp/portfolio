@@ -103,8 +103,10 @@ const WindowWrapper = (Component, windowKey, options = {}) => {
         gsap.to(el, {
           width: "100%",
           height: "100%",
-          x: -el.offsetLeft,
-          y: -el.offsetTop,
+          left: 0,
+          top: 0,
+          x: 0,
+          y: 0,
           borderRadius: 0,
           duration: 0.4,
           ease: "power3.out",

@@ -66,6 +66,8 @@ const Dock = () => {
       const finderWindow = windows["finder"];
       if (!finderWindow?.isOpen) {
         openWindow("finder");
+      } else if (finderWindow.isMinimized) {
+        restoreWindow("finder");
       }
       setActiveLocation(locations.trash);
       return;

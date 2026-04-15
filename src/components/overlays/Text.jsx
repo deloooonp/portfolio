@@ -13,6 +13,7 @@ const TextOverlay = ({ data, onClose }) => {
         </h2>
         <button
           onClick={onClose}
+          aria-label="Close text overlay"
           className="p-1.5 rounded-full hover:bg-black/5 transition-colors cursor-pointer"
         >
           <X size={16} className="text-gray-500" />

@@ -69,7 +69,7 @@ const Safari = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-24 text-gray-400 text-sm">
+          <div className="flex flex-1 flex-col items-center justify-center py-24 text-gray-400 text-sm">
             <Search size={32} className="text-gray-300 mb-3" />
             <p className="mb-3">
               No projects match <strong>"{query || activeTag}"</strong>
