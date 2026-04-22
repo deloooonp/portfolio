@@ -43,14 +43,16 @@ const DetailView = ({ project, onBack }) => (
         >
           View Live Site <ExternalLink size={16} />
         </a>
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 hover:scale-105 transition-all"
-        >
-          Source Code <Github size={16} />
-        </a>
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 hover:scale-105 transition-all"
+          >
+            Source Code <Github size={16} />
+          </a>
+        )}
       </div>
     </div>
   </div>

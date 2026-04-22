@@ -74,7 +74,7 @@ export const PROJECTS = [
     year: "2026",
     thumbnail: "/images/project-4.png",
     liveUrl: "https://michel-runa.vercel.app/",
-    githubUrl: "https://github.com/deloooonp/michel-runa",
+    // githubUrl: "https://github.com/deloooonp/michel-runa",
     desktopPosition: "bottom-32 right-29",
     windowPosition: "top-[28vh] left-54",
   },
