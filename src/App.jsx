@@ -10,6 +10,7 @@ import {
   Safari,
   Terminal,
 } from "@/windows";
+import { Analytics } from "@vercel/analytics/react";
 
 gsap.registerPlugin(Draggable);
 
@@ -30,6 +31,8 @@ const App = () => {
       <Photos />
 
       <Home />
+
+      <Analytics/>
     </div>
   );
 };
