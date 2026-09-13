@@ -11,8 +11,8 @@ const WindowControls = ({ target }) => {
           closeWindow(target);
         }}
       />
-      <div className="size-3.5 rounded-full bg-[#ffc030]" />
-      <div className="size-3.5 rounded-full bg-[#2acb42]" />
+      <div className="hidden md:block size-3.5 rounded-full bg-[#ffc030]" />
+      <div className="hidden md:block size-3.5 rounded-full bg-[#2acb42]" />
     </div>
   );
 };

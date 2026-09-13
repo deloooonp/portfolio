@@ -1,4 +1,4 @@
-import { WindowHeader } from "@/components";
+﻿import { WindowHeader } from "@/components";
 import { SOCIALS } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 
@@ -17,12 +17,12 @@ const Contact = () => {
         <p>Got an idea? A bug to squash? Or just wanna talk tech? I'm in.</p>
         <p>delonpratama1009@gmail.com</p>
 
-        <ul className="flex items-center gap-3">
+        <ul className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           {SOCIALS.map(({ id, bg, link, icon, text }) => (
             <li
               key={id}
               style={{ backgroundColor: bg }}
-              className="rounded-lg p-3 w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300"
+              className="rounded-lg p-3 w-full sm:w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300"
             >
               <a
                 href={link}
@@ -49,3 +49,4 @@ const ContactWindow = WindowWrapper(
 );
 
 export default ContactWindow;
+
