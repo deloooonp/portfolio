@@ -49,4 +49,3 @@ const ContactWindow = WindowWrapper(
 );
 
 export default ContactWindow;
-
