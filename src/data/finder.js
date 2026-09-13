@@ -1,4 +1,4 @@
-import { PROJECTS } from "./projects";
+﻿import { PROJECTS } from "./projects";
 
 export const WORK_LOCATION = {
   id: 1,
@@ -6,7 +6,7 @@ export const WORK_LOCATION = {
   name: "Work",
   icon: "/icons/work.svg",
   kind: "folder",
-  children: PROJECTS.map((project, index) => {
+  children: PROJECTS.map((project) => {
     const slug =
       project.name
         .split(" ")[0]
@@ -18,9 +18,7 @@ export const WORK_LOCATION = {
       name: project.name,
       icon: "/system/folder.png",
       kind: "folder",
-      position:
-        project.desktopPosition || `top-${index * 12} left-${index * 12}`,
-      windowPosition: project.windowPosition || "top-[20vh] left-20",
+      desktopPosition: project.desktopPosition,
       children: [
         {
           id: 1,
@@ -28,7 +26,6 @@ export const WORK_LOCATION = {
           icon: "/system/txt.png",
           kind: "file",
           fileType: "txt",
-          position: "top-12 left-12",
           description: project.description,
         },
         {
@@ -38,7 +35,6 @@ export const WORK_LOCATION = {
           kind: "file",
           fileType: "url",
           href: project.liveUrl,
-          position: "top-32 left-8",
         },
         {
           id: 4,
@@ -46,7 +42,6 @@ export const WORK_LOCATION = {
           icon: "/system/image.png",
           kind: "file",
           fileType: "img",
-          position: "top-56 right-48",
           imageUrl: project.thumbnail,
         },
         {
@@ -56,7 +51,6 @@ export const WORK_LOCATION = {
           kind: "file",
           fileType: "url",
           href: project.githubUrl,
-          position: "top-24 left-64",
         },
       ],
     };
@@ -76,7 +70,6 @@ export const ABOUT_LOCATION = {
       icon: "/system/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-10 left-5",
       imageUrl: "/content/delon.jpg",
     },
     {
@@ -85,7 +78,6 @@ export const ABOUT_LOCATION = {
       icon: "/system/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-28 right-72",
       imageUrl: "/content/delon5.jpeg",
     },
     {
@@ -94,7 +86,6 @@ export const ABOUT_LOCATION = {
       icon: "/system/txt.png",
       kind: "file",
       fileType: "txt",
-      position: "top-45 right-24",
       subtitle: "Meet the Developer Behind the Code",
       image: "/content/delon4.jpg",
       description: [
@@ -137,7 +128,6 @@ export const TRASH_LOCATION = {
       icon: "/system/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-10 left-10",
       imageUrl: "/content/trash-1.png",
     },
     {
@@ -146,7 +136,6 @@ export const TRASH_LOCATION = {
       icon: "/system/image.png",
       kind: "file",
       fileType: "img",
-      position: "top-40 left-80",
       imageUrl: "/content/trash-2.png",
     },
   ],
