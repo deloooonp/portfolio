@@ -11,7 +11,7 @@ import {
   Safari,
   Terminal,
   Text,
-} from "@/windows";
+} from "@/apps";
 
 gsap.registerPlugin(Draggable);
 
