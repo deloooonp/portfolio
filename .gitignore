@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # AI agent or development tooling
-.agent/
+.agents/
