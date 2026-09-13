@@ -33,7 +33,7 @@ const Home = () => {
             onClick={() => handleOpenProjectFinder(project)}
           >
             <img
-              src="/images/folder.png"
+              src="/system/folder.png"
               alt={project.name}
               className="group-hover:bg-gray-950/10 p-1 rounded-md"
             />

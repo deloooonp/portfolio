@@ -1,18 +1,18 @@
 export const GALLERY_IMAGES = [
   {
     id: 1,
-    img: "/images/delon.jpg",
+    img: "/content/delon.jpg",
   },
   {
     id: 2,
-    img: "/images/delon2.jpg",
+    img: "/content/delon2.jpg",
   },
   {
     id: 3,
-    img: "/images/delon4.jpg",
+    img: "/content/delon4.jpg",
   },
   {
     id: 4,
-    img: "/images/delon5.jpeg",
+    img: "/content/delon5.jpeg",
   },
 ];
