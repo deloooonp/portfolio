@@ -81,10 +81,8 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
           }}
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-          <div className="mobile-sheet relative w-full bg-white  shadow-2xl overflow-hidden h-[100dvh] rounded-none flex flex-col">
-            <div className="flex justify-center pt-3 pb-1 flex-shrink-0">
-              
-            </div>
+          <div className="mobile-sheet relative w-full bg-white  shadow-2xl overflow-hidden h-dvh rounded-none flex flex-col">
+            <div className="flex justify-center shrink-0"></div>
             <div className="overflow-y-auto flex-1">
               <Component {...props} />
             </div>
@@ -115,4 +113,3 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
 };
 
 export default WindowWrapper;
-

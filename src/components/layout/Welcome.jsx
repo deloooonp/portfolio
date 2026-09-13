@@ -77,7 +77,7 @@ const Welcome = () => {
   return (
     <section
       id="welcome"
-      className="text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10"
+      className="text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-5"
     >
       <p ref={subtitleRef}>
         {renderText(
@@ -89,7 +89,7 @@ const Welcome = () => {
       <h1 ref={titleRef} className="mt-7">
         {renderText(
           "portfolio",
-          "text-6xl sm:text-9xl italic font-georama text-center",
+          "text-7xl sm:text-9xl italic font-georama text-center",
         )}
       </h1>
     </section>
