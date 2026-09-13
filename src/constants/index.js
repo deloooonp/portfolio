@@ -35,7 +35,7 @@ export const NAV_ICONS = [
   },
 ];
 
-export const dockApps = [
+export const DOCK_APPS = [
   {
     id: "finder",
     name: "Portfolio", // was "Finder"
@@ -74,62 +74,4 @@ export const dockApps = [
   },
 ];
 
-export const SOCIALS = [
-  {
-    id: 1,
-    text: "Github",
-    icon: "/icons/github.svg",
-    bg: "#24292e",
-    link: "https://github.com/deloooonp",
-  },
-  {
-    id: 2,
-    text: "Instagram",
-    icon: "/icons/instagram.svg",
-    bg: "#f4656b",
-    link: "https://www.instagram.com/deloooonp/",
-  },
-  {
-    id: 3,
-    text: "LinkedIn",
-    icon: "/icons/linkedin.svg",
-    bg: "#05b6f6",
-    link: "https://www.linkedin.com/in/delon-pratama-38592229a/",
-  },
-];
-
-export const TECH_STACK = [
-  {
-    category: "Frontend",
-    items: ["React.js", "Next.js", "TypeScript"],
-  },
-  {
-    category: "Styling",
-    items: ["Tailwind CSS", "CSS"],
-  },
-  {
-    category: "Backend",
-    items: ["Node.js", "Laravel", "Express.js", "ElysiaJS"],
-  },
-  {
-    category: "Database",
-    items: ["Supabase", "MySQL", "PostgreSQL"],
-  },
-  {
-    category: "Dev Tools",
-    items: ["Git", "GitHub"],
-  },
-];
-
 export const INITIAL_Z_INDEX = 1000;
-
-export const WINDOW_CONFIG = {
-  finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-  imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-};

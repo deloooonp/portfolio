@@ -1,7 +1,7 @@
 import { Check, Flag } from "lucide-react";
 
 import { WindowHeader } from "@/components";
-import { TECH_STACK } from "@/constants";
+import { TECH_STACK } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 
 const Terminal = () => {

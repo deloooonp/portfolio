@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
 
-import { dockApps } from "@/constants";
+import { DOCK_APPS } from "@/constants";
 import useWindowStore from "@/store/window";
 
 const Dock = () => {
@@ -77,7 +77,7 @@ const Dock = () => {
         ref={dockRef}
         className="bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5"
       >
-        {dockApps.map(({ id, name, icon, canOpen }) => (
+        {DOCK_APPS.map(({ id, name, icon, canOpen }) => (
           <div key={id} className="relative flex justify-center">
             <button
               type="button"

@@ -1,5 +1,5 @@
 import { WindowHeader } from "@/components";
-import { SOCIALS } from "@/constants";
+import { SOCIALS } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 
 const Contact = () => {
