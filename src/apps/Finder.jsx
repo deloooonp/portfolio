@@ -1,4 +1,4 @@
-import clsx from "clsx";
+﻿import clsx from "clsx";
 import { Search } from "lucide-react";
 
 import { WindowHeader } from "@/components";
@@ -43,35 +43,71 @@ const Finder = () => {
     </div>
   );
 
+  const allLocations = [
+    ...Object.values(locations),
+    ...locations.work.children,
+  ];
+
   return (
     <>
       <WindowHeader target="finder">
         <Search className="icon" />
       </WindowHeader>
-      <div className="bg-white flex h-full">
-        <div className="w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3">
+
+      {/* Mobile Location Selector Bar */}
+      <div className="sm:hidden flex items-center gap-2 p-2 bg-gray-50 border-b border-gray-200 overflow-x-auto select-none no-scrollbar">
+        {allLocations.map((loc) => (
+          <button
+            key={loc.id}
+            type="button"
+            onClick={() => setActiveLocation(loc)}
+            className={clsx(
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium shrink-0 transition-colors",
+              loc.id === activeLocation.id
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200/80 text-gray-700 hover:bg-gray-300",
+            )}
+          >
+            <img src={loc.icon} className="w-3.5 h-3.5" alt={loc.name} />
+            <span className="truncate max-w-[120px]">{loc.name}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="bg-white flex flex-1 h-full min-h-[350px]">
+        {/* Desktop Sidebar */}
+        <div className="hidden sm:flex w-48 bg-gray-50 border-r border-gray-200 flex-col p-5 space-y-3 shrink-0 select-none">
           {renderList("Favorites", Object.values(locations))}
           {renderList("My Projects", locations.work.children)}
         </div>
 
-        <ul className="flex-1 p-8 bg-white max-w-2xl relative">
-          {activeLocation?.children.map((item) => (
-            <li
-              key={item.id}
-              className={clsx("group absolute flex items-center flex-col gap-3 cursor-pointer", item.position)}
-              onClick={() => openItem(item)}
-            >
-              <img
-                src={item.icon}
-                alt={item.name}
-                className="object-contain object-center size-17 relative group-hover:scale-105 group-hover:bg-gray-950/10 p-1 rounded-md transition-all"
-              />
-              <p className="text-sm text-center font-medium px-2 max-w-40 group-hover:bg-gray-800/10 rounded-md">
-                {item.name}
-              </p>
-            </li>
-          ))}
-        </ul>
+        {/* Content Area - Responsive CSS Grid */}
+        <div className="flex-1 p-6 bg-white overflow-y-auto">
+          {activeLocation?.children?.length > 0 ? (
+            <ul className="grid grid-cols-3 sm:grid-cols-4 gap-6 content-start">
+              {activeLocation.children.map((item) => (
+                <li
+                  key={item.id}
+                  className="group flex flex-col items-center gap-2 cursor-pointer p-2 rounded-xl hover:bg-gray-100 transition-all select-none"
+                  onClick={() => openItem(item)}
+                >
+                  <img
+                    src={item.icon}
+                    alt={item.name}
+                    className="size-14 sm:size-16 object-contain group-hover:scale-105 transition-transform"
+                  />
+                  <p className="text-xs sm:text-sm text-center font-medium text-gray-800 line-clamp-2 max-w-full px-1">
+                    {item.name}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="h-full flex items-center justify-center text-gray-400 text-sm">
+              This folder is empty
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

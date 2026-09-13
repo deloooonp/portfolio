@@ -66,12 +66,12 @@ export const DOCK_APPS = [
     icon: "terminal.png",
     canOpen: true,
   },
-  {
-    id: "trash",
-    name: "Archive", // was "Trash"
-    icon: "trash.png",
-    canOpen: false,
-  },
+  // {
+  //   id: "trash",
+  //   name: "Archive", // was "Trash"
+  //   icon: "trash.png",
+  //   canOpen: false,
+  // },
 ];
 
 export const INITIAL_Z_INDEX = 1000;

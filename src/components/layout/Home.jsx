@@ -28,7 +28,7 @@ const Home = () => {
             key={project.id}
             className={clsx(
               "group folder absolute z-0 select-none flex items-center flex-col",
-              project.windowPosition,
+              project.desktopPosition,
             )}
             onClick={() => handleOpenProjectFinder(project)}
           >

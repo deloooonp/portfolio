@@ -1,4 +1,4 @@
-import { useGSAP } from "@gsap/react";
+﻿import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
@@ -77,23 +77,21 @@ const Welcome = () => {
   return (
     <section
       id="welcome"
-      className="text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10"
+      className="text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-5"
     >
       <p ref={subtitleRef}>
         {renderText(
           "Hey, I'm Delon! Welcome to my",
-          "text-3xl font-georama",
-          100
+          "text-2xl sm:text-3xl font-georama text-center",
+          100,
         )}
       </p>
       <h1 ref={titleRef} className="mt-7">
-        {renderText("portfolio", "text-9xl italic font-georama")}
+        {renderText(
+          "portfolio",
+          "text-7xl sm:text-9xl italic font-georama text-center",
+        )}
       </h1>
-      <div className="sm:hidden m-7 bg-red-300/20 backdrop-blur-lg p-3 rounded-md absolute top-10">
-        <p className="flex-1 text-[16px] text-center font-roboto text-gray-400">
-          This Portfolio is designed for desktop/tabled screens only.
-        </p>
-      </div>
     </section>
   );
 };

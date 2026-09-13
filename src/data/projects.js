@@ -1,4 +1,4 @@
-export const PROJECTS = [
+﻿export const PROJECTS = [
   {
     id: 1,
     name: "iPhone 15 Pro — Motion-Driven Landing Page",
@@ -16,8 +16,7 @@ export const PROJECTS = [
     thumbnail: "/content/project-1.png",
     liveUrl: "https://iphone15-deloooonp.vercel.app/",
     githubUrl: "https://github.com/deloooonp/iPhone-15-Pro-Website-Clone",
-    desktopPosition: "top-12 left-12",
-    windowPosition: "top-[10vh] left-10",
+    desktopPosition: "top-[10vh] left-10",
   },
   {
     id: 2,
@@ -37,8 +36,7 @@ export const PROJECTS = [
     liveUrl: "https://ecovest-bank-sampah.vercel.app/",
     githubUrl:
       "https://github.com/deloooonp/webdesign_RaxiemStudio_technoversary25",
-    desktopPosition: "top-56 left-48",
-    windowPosition: "top-[15vh] left-45",
+    desktopPosition: "top-[15vh] left-45",
   },
   {
     id: 3,
@@ -56,8 +54,7 @@ export const PROJECTS = [
     thumbnail: "/content/project-3.png",
     liveUrl: "https://privatechat-next.vercel.app/",
     githubUrl: "https://github.com/deloooonp/nextjs-chat-app",
-    desktopPosition: "top-32 right-24",
-    windowPosition: "top-[25vh] left-10",
+    desktopPosition: "top-[25vh] left-10",
   },
 ];
 
