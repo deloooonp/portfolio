@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Download } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 
@@ -12,21 +13,43 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const Resume = () => {
+  const containerRef = useRef(null);
+  const [pageWidth, setPageWidth] = useState(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      setPageWidth(entry.contentRect.width);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <WindowHeader target="resume" title="Resume.pdf">
         <a
+          target="_blank"
           href="files/resume.pdf"
-          download
           className="cursor-pointer"
           title="Download Resume"
         >
           <Download className="icon" />
         </a>
       </WindowHeader>
-      <Document file="files/resume.pdf">
-        <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
-      </Document>
+      <div ref={containerRef} className="w-full overflow-auto">
+        <Document file="files/resume.pdf">
+          <Page
+            className="mx-auto"
+            pageNumber={1}
+            width={pageWidth ?? undefined}
+            renderTextLayer
+            renderAnnotationLayer
+          />
+        </Document>
+      </div>
     </>
   );
 };

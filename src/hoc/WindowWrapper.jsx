@@ -1,4 +1,4 @@
-﻿import { useGSAP } from "@gsap/react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import { useLayoutEffect, useRef } from "react";
@@ -13,7 +13,6 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
     const ref = useRef(null);
     const isMobile = useIsMobile();
 
-    // Desktop: scale + fade in
     useGSAP(() => {
       const el = ref.current;
       if (!el || !isOpen || isMobile) return;
@@ -27,7 +26,6 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
       );
     }, [isOpen, isMobile]);
 
-    // Mobile: slide up from bottom
     useGSAP(() => {
       const el = ref.current;
       if (!el || !isOpen || !isMobile) return;
@@ -41,7 +39,6 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
       );
     }, [isOpen, isMobile]);
 
-    // Desktop only: draggable
     useGSAP(() => {
       const el = ref.current;
       if (!el || !isOpen || isMobile) return;
@@ -68,13 +65,12 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
       }
     }, [isOpen, isMobile]);
 
-    // Mobile: bottom sheet overlay
     if (isMobile) {
       return (
         <div
           id={windowKey}
           ref={ref}
-          style={{ zIndex: 9999 }}
+          style={{ zIndex }}
           className="fixed inset-0 flex flex-col justify-end"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeWindow(windowKey);
@@ -91,7 +87,6 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
       );
     }
 
-    // Desktop: floating window
     return (
       <section
         id={windowKey}

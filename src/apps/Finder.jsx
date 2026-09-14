@@ -1,4 +1,4 @@
-﻿import clsx from "clsx";
+import clsx from "clsx";
 import { Search } from "lucide-react";
 
 import { WindowHeader } from "@/components";
@@ -43,20 +43,14 @@ const Finder = () => {
     </div>
   );
 
-  const allLocations = [
-    ...Object.values(locations),
-    ...locations.work.children,
-  ];
-
   return (
     <>
       <WindowHeader target="finder">
         <Search className="icon" />
       </WindowHeader>
 
-      {/* Mobile Location Selector Bar */}
       <div className="sm:hidden flex items-center gap-2 p-2 bg-gray-50 border-b border-gray-200 overflow-x-auto select-none no-scrollbar">
-        {allLocations.map((loc) => (
+        {Object.values(locations).map((loc) => (
           <button
             key={loc.id}
             type="button"
@@ -75,13 +69,11 @@ const Finder = () => {
       </div>
 
       <div className="bg-white flex flex-1 h-full min-h-[350px]">
-        {/* Desktop Sidebar */}
         <div className="hidden sm:flex w-48 bg-gray-50 border-r border-gray-200 flex-col p-5 space-y-3 shrink-0 select-none">
           {renderList("Favorites", Object.values(locations))}
           {renderList("My Projects", locations.work.children)}
         </div>
 
-        {/* Content Area - Responsive CSS Grid */}
         <div className="flex-1 p-6 bg-white overflow-y-auto">
           {activeLocation?.children?.length > 0 ? (
             <ul className="grid grid-cols-3 sm:grid-cols-4 gap-6 content-start">
