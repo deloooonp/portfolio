@@ -1,4 +1,4 @@
-﻿import clsx from "clsx";
+import clsx from "clsx";
 import { Search } from "lucide-react";
 
 import { WindowHeader } from "@/components";
