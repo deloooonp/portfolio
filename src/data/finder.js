@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿import { PROJECTS } from "./projects";
 
 export const WORK_LOCATION = {
@@ -140,6 +141,12 @@ export const TRASH_LOCATION = {
     },
   ],
 };
+=======
+import { ABOUT_LOCATION } from "./about";
+import { RESUME_LOCATION } from "./resume";
+import { TRASH_LOCATION } from "./trash";
+import { WORK_LOCATION } from "./work";
+>>>>>>> origin/main
 
 export const locations = {
   work: WORK_LOCATION,
@@ -147,3 +154,17 @@ export const locations = {
   resume: RESUME_LOCATION,
   trash: TRASH_LOCATION,
 };
+<<<<<<< HEAD
+=======
+
+export const FINDER_SECTIONS = [
+  {
+    title: "Favorites",
+    items: Object.values(locations),
+  },
+  {
+    title: "My Projects",
+    items: locations.work.children,
+  },
+];
+>>>>>>> origin/main

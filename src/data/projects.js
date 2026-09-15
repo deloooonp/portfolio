@@ -56,11 +56,25 @@
     githubUrl: "https://github.com/deloooonp/nextjs-chat-app",
     desktopPosition: "top-[25vh] left-10",
   },
+  {
+    id: 4,
+    name: "Wedding Invitation",
+    type: "Frontend",
+    summary:
+      "An interactive wedding invitation web app with gallery, and music features.",
+    description: [
+      "A fully interactive wedding invitation built with React and TypeScript.",
+      "Features include a photo gallery and background music — designed to deliver an elegant digital experience for guests.",
+      "Focused on smooth UI, mobile responsiveness, and a warm, personalized aesthetic.",
+    ],
+    tags: ["React", "TypeScript"],
+    year: "2026",
+    thumbnail: "/images/project-4.png",
+    liveUrl: "https://michel-runa.vercel.app/",
+    // githubUrl: "https://github.com/deloooonp/michel-runa",
+    desktopPosition: "bottom-32 right-29",
+    windowPosition: "top-[28vh] left-54",
+  },
 ];
 
 export const PROJECT_TYPES = [...new Set(PROJECTS.map((p) => p.type))];
-export const TYPE_COLORS = {
-  Frontend: "bg-blue-400",
-  Backend: "bg-purple-400",
-  Fullstack: "bg-green-400",
-};

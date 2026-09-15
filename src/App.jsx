@@ -2,16 +2,20 @@ import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 
 import { Dock, Home, Navbar, Welcome } from "@/components";
+import { Contact, Image, Text } from "@/components/overlays";
 import {
-  Contact,
   Finder,
-  Image,
   Photos,
   Resume,
   Safari,
   Terminal,
+<<<<<<< HEAD
   Text,
 } from "@/apps";
+=======
+} from "@/windows";
+import { Analytics } from "@vercel/analytics/react";
+>>>>>>> origin/main
 
 gsap.registerPlugin(Draggable);
 
@@ -32,6 +36,8 @@ const App = () => {
       <Photos />
 
       <Home />
+
+      <Analytics/>
     </div>
   );
 };
