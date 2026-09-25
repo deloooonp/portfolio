@@ -14,9 +14,9 @@
 
 ---
 
-**Current phase:** 2 (data layer)
-**Next action:** convert `src/data/*` to TypeScript (`projects.ts`, `finder.ts`, `profile.ts`, `gallery.ts`, barrel)
-**Last verified green:** after Phase 1 + commit (`tsc -b`, `vite build`, `eslint` all clean)
+**Current phase:** 3 (Stores + constants dissolution)
+**Next action:** Convert `src/store/*` to TypeScript and remove `src/constants/*` (D2).
+**Last verified green:** after Phase 2 (`tsc -b`, `vite build`, `eslint` all clean)
 **Blockers:** none
 
 ---
@@ -27,7 +27,7 @@
 | ----- | ----------------------------------------------------- | ------ |
 | 0     | Prep & guardrails (strict, allowJs, typecheck script) | done   |
 | 1     | `src/types/` foundation                               | done   |
-| 2     | Data layer (`data/*` → `.ts`)                         | todo   |
+| 2     | Data layer (`data/*` → `.ts`)                         | done   |
 | 3     | Stores + constants dissolution                        | todo   |
 | 4     | Hooks + HOC                                           | todo   |
 | 5     | Shared components                                     | todo   |
@@ -44,11 +44,11 @@
 | `src/types/fs.ts`                          | 1     | done      | new file                                                            |
 | `src/types/window.ts`                      | 1     | done      | new file                                                            |
 | `src/types/index.ts`                       | 1     | done      | new file                                                            |
-| `src/data/projects.js`                     | 2     | todo      | drop `PROJECT_TYPES`/`TYPE_COLORS` (D4)                             |
-| `src/data/finder.ts`                       | 2     | todo      | strip BOM                                                           |
-| `src/data/profile.js`                      | 2     | todo      |                                                                     |
-| `src/data/gallery.js`                      | 2     | todo      |                                                                     |
-| `src/data/index.js`                        | 2     | todo      | barrel; unchanged apart from dropped exports                        |
+| `src/data/projects.ts`                     | 2     | done      | dropped `PROJECT_TYPES`/`TYPE_COLORS` (D4), renamed to `.ts`        |
+| `src/data/finder.ts`                       | 2     | done      | stripped BOM, renamed to `.ts`                                      |
+| `src/data/profile.ts`                      | 2     | done      | renamed to `.ts`                                                    |
+| `src/data/gallery.ts`                      | 2     | done      | renamed to `.ts`                                                    |
+| `src/data/index.ts`                        | 2     | done      | barrel; unchanged apart from dropped exports, renamed to `.ts`      |
 | `src/store/window.js`                      | 3     | todo      | absorbs `INITIAL_Z_INDEX` (D2); `Record<WindowKey, WindowInstance>` |
 | `src/store/location.js`                    | 3     | todo      |                                                                     |
 | `src/constants/index.js`                   | 3     | dissolved | delete; members move per D2                                         |
@@ -81,3 +81,4 @@
 | 2026-09-26 | phase 1  | `types/` foundation created (`fs.ts`, `window.ts`, barrel); typecheck + build green           |
 | 2026-09-26 | reorg    | MIGRATION.md → `docs/`; fixed copied `index.html` entry (`main.jsx` → `main.tsx`, silent no-JS build); ledger corruption from string-patched tables repaired (rule added: rewrite this file whole) |
 | 2026-09-26 | commits  | `114f03b` import + Phase 0 tooling, `c72724b` types foundation; docs commit follows           |
+| 2026-09-26 | phase 2  | migrated `src/data/*` files to `.ts`, dropped unused exports and stripped BOM from files     |
