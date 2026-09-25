@@ -7,7 +7,9 @@ import type { FolderNode } from "../../types";
 import useLocationStore from "../../store/location";
 import useWindowStore from "../../store/window";
 
-const projects: FolderNode[] = locations.work?.children ?? [];
+const projects = locations.work.children.filter(
+  (item): item is FolderNode => item.kind === "folder",
+);
 
 const Home = () => {
   const { setActiveLocation } = useLocationStore();

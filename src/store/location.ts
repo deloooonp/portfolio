@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import type { Location } from "../types";
+import type { FolderNode } from "../types";
 import { locations } from "../data";
 
 const DEFAULT_LOCATION = locations.work;
 
 interface LocationState {
-  activeLocation: Location;
-  setActiveLocation: (location: Location) => void;
+  activeLocation: FolderNode;
+  setActiveLocation: (location: FolderNode) => void;
   resetActiveLocation: () => void;
 }
 
@@ -17,7 +17,6 @@ const useLocationStore = create<LocationState>()(
 
     setActiveLocation: (location) =>
       set((state) => {
-        if (location === undefined) return;
         state.activeLocation = location;
       }),
 
