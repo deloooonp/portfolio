@@ -2,10 +2,9 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
-import type { MouseEvent } from "react";
 
-import type { WindowKey } from "../../types";
 import useWindowStore from "../../store/window";
+import type { WindowKey } from "../../types";
 
 interface DockApp {
   id: WindowKey;
