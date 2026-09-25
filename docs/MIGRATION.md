@@ -4,7 +4,7 @@
 
 > **Progress tracking lives in [`PROGRESS.md`](../PROGRESS.md)** — the canonical per-file status ledger. Update it whenever a file or phase completes; this document only records the plan and design decisions.
 
-**Current state:** `portfolio-ts` is scaffolded and synced with `portfolio` — identical 29-file tree, same dependencies, TS toolchain present (`tsconfig` project references, `typescript-eslint`, `tsc -b` in build). Only `main.tsx` is converted; the other 28 files (~1,150 LOC) are still verbatim JS/JSX copies. This is a straight file-by-file conversion with no feature work.
+**Current state:** The migration is complete through the shell. All source files under `src/` are TypeScript, the constants directory has been dissolved, and the same dependencies, architecture, markup, CSS, and content are retained. `tsc -b`, lint, and the production build are green. Manual browser QA remains separate from the automated migration checks.
 
 **Strategy:** Convert leaf-to-root (types → data → stores → hooks → hoc → components → apps → shell), one commit per phase, running `tsc -b` + `npm run build` after each phase. No logic, markup, or data changes — types only.
 
@@ -52,7 +52,7 @@ The same principle does **not** dissolve `data/` (see D3) and does not move long
 - [x] Diff the trees to confirm no drift — clean, only delta is `main.jsx` → `main.tsx`.
 - [x] **Enable `strict: true` in `tsconfig.app.json`** — done; typecheck + build green.
 - [x] Temporary `allowJs: true` added so the mixed JS/TS tree typechecks (baseline surfaced `TS7016` on `./App.jsx`); **removed in Phase 7** once no `.jsx` remains.
-- [ ] `erasableSyntaxOnly` is on → **no enums/namespaces**; use string-literal unions + `as const` objects.
+- [x] `erasableSyntaxOnly` is on → **no enums/namespaces**; use string-literal unions + `as const` objects.
 - [x] Add `"typecheck": "tsc -b"` script for fast verification.
 
 > Note: TypeScript ~6.0 surfaced strict-null errors even without `strict` in the config; the flag is now pinned explicitly.
@@ -115,8 +115,8 @@ The same principle does **not** dissolve `data/` (see D3) and does not move long
 - `noUnusedLocals` / `noUnusedParameters` will surface dead code — fix by removing, not by loosening.
 - `verbatimModuleSyntax` is on → type-only imports must use `import type`.
 - The original `data/finder.js` started with a BOM; it was stripped during the rename to `.ts`.
-- `experience.txt`'s `description` is sometimes `string[]`, sometimes `{heading, meta, bullets}[]` — that's why `DescriptionItem` is a union (D1/D3).
-- `Finder.jsx` checks `item.fileType` against `"fig"` which never occurs in data — the check is harmless and stays as-is (typing still allows it; `includes` accepts the wider `string` element type).
+- `experience.txt`'s `description` is sometimes `string[]`, sometimes `{heading, meta, bullets}[]` — that's why `DescriptionEntry` is a union (D1/D3).
+- Finder navigation uses explicit window-key mapping for typed file nodes.
 
-## Estimated scope
-28 files converted, +3 type files created, `constants/` dissolved (−1 file), 5→8 phases, roughly a focused day of work — done entirely inside `portfolio-ts` while `portfolio` stays untouched as the reference.
+## Final status
+All planned TypeScript conversion phases are complete. Automated checks are green; the manual browser QA checklist below remains the only outstanding verification.
