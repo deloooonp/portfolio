@@ -14,9 +14,9 @@
 
 ---
 
-**Current phase:** 3 (Stores + constants dissolution)
-**Next action:** Convert `src/store/*` to TypeScript and remove `src/constants/*` (D2).
-**Last verified green:** after Phase 2 (`tsc -b`, `vite build`, `eslint` all clean)
+**Current phase:** 4 (Hooks + HOC)
+**Next action:** Convert `src/hooks/useIsMobile.js` and `src/hoc/WindowWrapper.jsx` to TypeScript
+**Last verified green:** after Phase 3 (`tsc -b`, `vite build` both clean)
 **Blockers:** none
 
 ---
@@ -28,7 +28,7 @@
 | 0     | Prep & guardrails (strict, allowJs, typecheck script) | done   |
 | 1     | `src/types/` foundation                               | done   |
 | 2     | Data layer (`data/*` → `.ts`)                         | done   |
-| 3     | Stores + constants dissolution                        | todo   |
+| 3     | Stores + constants dissolution                        | done   |
 | 4     | Hooks + HOC                                           | todo   |
 | 5     | Shared components                                     | todo   |
 | 6     | Apps                                                  | todo   |
@@ -49,9 +49,9 @@
 | `src/data/profile.ts`                      | 2     | done      | renamed to `.ts`                                                    |
 | `src/data/gallery.ts`                      | 2     | done      | renamed to `.ts`                                                    |
 | `src/data/index.ts`                        | 2     | done      | barrel; unchanged apart from dropped exports, renamed to `.ts`      |
-| `src/store/window.js`                      | 3     | todo      | absorbs `INITIAL_Z_INDEX` (D2); `Record<WindowKey, WindowInstance>` |
-| `src/store/location.js`                    | 3     | todo      |                                                                     |
-| `src/constants/index.js`                   | 3     | dissolved | delete; members move per D2                                         |
+| `src/store/window.ts`                      | 3     | done      | absorbed `INITIAL_Z_INDEX` (D2); `Record<WindowKey, WindowInstance>`, typed zustand |
+| `src/store/location.ts`                    | 3     | done      | typed zustand with `Location` interface                             |
+| `src/constants/index.js`                   | 5     | todo      | dissolution deferred to Phase 5 (components still import)          |
 | `src/hooks/useIsMobile.js`                 | 4     | todo      |                                                                     |
 | `src/hoc/WindowWrapper.jsx`                | 4     | todo      | riskiest file — GSAP + DOM; verify against JS original              |
 | `src/components/window/WindowControls.jsx` | 5     | todo      |                                                                     |
@@ -82,3 +82,4 @@
 | 2026-09-26 | reorg    | MIGRATION.md → `docs/`; fixed copied `index.html` entry (`main.jsx` → `main.tsx`, silent no-JS build); ledger corruption from string-patched tables repaired (rule added: rewrite this file whole) |
 | 2026-09-26 | commits  | `114f03b` import + Phase 0 tooling, `c72724b` types foundation; docs commit follows           |
 | 2026-09-26 | phase 2  | migrated `src/data/*` files to `.ts`, dropped unused exports and stripped BOM from files     |
+| 2026-09-26 | phase 3  | typed zustand stores (`window.ts`, `location.ts`), absorbed `INITIAL_Z_INDEX`; constants dissolution deferred to Phase 5 |
