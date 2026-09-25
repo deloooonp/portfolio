@@ -39,12 +39,12 @@ Applied via a usage audit (verified with code search, not guessed). Result: **ev
 The same principle does **not** dissolve `data/` (see D3) and does not move long-form *content* into view files — the rule is for constants/types, not CMS-style copy.
 
 ### D3 — `data/` stays as TS modules; JSON rejected
-`data/` keeps its current file structure (`finder.js`, `projects.js`, `profile.js`, `gallery.js` + barrel); we only add type annotations and drop dead exports.
+`data/` keeps its current file structure (`finder.ts`, `projects.ts`, `profile.js`, `gallery.js` + barrel); we only add type annotations and drop dead exports.
 
-**Why not JSON:** (1) JSON imports arrive as loose/inferred shapes — a misspelled `fileType` or missing `id` becomes a runtime bug instead of a build error, defeating the migration's purpose. (2) `data/finder.js` **derives** its tree from `PROJECTS.map(...)` — computed structure JSON can't express without hand-duplicating generated entries. (3) The `description` field legitimately has two shapes (`string[]` and `{heading, meta, bullets}[]`); a TS union documents and enforces that, JSON can't. JSON would only earn its keep with non-developer editors or a runtime CMS/API — neither exists, and "no feature changes" rules out building one. Revisit if a CMS is ever introduced (that would be its own migration: fetch layer + runtime validation + loading states).
+**Why not JSON:** (1) JSON imports arrive as loose/inferred shapes — a misspelled `fileType` or missing `id` becomes a runtime bug instead of a build error, defeating the migration's purpose. (2) `data/finder.ts` **derives** its tree from `PROJECTS.map(...)` — computed structure JSON can't express without hand-duplicating generated entries. (3) The `description` field legitimately has two shapes (`string[]` and `{heading, meta, bullets}[]`); a TS union documents and enforces that, JSON can't. JSON would only earn its keep with non-developer editors or a runtime CMS/API — neither exists, and "no feature changes" rules out building one. Revisit if a CMS is ever introduced (that would be its own migration: fetch layer + runtime validation + loading states).
 
 ### D4 — Dead exports dropped
-`PROJECT_TYPES` and `TYPE_COLORS` in `data/projects.js` are exported but imported nowhere. Dead code isn't a feature; they are not carried forward.
+`PROJECT_TYPES` and `TYPE_COLORS` in `data/projects.ts` were exported but imported nowhere. Dead code isn't a feature; they are not carried forward.
 
 ---
 
@@ -73,7 +73,7 @@ The same principle does **not** dissolve `data/` (see D3) and does not move long
 - [x] `data/finder.ts` — `WORK_LOCATION`, `ABOUT_LOCATION`, `RESUME_LOCATION`, `TRASH_LOCATION`, `locations` annotated as `Record<LocationKey, Location>`; the `PROJECTS`-derived children must typecheck against `FolderNode` — this is where the domain model earns its keep.
 - [x] `data/profile.ts`, `data/gallery.ts` — annotate from `types/fs.ts`.
 - [x] Barrel `data/index.ts` unchanged (minus dropped exports).
-- [x] Strip the BOM in `finder.js`/`projects.js` while renaming.
+- [x] Strip the BOM in `finder.ts`/`projects.ts` while renaming.
 
 ## Phase 3 — Stores + constants dissolution ✅
 - [x] `store/window.ts` — absorb `INITIAL_Z_INDEX` (D2). `WINDOW_CONFIG: Record<WindowKey, WindowInstance>` (D1). Typed zustand pattern: `create<WindowStore>()(immer(...))`. Delete `constants/` directory.
@@ -95,9 +95,9 @@ The same principle does **not** dissolve `data/` (see D3) and does not move long
 - [x] `Finder.tsx` uses explicit window-key mapping (`txt → "txtfile"`, `img → "imgfile"`; pdf/folder/url handled earlier).
 
 ## Phase 7 — Shell, cleanup, verification
-- [ ] `App.tsx`; verify `main.tsx` / `index.html` wiring.
-- [ ] Confirm no `.js(x)` twins remain anywhere under `src/`.
-- [ ] `tsc -b` clean → `npm run lint` clean → `npm run build` green.
+- [x] `App.tsx`; verify `main.tsx` / `index.html` wiring.
+- [x] Confirm no `.js(x)` twins remain anywhere under `src/`.
+- [x] `tsc -b` clean → `npm run lint` clean → `npm run build` green.
 - [ ] **Manual QA checklist** (no test suite exists):
   - [ ] All 8 apps open/close/focus
   - [ ] Z-order stacking (focus raises window)
@@ -114,7 +114,7 @@ The same principle does **not** dissolve `data/` (see D3) and does not move long
 - `tsconfig.app.json` lacks `strict` — enabling it is the whole point of the migration.
 - `noUnusedLocals` / `noUnusedParameters` will surface dead code — fix by removing, not by loosening.
 - `verbatimModuleSyntax` is on → type-only imports must use `import type`.
-- `data/finder.js` starts with a BOM; strip when renaming to `.ts`.
+- The original `data/finder.js` started with a BOM; it was stripped during the rename to `.ts`.
 - `experience.txt`'s `description` is sometimes `string[]`, sometimes `{heading, meta, bullets}[]` — that's why `DescriptionItem` is a union (D1/D3).
 - `Finder.jsx` checks `item.fileType` against `"fig"` which never occurs in data — the check is harmless and stays as-is (typing still allows it; `includes` accepts the wider `string` element type).
 
