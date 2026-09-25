@@ -1,8 +1,10 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { INITIAL_Z_INDEX } from "@/constants";
+import type { WindowKey, WindowInstance, WindowState } from "../types";
 
-const WINDOW_CONFIG = {
+const INITIAL_Z_INDEX = 1000;
+
+const WINDOW_CONFIG: Record<WindowKey, WindowInstance> = {
   finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
@@ -13,12 +15,12 @@ const WINDOW_CONFIG = {
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
-const useWindowStore = create(
+const useWindowStore = create<WindowState>()(
   immer((set) => ({
     windows: WINDOW_CONFIG,
     nextZIndex: INITIAL_Z_INDEX + 1,
 
-    openWindow: (windowKey, data = null) =>
+    openWindow: (windowKey, data = undefined) =>
       set((state) => {
         const win = state.windows[windowKey];
         if (!win) return;
@@ -35,7 +37,7 @@ const useWindowStore = create(
         win.zIndex = INITIAL_Z_INDEX;
         win.data = null;
       }),
-    focusWindow: (windowKey, data = null) =>
+    focusWindow: (windowKey, data = undefined) =>
       set((state) => {
         const win = state.windows[windowKey];
         if (!win) return;
