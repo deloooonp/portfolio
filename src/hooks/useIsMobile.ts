@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 
 const MOBILE_BREAKPOINT = 640;
 
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(
+const useIsMobile = (): boolean => {
+  const [isMobile, setIsMobile] = useState<boolean>(
     () => window.innerWidth < MOBILE_BREAKPOINT,
   );
 
   useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    const handler = (e) => setIsMobile(e.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);
   }, []);

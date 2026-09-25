@@ -14,9 +14,9 @@
 
 ---
 
-**Current phase:** 4 (Hooks + HOC)
-**Next action:** Convert `src/hooks/useIsMobile.js` and `src/hoc/WindowWrapper.jsx` to TypeScript
-**Last verified green:** after Phase 3 (`tsc -b`, `vite build` both clean)
+**Current phase:** 5 (Shared components)
+**Next action:** Convert `src/components/*` to TypeScript and absorb constants per D2
+**Last verified green:** after Phase 4 (`tsc -b`, `vite build` both clean)
 **Blockers:** none
 
 ---
@@ -29,7 +29,7 @@
 | 1     | `src/types/` foundation                               | done   |
 | 2     | Data layer (`data/*` → `.ts`)                         | done   |
 | 3     | Stores + constants dissolution                        | done   |
-| 4     | Hooks + HOC                                           | todo   |
+| 4     | Hooks + HOC                                           | done   |
 | 5     | Shared components                                     | todo   |
 | 6     | Apps                                                  | todo   |
 | 7     | Shell, cleanup, final verification                    | todo   |
@@ -52,8 +52,8 @@
 | `src/store/window.ts`                      | 3     | done      | absorbed `INITIAL_Z_INDEX` (D2); `Record<WindowKey, WindowInstance>`, typed zustand |
 | `src/store/location.ts`                    | 3     | done      | typed zustand with `Location` interface                             |
 | `src/constants/index.js`                   | 5     | todo      | dissolution deferred to Phase 5 (components still import)          |
-| `src/hooks/useIsMobile.js`                 | 4     | todo      |                                                                     |
-| `src/hoc/WindowWrapper.jsx`                | 4     | todo      | riskiest file — GSAP + DOM; verify against JS original              |
+| `src/hooks/useIsMobile.ts`                 | 4     | done      | `boolean` return type, `MediaQueryListEvent` handler               |
+| `src/hoc/WindowWrapper.tsx`                | 4     | done      | generic HOC with proper GSAP + DOM typing; fixed Draggable array   |
 | `src/components/window/WindowControls.jsx` | 5     | todo      |                                                                     |
 | `src/components/window/WindowHeader.jsx`   | 5     | todo      |                                                                     |
 | `src/components/layout/Navbar.jsx`         | 5     | todo      | absorbs `NAV_LINKS` + `NAV_ICONS` (D2)                              |
@@ -83,3 +83,4 @@
 | 2026-09-26 | commits  | `114f03b` import + Phase 0 tooling, `c72724b` types foundation; docs commit follows           |
 | 2026-09-26 | phase 2  | migrated `src/data/*` files to `.ts`, dropped unused exports and stripped BOM from files     |
 | 2026-09-26 | phase 3  | typed zustand stores (`window.ts`, `location.ts`), absorbed `INITIAL_Z_INDEX`; constants dissolution deferred to Phase 5 |
+| 2026-09-26 | phase 4  | parallel agents converted `useIsMobile.ts` + `WindowWrapper.tsx`; fixed GSAP Draggable array typing |
