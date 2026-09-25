@@ -1,6 +1,7 @@
-﻿import { PROJECTS } from "./projects";
+import type { Location, LocationMap } from "../types";
+import { PROJECTS } from "./projects";
 
-export const WORK_LOCATION = {
+export const WORK_LOCATION: Location = {
   id: 1,
   type: "work",
   name: "Work",
@@ -17,39 +18,39 @@ export const WORK_LOCATION = {
       id: project.id + 4,
       name: project.name,
       icon: "/system/folder.png",
-      kind: "folder",
+      kind: "folder" as const,
       desktopPosition: project.desktopPosition,
       children: [
         {
           id: 1,
           name: `${slug}.txt`,
           icon: "/system/txt.png",
-          kind: "file",
-          fileType: "txt",
+          kind: "file" as const,
+          fileType: "txt" as const,
           description: project.description,
         },
         {
           id: 2,
           name: `${slug}.com`,
           icon: "/apps/safari.png",
-          kind: "file",
-          fileType: "url",
+          kind: "file" as const,
+          fileType: "url" as const,
           href: project.liveUrl,
         },
         {
           id: 4,
           name: `${slug}.png`,
           icon: "/system/image.png",
-          kind: "file",
-          fileType: "img",
+          kind: "file" as const,
+          fileType: "img" as const,
           imageUrl: project.thumbnail,
         },
         {
           id: 5,
           name: "README.md",
           icon: "/system/plain.png",
-          kind: "file",
-          fileType: "url",
+          kind: "file" as const,
+          fileType: "url" as const,
           href: project.githubUrl,
         },
       ],
@@ -57,7 +58,7 @@ export const WORK_LOCATION = {
   }),
 };
 
-export const ABOUT_LOCATION = {
+export const ABOUT_LOCATION: Location = {
   id: 2,
   type: "about",
   name: "About me",
@@ -81,10 +82,10 @@ export const ABOUT_LOCATION = {
       subtitle: "Meet the Developer Behind the Code",
       image: "/content/delon4.jpg",
       description: [
-        "Hi, I’m Delon — a web developer focused on building interfaces that are clean, responsive, and actually usable.",
+        "Hi, I'm Delon — a web developer focused on building interfaces that are clean, responsive, and actually usable.",
         "I work mainly with JavaScript, React, and Next.js, turning designs into fast, functional experiences without unnecessary fluff.",
-        "I care about solid UI, thoughtful UX, and code that’s readable enough to survive future me.",
-        "When I’m not coding, I’m usually refining layouts, overthinking small details, or convincing myself that one more tech purchase is justified.",
+        "I care about solid UI, thoughtful UX, and code that's readable enough to survive future me.",
+        "When I'm not coding, I'm usually refining layouts, overthinking small details, or convincing myself that one more tech purchase is justified.",
       ],
     },
     {
@@ -127,7 +128,7 @@ export const ABOUT_LOCATION = {
   ],
 };
 
-export const RESUME_LOCATION = {
+export const RESUME_LOCATION: Location = {
   id: 3,
   type: "resume",
   name: "Resume",
@@ -144,7 +145,7 @@ export const RESUME_LOCATION = {
   ],
 };
 
-export const TRASH_LOCATION = {
+export const TRASH_LOCATION: Location = {
   id: 4,
   type: "trash",
   name: "Trash",
@@ -170,7 +171,7 @@ export const TRASH_LOCATION = {
   ],
 };
 
-export const locations = {
+export const locations: LocationMap = {
   work: WORK_LOCATION,
   about: ABOUT_LOCATION,
   resume: RESUME_LOCATION,

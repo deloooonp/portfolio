@@ -1,4 +1,6 @@
-export const GALLERY_IMAGES = [
+import type { GalleryImage } from "../types";
+
+export const GALLERY_IMAGES: GalleryImage[] = [
   {
     id: 1,
     img: "/content/delon.jpg",

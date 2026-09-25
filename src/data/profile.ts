@@ -1,4 +1,6 @@
-export const SOCIALS = [
+import type { Social, TechStack } from "../types";
+
+export const SOCIALS: Social[] = [
   {
     id: 1,
     text: "Github",
@@ -22,7 +24,7 @@ export const SOCIALS = [
   },
 ];
 
-export const TECH_STACK = [
+export const TECH_STACK: TechStack[] = [
   {
     category: "Frontend",
     items: ["React.js", "Next.js", "TypeScript"],

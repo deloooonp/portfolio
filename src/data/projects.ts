@@ -1,4 +1,6 @@
-﻿export const PROJECTS = [
+import type { Project } from "../types";
+
+export const PROJECTS: Project[] = [
   {
     id: 1,
     name: "iPhone 15 Pro — Motion-Driven Landing Page",
@@ -58,9 +60,3 @@
   },
 ];
 
-export const PROJECT_TYPES = [...new Set(PROJECTS.map((p) => p.type))];
-export const TYPE_COLORS = {
-  Frontend: "bg-blue-400",
-  Backend: "bg-purple-400",
-  Fullstack: "bg-green-400",
-};

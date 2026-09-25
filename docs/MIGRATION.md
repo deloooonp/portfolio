@@ -68,12 +68,12 @@ The same principle does **not** dissolve `data/` (see D3) and does not move long
 - [x] `types/index.ts` — barrel.
 - [x] `tsc -b` green (types unused yet — self-consistency proven).
 
-## Phase 2 — Data layer (content unchanged)
-- [ ] `data/projects.ts` — `Project[]` annotation; **drop `PROJECT_TYPES` / `TYPE_COLORS`** (D4).
-- [ ] `data/finder.ts` — `WORK_LOCATION`, `ABOUT_LOCATION`, `RESUME_LOCATION`, `TRASH_LOCATION`, `locations` annotated as `Record<LocationKey, Location>`; the `PROJECTS`-derived children must typecheck against `FolderNode` — this is where the domain model earns its keep.
-- [ ] `data/profile.ts`, `data/gallery.ts` — annotate from `types/fs.ts`.
-- [ ] Barrel `data/index.ts` unchanged (minus dropped exports).
-- [ ] Strip the BOM in `finder.js`/`projects.js` while renaming.
+## Phase 2 — Data layer (content unchanged) ✅
+- [x] `data/projects.ts` — `Project[]` annotation; **drop `PROJECT_TYPES` / `TYPE_COLORS`** (D4).
+- [x] `data/finder.ts` — `WORK_LOCATION`, `ABOUT_LOCATION`, `RESUME_LOCATION`, `TRASH_LOCATION`, `locations` annotated as `Record<LocationKey, Location>`; the `PROJECTS`-derived children must typecheck against `FolderNode` — this is where the domain model earns its keep.
+- [x] `data/profile.ts`, `data/gallery.ts` — annotate from `types/fs.ts`.
+- [x] Barrel `data/index.ts` unchanged (minus dropped exports).
+- [x] Strip the BOM in `finder.js`/`projects.js` while renaming.
 
 ## Phase 3 — Stores + constants dissolution
 - [ ] `store/window.ts` — absorb `INITIAL_Z_INDEX` (D2). `WINDOW_CONFIG: Record<WindowKey, WindowInstance>` (D1). Typed zustand pattern: `create<WindowStore>()(immer(...))`. Delete `constants/` directory.
