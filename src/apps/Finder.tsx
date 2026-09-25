@@ -5,40 +5,48 @@ import { WindowHeader } from "@/components";
 import { locations } from "@/data";
 import WindowWrapper from "@/hoc/WindowWrapper";
 import useLocationStore from "@/store/location";
+import type { FsNode } from "@/types";
 import useWindowStore from "@/store/window";
 
 const Finder = () => {
   const { openWindow } = useWindowStore();
   const { activeLocation, setActiveLocation } = useLocationStore();
 
-  const openItem = (item) => {
-    if (item.fileType === "pdf") return openWindow("resume");
+  const openItem = (item: FsNode) => {
     if (item.kind === "folder") return setActiveLocation(item);
-    if (["fig", "url"].includes(item.fileType) && item.href)
+    if (item.fileType === "pdf") return openWindow("resume");
+    if (item.fileType === "url" && item.href)
       return window.open(item.href, "_blank", "noopener");
 
-    openWindow(`${item.fileType}${item.kind}`, item);
+    // Map fileType+kind to window key: txt+file -> txtfile, img+file -> imgfile
+    if (item.fileType === "txt" && item.kind === "file") return openWindow("txtfile", item);
+    if (item.fileType === "img" && item.kind === "file") return openWindow("imgfile", item);
   };
 
-  const renderList = (name, items) => (
+  const renderList = (name: string, items: FsNode[]) => (
     <div>
       <h3 className="text-xs font-medium text-gray-400 mb-1">{name}</h3>
       <ul className="space-y-1">
-        {items.map((item) => (
-          <li
-            key={item.id}
-            onClick={() => setActiveLocation(item)}
-            className={clsx(
-              "flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors",
-              item.id === activeLocation.id
-                ? "bg-blue-100 text-blue-700"
-                : "text-gray-700 hover:bg-gray-200",
-            )}
-          >
-            <img src={item.icon} className="w-4" alt={item.name} />
-            <p className="text-sm font-medium truncate">{item.name}</p>
-          </li>
-        ))}
+        {items.map((item) => {
+          if (item.kind === "folder") {
+            return (
+              <li
+                key={item.id}
+                onClick={() => setActiveLocation(item)}
+                className={clsx(
+                  "flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors",
+                  item.id === activeLocation.id
+                    ? "bg-blue-100 text-blue-700"
+                    : "text-gray-700 hover:bg-gray-200",
+                )}
+              >
+                <img src={item.icon} className="w-4" alt={item.name} />
+                <p className="text-sm font-medium truncate">{item.name}</p>
+              </li>
+            );
+          }
+          return null;
+        })}
       </ul>
     </div>
   );

@@ -13,8 +13,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const Resume = () => {
-  const containerRef = useRef(null);
-  const [pageWidth, setPageWidth] = useState(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [pageWidth, setPageWidth] = useState<number | null>(null);
 
   useEffect(() => {
     const el = containerRef.current;
