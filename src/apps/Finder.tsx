@@ -19,8 +19,10 @@ const Finder = () => {
       return window.open(item.href, "_blank", "noopener");
 
     // Map fileType+kind to window key: txt+file -> txtfile, img+file -> imgfile
-    if (item.fileType === "txt" && item.kind === "file") return openWindow("txtfile", item);
-    if (item.fileType === "img" && item.kind === "file") return openWindow("imgfile", item);
+    if (item.fileType === "txt" && item.kind === "file")
+      return openWindow("txtfile", item);
+    if (item.fileType === "img" && item.kind === "file")
+      return openWindow("imgfile", item);
   };
 
   const renderList = (name: string, items: FsNode[]) => (
