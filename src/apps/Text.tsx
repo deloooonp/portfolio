@@ -1,10 +1,11 @@
 import { WindowHeader } from "@/components";
 import WindowWrapper from "@/hoc/WindowWrapper";
 import useWindowStore from "@/store/window";
+import type { TxtFileNode } from "@/types";
 
 const Text = () => {
   const { windows } = useWindowStore();
-  const data = windows.txtfile?.data;
+  const data = windows.txtfile?.data as TxtFileNode | undefined;
 
   if (!data) return null;
 

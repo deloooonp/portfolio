@@ -12,7 +12,7 @@ const Safari = () => {
         </div>
       </WindowHeader>
 
-      <div className="flex flex-1 items-center justify-center bg-white text-gray-400 select-none min-h-[480px]">
+      <div className="flex flex-1 items-center justify-center bg-white text-gray-400 select-none min-h-120">
         <div className="text-center">
           <p className="text-base font-medium text-gray-600 mb-1">Safari</p>
           <p className="text-xs text-gray-400">Empty Window</p>

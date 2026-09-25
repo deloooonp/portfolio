@@ -75,24 +75,24 @@ The same principle does **not** dissolve `data/` (see D3) and does not move long
 - [x] Barrel `data/index.ts` unchanged (minus dropped exports).
 - [x] Strip the BOM in `finder.js`/`projects.js` while renaming.
 
-## Phase 3 — Stores + constants dissolution
-- [ ] `store/window.ts` — absorb `INITIAL_Z_INDEX` (D2). `WINDOW_CONFIG: Record<WindowKey, WindowInstance>` (D1). Typed zustand pattern: `create<WindowStore>()(immer(...))`. Delete `constants/` directory.
-- [ ] `store/location.ts` — `activeLocation: Location`, same typed zustand pattern.
+## Phase 3 — Stores + constants dissolution ✅
+- [x] `store/window.ts` — absorb `INITIAL_Z_INDEX` (D2). `WINDOW_CONFIG: Record<WindowKey, WindowInstance>` (D1). Typed zustand pattern: `create<WindowStore>()(immer(...))`. Delete `constants/` directory.
+- [x] `store/location.ts` — typed zustand location store.
 
-## Phase 4 — Hooks + HOC
-- [ ] `hooks/useIsMobile.ts` — trivial (`MediaQueryListEvent` handler).
-- [ ] `hoc/WindowWrapper.tsx` — generic: `<P>(Component: ComponentType<P>, windowKey: WindowKey, windowClassName?: string)`. Type `useRef<HTMLElement | null>`, GSAP `Draggable` cleanup, `useGSAP` dep arrays. **Riskiest file** (dynamic DOM + GSAP) — convert carefully, verify against the JS original.
+## Phase 4 — Hooks + HOC ✅
+- [x] `hooks/useIsMobile.ts` — trivial (`MediaQueryListEvent` handler).
+- [x] `hoc/WindowWrapper.tsx` — generic: `<P>(Component: ComponentType<P>, windowKey: WindowKey, windowClassName?: string)`. Type `useRef<HTMLElement | null>`, GSAP `Draggable` cleanup, `useGSAP` dep arrays.
 
-## Phase 5 — Shared components (constants move in here per D2)
-- [ ] `components/window/WindowControls.tsx`, `WindowHeader.tsx` — props interfaces inline (single consumer each).
-- [ ] `components/layout/Navbar.tsx` — **absorbs `NAV_LINKS` + `NAV_ICONS`** (`type: WindowKey`).
-- [ ] `components/layout/Dock.tsx` — **absorbs `DOCK_APPS`** (`id: WindowKey`; `windows[app.id]` lookup now typechecks).
-- [ ] `components/layout/Welcome.tsx`, `Home.tsx` — straight conversion.
-- [ ] Barrel `components/index.ts` unchanged.
+## Phase 5 — Shared components (constants move in here per D2) ✅
+- [x] `components/window/WindowControls.tsx`, `WindowHeader.tsx` — props interfaces inline (single consumer each).
+- [x] `components/layout/Navbar.tsx` — **absorbs `NAV_LINKS` + `NAV_ICONS`** (`type: WindowKey`).
+- [x] `components/layout/Dock.tsx` — **absorbs `DOCK_APPS`** (`id: WindowKey`; `windows[app.id]` lookup now typechecks).
+- [x] `components/layout/Welcome.tsx`, `Home.tsx` — converted.
+- [x] Barrel `components/index.ts` converted to `.ts`.
 
-## Phase 6 — Apps (where the unions pay off)
-- [ ] In order: `Text` (consumes the `DescriptionItem` union), `Image`, `Safari`, `Resume` (react-pdf v11 ships its own types), `Contact`, `Photos`, `Terminal` (command parsing), `Finder` (tree recursion + selection). Each consumes `types/fs.ts` unions — `fileType` switches become exhaustively checked. Barrel `apps/index.ts` unchanged.
-- [ ] `Finder.tsx`'s `openWindow(\`${item.fileType}${item.kind}\`)` becomes an explicit mapping (`txt → "txtfile"`, `img → "imgfile"`; pdf/folder/url handled by earlier branches). Identical behavior; strictly typed call site.
+## Phase 6 — Apps (where the unions pay off) ✅
+- [x] Converted `Text`, `Image`, `Safari`, `Resume`, `Contact`, `Photos`, `Terminal`, `Finder`, and the `apps/index.ts` barrel. Each uses the existing domain/data types without feature changes.
+- [x] `Finder.tsx` uses explicit window-key mapping (`txt → "txtfile"`, `img → "imgfile"`; pdf/folder/url handled earlier).
 
 ## Phase 7 — Shell, cleanup, verification
 - [ ] `App.tsx`; verify `main.tsx` / `index.html` wiring.

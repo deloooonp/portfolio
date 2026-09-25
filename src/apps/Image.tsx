@@ -1,10 +1,11 @@
 import WindowWrapper from "@/hoc/WindowWrapper";
 import { WindowHeader } from "@/components";
 import useWindowStore from "@/store/window";
+import type { ImgFileNode } from "@/types";
 
 const Image = () => {
   const { windows } = useWindowStore();
-  const data = windows.imgfile?.data;
+  const data = windows.imgfile?.data as ImgFileNode | undefined;
 
   if (!data) return null;
 
