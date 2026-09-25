@@ -1,13 +1,60 @@
-﻿import { useGSAP } from "@gsap/react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 import { Tooltip } from "react-tooltip";
+import type { MouseEvent } from "react";
 
-import { DOCK_APPS } from "@/constants";
-import useWindowStore from "@/store/window";
+import type { WindowKey } from "../../types";
+import useWindowStore from "../../store/window";
+
+interface DockApp {
+  id: WindowKey;
+  name: string;
+  icon: string;
+  canOpen: boolean;
+}
+
+const DOCK_APPS: DockApp[] = [
+  {
+    id: "finder",
+    name: "Portfolio", // was "Finder"
+    icon: "finder.png",
+    canOpen: true,
+  },
+  {
+    id: "safari",
+    name: "Articles", // was "Safari"
+    icon: "safari.png",
+    canOpen: true,
+  },
+  // {
+  //   id: "photos",
+  //   name: "Gallery", // was "Photos"
+  //   icon: "photos.png",
+  //   canOpen: true,
+  // },
+  {
+    id: "contact",
+    name: "Contact", // or "Get in touch"
+    icon: "contact.png",
+    canOpen: true,
+  },
+  {
+    id: "terminal",
+    name: "Skills", // was "Terminal"
+    icon: "terminal.png",
+    canOpen: true,
+  },
+  // {
+  //   id: "trash",
+  //   name: "Archive", // was "Trash"
+  //   icon: "trash.png",
+  //   canOpen: false,
+  // },
+];
 
 const Dock = () => {
-  const dockRef = useRef(null);
+  const dockRef = useRef<HTMLDivElement | null>(null);
   const { openWindow, closeWindow, windows } = useWindowStore();
 
   useGSAP(() => {
@@ -16,7 +63,7 @@ const Dock = () => {
 
     const icons = dock.querySelectorAll(".dock-icon");
 
-    const animateIcons = (mouseX) => {
+    const animateIcons = (mouseX: number) => {
       const { left } = dock.getBoundingClientRect();
       icons.forEach((icon) => {
         const { left: iconLeft, width } = icon.getBoundingClientRect();
@@ -33,7 +80,7 @@ const Dock = () => {
       });
     };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: globalThis.MouseEvent) => {
       const { left } = dock.getBoundingClientRect();
       animateIcons(e.clientX - left);
     };
@@ -55,7 +102,7 @@ const Dock = () => {
     };
   }, []);
 
-  const toggleApp = (app) => {
+  const toggleApp = (app: Pick<DockApp, "id" | "canOpen">) => {
     if (!app.canOpen) return;
     const window = windows[app.id];
 

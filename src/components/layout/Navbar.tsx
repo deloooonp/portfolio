@@ -1,7 +1,54 @@
-﻿import dayjs from "dayjs";
+import dayjs from "dayjs";
+import type { WindowKey } from "../../types";
+import useWindowStore from "../../store/window";
 
-import { NAV_ICONS as navIcons, NAV_LINKS as navLinks } from "@/constants";
-import useWindowStore from "@/store/window";
+interface NavLink {
+  id: number;
+  name: string;
+  type: WindowKey;
+}
+
+interface NavIcon {
+  id: number;
+  img: string;
+}
+
+const NAV_LINKS: NavLink[] = [
+  {
+    id: 1,
+    name: "Projects",
+    type: "safari",
+  },
+  {
+    id: 3,
+    name: "Contact",
+    type: "contact",
+  },
+  {
+    id: 4,
+    name: "Resume",
+    type: "resume",
+  },
+];
+
+const NAV_ICONS: NavIcon[] = [
+  {
+    id: 1,
+    img: "/icons/wifi.svg",
+  },
+  {
+    id: 2,
+    img: "/icons/search.svg",
+  },
+  {
+    id: 3,
+    img: "/icons/user.svg",
+  },
+  {
+    id: 4,
+    img: "/icons/mode.svg",
+  },
+];
 
 const Navbar = () => {
   const { openWindow } = useWindowStore();
@@ -12,7 +59,7 @@ const Navbar = () => {
         <p className="font-bold">deloooonp</p>
 
         <ul className="flex items-center gap-5 max-sm:hidden">
-          {navLinks.map(({ id, name, type }) => (
+          {NAV_LINKS.map(({ id, name, type }) => (
             <li key={id} onClick={() => openWindow(type)}>
               <p className="text-sm cursor-pointer hover:underline transition-all">
                 {name}
@@ -24,7 +71,7 @@ const Navbar = () => {
 
       <div className="flex items-center gap-5">
         <ul className="flex items-center gap-5 max-sm:hidden">
-          {navIcons.map(({ id, img }) => (
+          {NAV_ICONS.map(({ id, img }) => (
             <li key={id}>
               <img src={img} className="icon-hover" alt={`icon-${id}`} />
             </li>
