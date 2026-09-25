@@ -2,15 +2,24 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Draggable from "gsap/Draggable";
 import { useLayoutEffect, useRef } from "react";
+import type { ComponentType, MouseEvent } from "react";
 
-import useWindowStore from "@/store/window";
-import useIsMobile from "@/hooks/useIsMobile";
+import useWindowStore from "../store/window";
+import useIsMobile from "../hooks/useIsMobile";
+import type { WindowKey } from "../types";
 
-const WindowWrapper = (Component, windowKey, windowClassName = "") => {
-  const Wrapped = (props) => {
+const WindowWrapper = <P extends object>(
+  Component: ComponentType<P>,
+  windowKey: WindowKey,
+  windowClassName = "",
+): ComponentType<P> => {
+  const Wrapped = (props: P) => {
     const { focusWindow, closeWindow, windows } = useWindowStore();
     const { isOpen, zIndex } = windows[windowKey];
-    const ref = useRef(null);
+    const ref = useRef<HTMLElement | null>(null);
+    const setRef = (node: HTMLElement | null) => {
+      ref.current = node;
+    };
     const isMobile = useIsMobile();
 
     useGSAP(() => {
@@ -46,12 +55,12 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
       const headerEl = el.querySelector("#window-header");
       if (!headerEl) return;
 
-      const [instance] = Draggable.create(el, {
+      const instances = Draggable.create(el, {
         trigger: headerEl,
         onPress: () => focusWindow(windowKey),
       });
 
-      return () => instance.kill();
+      return () => instances[0]?.kill();
     }, [isOpen, isMobile]);
 
     useLayoutEffect(() => {
@@ -69,10 +78,10 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
       return (
         <div
           id={windowKey}
-          ref={ref}
+          ref={setRef}
           style={{ zIndex }}
           className="fixed inset-0 flex flex-col justify-end"
-          onClick={(e) => {
+          onClick={(e: MouseEvent<HTMLElement>) => {
             if (e.target === e.currentTarget) closeWindow(windowKey);
           }}
         >
@@ -90,7 +99,7 @@ const WindowWrapper = (Component, windowKey, windowClassName = "") => {
     return (
       <section
         id={windowKey}
-        ref={ref}
+        ref={setRef}
         style={{ zIndex }}
         className={`absolute ${windowClassName}`}
         onMouseDownCapture={() => focusWindow(windowKey)}
