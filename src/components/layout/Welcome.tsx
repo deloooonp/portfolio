@@ -1,31 +1,39 @@
-﻿import { useGSAP } from "@gsap/react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-const FONT_WEIGHTS = {
+interface FontWeight {
+  min: number;
+  max: number;
+  default: number;
+}
+
+type FontWeightType = "subtitle" | "title";
+
+const FONT_WEIGHTS: Record<FontWeightType, FontWeight> = {
   subtitle: { min: 100, max: 400, default: 100 },
   title: { min: 400, max: 900, default: 400 },
 };
 
-const renderText = (text, className, baseWeight = 400) => {
+const renderText = (text: string, className: string, baseWeight = 400) => {
   return [...text].map((char, i) => (
     <span
       key={i}
       className={className}
       style={{ fontVariationSettings: `'wght' ${baseWeight}` }}
     >
-      {char == "" ? "\u00A0" : char}
+      {char === " " ? " " : char}
     </span>
   ));
 };
 
-const setupTextHover = (container, type) => {
+const setupTextHover = (container: HTMLElement | null, type: FontWeightType) => {
   if (!container) return () => {};
 
-  const letters = container.querySelectorAll("span");
+  const letters = container.querySelectorAll<HTMLSpanElement>("span");
   const { min, max, default: base } = FONT_WEIGHTS[type];
 
-  const animateLetter = (letter, weight, duration = 0.25) => {
+  const animateLetter = (letter: HTMLSpanElement, weight: number, duration = 0.25) => {
     return gsap.to(letter, {
       duration,
       ease: "power2.out",
@@ -33,7 +41,7 @@ const setupTextHover = (container, type) => {
     });
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent) => {
     const { left } = container.getBoundingClientRect();
     const mouseX = e.clientX - left;
 
@@ -61,8 +69,8 @@ const setupTextHover = (container, type) => {
 };
 
 const Welcome = () => {
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef = useRef<HTMLParagraphElement | null>(null);
 
   useGSAP(() => {
     const titleCleanup = setupTextHover(titleRef.current, "title");

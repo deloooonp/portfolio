@@ -14,9 +14,9 @@
 
 ---
 
-**Current phase:** 5 (Shared components)
-**Next action:** Convert `src/components/*` to TypeScript and absorb constants per D2
-**Last verified green:** after Phase 4 (`tsc -b`, `vite build` both clean)
+**Current phase:** 6 (Apps)
+**Next action:** Convert `src/apps/*` to TypeScript and absorb constants per D2
+**Last verified green:** after Phase 5 (`tsc -b`, `vite build` both clean)
 **Blockers:** none
 
 ---
@@ -30,7 +30,7 @@
 | 2     | Data layer (`data/*` → `.ts`)                         | done   |
 | 3     | Stores + constants dissolution                        | done   |
 | 4     | Hooks + HOC                                           | done   |
-| 5     | Shared components                                     | todo   |
+| 5     | Shared components                                     | done   |
 | 6     | Apps                                                  | todo   |
 | 7     | Shell, cleanup, final verification                    | todo   |
 
@@ -51,16 +51,16 @@
 | `src/data/index.ts`                        | 2     | done      | barrel; unchanged apart from dropped exports, renamed to `.ts`      |
 | `src/store/window.ts`                      | 3     | done      | absorbed `INITIAL_Z_INDEX` (D2); `Record<WindowKey, WindowInstance>`, typed zustand |
 | `src/store/location.ts`                    | 3     | done      | typed zustand with `Location` interface                             |
-| `src/constants/index.js`                   | 5     | todo      | dissolution deferred to Phase 5 (components still import)          |
-| `src/hooks/useIsMobile.ts`                 | 4     | done      | `boolean` return type, `MediaQueryListEvent` handler               |
-| `src/hoc/WindowWrapper.tsx`                | 4     | done      | generic HOC with proper GSAP + DOM typing; fixed Draggable array   |
-| `src/components/window/WindowControls.jsx` | 5     | todo      |                                                                     |
-| `src/components/window/WindowHeader.jsx`   | 5     | todo      |                                                                     |
-| `src/components/layout/Navbar.jsx`         | 5     | todo      | absorbs `NAV_LINKS` + `NAV_ICONS` (D2)                              |
-| `src/components/layout/Dock.jsx`           | 5     | todo      | absorbs `DOCK_APPS` (D2)                                            |
-| `src/components/layout/Welcome.jsx`        | 5     | todo      |                                                                     |
-| `src/components/layout/Home.jsx`           | 5     | todo      |                                                                     |
-| `src/components/index.js`                  | 5     | todo      | barrel                                                              |
+| `src/constants/index.js`                   | 5     | dissolved | deleted; members absorbed into Navbar.tsx and Dock.tsx (D2) |
+| `src/hooks/useIsMobile.ts`               | 4     | done      | `boolean` return type, `MediaQueryListEvent` handler          |
+| `src/hoc/WindowWrapper.tsx`              | 4     | done      | generic HOC with proper GSAP + DOM typing; fixed Draggable array   |
+| `src/components/window/WindowControls.tsx` | 5     | done      | inline props interface, `WindowKey` typing                      |
+| `src/components/window/WindowHeader.tsx`   | 5     | done      | inline props interface, `ReactNode` children                     |
+| `src/components/layout/Navbar.tsx`         | 5     | done      | absorbed `NAV_LINKS` + `NAV_ICONS` (D2)                              |
+| `src/components/layout/Dock.tsx`           | 5     | done      | absorbed `DOCK_APPS` as typed `DockApp[]` (D2)                    |
+| `src/components/layout/Welcome.tsx`        | 5     | done      | `FontWeight` types, proper HTMLElement refs                     |
+| `src/components/layout/Home.tsx`           | 5     | done      | `FolderNode` type for project children                            |
+| `src/components/index.ts`                  | 5     | done      | barrel                                                              |
 | `src/apps/Text.jsx`                        | 6     | todo      | consumes `DescriptionItem` union                                    |
 | `src/apps/Image.jsx`                       | 6     | todo      |                                                                     |
 | `src/apps/Safari.jsx`                      | 6     | todo      |                                                                     |
@@ -84,3 +84,4 @@
 | 2026-09-26 | phase 2  | migrated `src/data/*` files to `.ts`, dropped unused exports and stripped BOM from files     |
 | 2026-09-26 | phase 3  | typed zustand stores (`window.ts`, `location.ts`), absorbed `INITIAL_Z_INDEX`; constants dissolution deferred to Phase 5 |
 | 2026-09-26 | phase 4  | parallel agents converted `useIsMobile.ts` + `WindowWrapper.tsx`; fixed GSAP Draggable array typing |
+| 2026-09-26 | phase 5  | converted all 6 component files to `.tsx`, absorbed `NAV_LINKS`/`NAV_ICONS` into Navbar.tsx and `DOCK_APPS` into Dock.tsx, deleted `constants/`, created `CLAUDE.md` |

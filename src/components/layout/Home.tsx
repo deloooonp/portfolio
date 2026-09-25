@@ -2,16 +2,17 @@ import { useGSAP } from "@gsap/react";
 import clsx from "clsx";
 import { Draggable } from "gsap/Draggable";
 
-import { locations } from "@/data";
-import useLocationStore from "@/store/location";
-import useWindowStore from "@/store/window";
+import { locations } from "../../data";
+import type { FolderNode } from "../../types";
+import useLocationStore from "../../store/location";
+import useWindowStore from "../../store/window";
 
-const projects = locations.work?.children ?? [];
+const projects: FolderNode[] = locations.work?.children ?? [];
 
 const Home = () => {
   const { setActiveLocation } = useLocationStore();
   const { openWindow } = useWindowStore();
-  const handleOpenProjectFinder = (project) => {
+  const handleOpenProjectFinder = (project: FolderNode) => {
     setActiveLocation(project);
     openWindow("finder");
   };

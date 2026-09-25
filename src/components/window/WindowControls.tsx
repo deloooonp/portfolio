@@ -1,6 +1,11 @@
-import useWindowStore from "@/store/window";
+import useWindowStore from "../../store/window";
+import type { WindowKey } from "../../types";
 
-const WindowControls = ({ target }) => {
+interface WindowControlsProps {
+  target: WindowKey;
+}
+
+const WindowControls = ({ target }: WindowControlsProps) => {
   const { closeWindow } = useWindowStore();
   return (
     <div className="flex gap-2">
