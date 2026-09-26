@@ -6,37 +6,49 @@ import TerminalOutput from "./TerminalOutput";
 import CommandPalette from "./CommandPalette";
 import CommandButtons from "./CommandButtons";
 
-const WELCOME = `Welcome to the portfolio terminal.
-Type a command below or click one to get started.`;
+const WELCOME = (() => {
+  const cmds = COMMANDS.map(
+    (c) => `  ${c.name.padEnd(12)} — ${c.description}`,
+  ).join("\n");
+  return `Welcome to the portfolio terminal.\n\nAvailable commands:\n${cmds}\n\nType a command or click one to get started.`;
+})();
 
 const TerminalWindow = () => {
   const isMobile = useIsMobile();
   const { history, addEntry, clearHistory } = useTerminalStore();
   const outputRef = useRef<HTMLDivElement>(null);
+  const initialized = useRef(false);
 
   // Show welcome message once on mount
   useEffect(() => {
-    if (history.length === 0) {
+    if (!initialized.current && history.length === 0) {
       addEntry("", WELCOME);
+      initialized.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Auto-scroll on new output
   useEffect(() => {
-    outputRef.current?.scrollTo({ top: outputRef.current.scrollHeight, behavior: "smooth" });
+    outputRef.current?.scrollTo({
+      top: outputRef.current.scrollHeight,
+      behavior: "smooth",
+    });
   }, [history]);
 
-  const handleExecute = useCallback((command: string) => {
-    if (!command.trim()) return;
+  const handleExecute = useCallback(
+    (command: string) => {
+      if (!command.trim()) return;
 
-    if (command === "/clear") {
-      clearHistory();
-      return;
-    }
-    const { output, isError } = executeCommand(command);
-    addEntry(command, output, isError);
-  }, [addEntry, clearHistory]);
+      if (command === "/clear") {
+        clearHistory();
+        return;
+      }
+      const { output, isError } = executeCommand(command);
+      addEntry(command, output, isError);
+    },
+    [addEntry, clearHistory],
+  );
 
   // Keyboard shortcuts (desktop only)
   useEffect(() => {
