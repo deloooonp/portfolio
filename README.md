@@ -1,75 +1,42 @@
-# React + TypeScript + Vite
+# macOS-Style React Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A highly interactive, desktop-OS themed developer portfolio built with modern React. It features a window management system, dragging, z-index stacking, and a simulated filesystem for browsing projects and content.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Framework**: React 19 + TypeScript (strict mode)
+- **Styling**: Tailwind CSS v4
+- **Animation**: GSAP (GreenSock) for window open/close behaviors, dock scaling, and draggable desktop icons
+- **State Management**: Zustand (+ Immer) for managing window states and z-indexes globally
+- **Build Tool**: Vite
 
-## React Compiler
+## Core Architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project is built around a robust, type-checked window management system rather than standard routing:
 
-## Expanding the ESLint configuration
+- **Window Wrapper (HOC)**: Generic wrapper component (`src/hoc/WindowWrapper.tsx`) that handles GSAP `Draggable` mounting, overlay behavior for mobile, and focus management.
+- **File System Metaphor**: Content is structured using discriminated unions (`src/types/fs.ts`) imitating a file system. Content views map to these unions (e.g., clicking a `TxtFileNode` opens the `Text.tsx` viewer).
+- **Zustand Store**: The core engine (`src/store/window.ts`) manages active apps, ensuring clicking an app raises it to the top z-index, while animations smoothly handle mounting and unmounting.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Start the dev server
+npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Run TypeScript compilation check
+npm run typecheck
 
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+- **Finder**: Navigate through folders for Work, About, Resume, and Trash.
+- **Terminal Display**: Shows off your tech stack dynamically.
+- **Mobile Responsive**: On mobile devices (< 640px), draggable windows convert into native-feeling bottom sheets.
+- **Type Safe**: The entire architecture (window keys, file nodes) relies on TypeScript unions to prevent runtime drift.
