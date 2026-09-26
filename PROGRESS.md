@@ -1,68 +1,47 @@
-# Migration Progress Ledger
+# Progress: Terminal Revamp
 
-> **Canonical progress file for the `portfolio` (JS) → `portfolio-ts` (TS) migration.**
-> Any session or agent resuming work: read this file first, then `docs/MIGRATION.md` for design decisions.
->
-> **Update rules:**
->
-> - Rewrite this whole file when updating (don't string-patch tables).
-> - Per-file status changes → update the Files table below.
-> - Phase completion → flip the phase row here, check the phase checkbox in `docs/MIGRATION.md`.
-> - Never mark `done` without a green `npm run typecheck` + `npm run build` since the last change.
->
-> **Status tokens (exact strings):** `todo` · `wip` · `done` · `skipped` · `dissolved` · `dropped`
-
----
-
-**Current phase:** 7 (complete)
-**Next action:** Commit Phase 7, then perform manual browser QA when convenient.
-**Last verified green:** `npm run typecheck`, `npm run lint`, `npm run build`
-**Blockers:** none
-
----
+## Plan: docs/TERMINAL-REVAMP.md
 
 ## Phases
 
-| Phase | Scope | Status |
-| --- | --- | --- |
-| 0 | Prep & guardrails | done |
-| 1 | `src/types/` foundation | done |
-| 2 | Data layer | done |
-| 3 | Stores + constants dissolution | done |
-| 4 | Hooks + HOC | done |
-| 5 | Shared components | done |
-| 6 | Apps | done |
-| 7 | Shell, cleanup, final verification | done |
+### Phase 1: Core Infrastructure ✅
 
-## Files
+- [x] Create terminal types (`src/types/terminal.ts`)
+- [x] Create terminal store (`src/store/terminal.ts`)
+- [x] Create command registry (`src/apps/terminal/lib/commands.ts`)
+- [x] Add window config for Terminal app (already in window store)
 
-| File | Phase | Status | Notes |
-| --- | --- | --- | --- |
-| `index.html` | — | done | Entry points to `/src/main.tsx`. |
-| `src/main.tsx` | — | done | Imports `./App`; renders StrictMode root. |
-| `src/index.css` | — | skipped | CSS, not migrated. |
-| `src/types/*` | 1 | done | Filesystem and window domain types. |
-| `src/data/*` | 2 | done | Typed content modules. |
-| `src/store/*` | 3 | done | Typed Zustand stores. |
-| `src/constants/` | 5 | dissolved | Constants moved to consumers; directory deleted. |
-| `src/hooks/useIsMobile.ts` | 4 | done | Typed media-query hook. |
-| `src/hoc/WindowWrapper.tsx` | 4 | done | Generic GSAP/DOM HOC. |
-| `src/components/*` | 5 | done | All shared components and barrel converted. |
-| `src/apps/*` | 6 | done | All apps and barrel converted. |
-| `src/App.tsx` | 7 | done | Shell converted; `App.jsx` removed. |
+### Phase 2: Terminal UI Shell
 
-## Verification
+- [ ] Create `src/apps/terminal/index.tsx` entry point
+- [ ] Create `TerminalWindow.tsx` with platform detection
+- [ ] Build responsive layout
+- [ ] Wire store to components
 
-- `npm run typecheck` ✅
-- `npm run lint` ✅
-- `npm run build` ✅
-- No `.js` or `.jsx` files remain under `src/`.
-- Vite reports only the existing large-chunk warning for the bundled PDF worker/application output.
+### Phase 3: Desktop Implementation
 
-## Session log
+- [ ] Create `CommandPalette.tsx` (searchable command list)
+- [ ] Add type-to-filter functionality
+- [ ] Implement command execution
 
-| Date | Session | Did |
-| --- | --- | --- |
-| 2026-09-26 | planning | Refined migration plan and design decisions D1–D4. |
-| 2026-09-26 | phases 0–6 | Completed staged TypeScript migration through apps. |
-| 2026-09-26 | phase 7 | Converted `App.jsx` to `App.tsx`, fixed `main.tsx`, removed `allowJs`, deleted remaining JS files, and passed final checks. |
+### Phase 4: Mobile Implementation
+
+- [ ] Create `CommandButtons.tsx` (tap targets)
+- [ ] Add mobile-optimized button grid
+- [ ] Implement tap-to-execute
+
+### Phase 5: Command Implementation
+
+- [ ] Implement /skills command
+- [ ] Implement /help command
+- [ ] Implement /clear and /theme
+- [ ] Add /credits command
+
+### Phase 6: Polish & Testing
+
+- [ ] Keyboard shortcuts (desktop Enter/Escape)
+- [ ] Error handling and edge cases
+- [ ] localStorage for history (optional)
+- [ ] Type safety verification
+
+## Started: 2026-09-26
