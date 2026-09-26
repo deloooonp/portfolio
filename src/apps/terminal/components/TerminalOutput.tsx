@@ -1,10 +1,6 @@
 import type { TerminalEntry } from "@/types/terminal";
 
-interface TerminalOutputProps {
-  history: TerminalEntry[];
-}
-
-const TerminalOutput = ({ history }: TerminalOutputProps) => {
+const TerminalOutput = ({ history }: { history: TerminalEntry[] }) => {
   if (history.length === 0) return null;
 
   return (

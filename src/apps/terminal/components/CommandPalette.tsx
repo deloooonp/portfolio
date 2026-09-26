@@ -19,7 +19,7 @@ const CommandPalette = ({ commands, onExecute }: CommandPaletteProps) => {
 
   return (
     <div className="flex flex-col border-t border-gray-100">
-      <div className="px-4 py-2 border-b border-gray-100">
+      <div className="hidden md:block px-4 py-2 border-b border-gray-100">
         <input
           type="text"
           value={filter}
@@ -39,7 +39,10 @@ const CommandPalette = ({ commands, onExecute }: CommandPaletteProps) => {
         />
       </div>
 
-      <ul role="list" className="divide-y divide-gray-50 max-h-48 overflow-y-auto">
+      <ul
+        role="list"
+        className="divide-y divide-gray-50 max-h-48 overflow-y-auto"
+      >
         {filtered.length === 0 ? (
           <li className="px-4 py-3 text-sm text-gray-400 font-mono">
             No commands match &ldquo;{filter}&rdquo;

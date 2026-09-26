@@ -10,12 +10,6 @@ export const COMMANDS: TerminalCommand[] = [
     usage: "/skills",
   },
   {
-    name: "/commands",
-    description: "List all available commands",
-    category: "tools",
-    usage: "/commands",
-  },
-  {
     name: "/help",
     description: "Show usage for a specific command",
     category: "system",
@@ -42,20 +36,24 @@ export const COMMANDS: TerminalCommand[] = [
   },
 ];
 
-const formatCommands = () =>
-  COMMANDS.map(
-    (command) => `${command.name.padEnd(12)} — ${command.description}`,
+const formatCommands = (isMobile: boolean) =>
+  COMMANDS.map((command) =>
+    isMobile
+      ? `${command.name}\n  ${command.description}`
+      : `${command.name.padEnd(12)} — ${command.description}`,
   ).join("\n");
 
-const formatTechStack = () => {
-  const stacks = TECH_STACK.map(
-    ({ category, items }) => `✓ ${category.padEnd(12)} ${items.join(", ")}`,
+const formatTechStack = (isMobile: boolean) => {
+  const stacks = TECH_STACK.map(({ category, items }) =>
+    isMobile
+      ? `✓ ${category}\n  ${items.join(", ")}`
+      : `✓ ${category.padEnd(12)} ${items.join(", ")}`,
   ).join("\n");
 
   return [
     "Tech Stack",
     "",
-    "Category      Technologies",
+    isMobile ? "Category\n  Technologies" : "Category      Technologies",
     "────────────────────────────────────────",
     stacks,
     "",
@@ -64,7 +62,10 @@ const formatTechStack = () => {
 };
 
 /** Execute a command and return its output string. */
-export function executeCommand(input: string): {
+export function executeCommand(
+  input: string,
+  isMobile: boolean,
+): {
   output: string;
   isError: boolean;
 } {
@@ -72,14 +73,11 @@ export function executeCommand(input: string): {
 
   switch (cmd) {
     case "/skills":
-      return { output: formatTechStack(), isError: false };
-
-    case "/commands":
-      return { output: formatCommands(), isError: false };
+      return { output: formatTechStack(isMobile), isError: false };
 
     case "/help":
     case "/h":
-      return { output: formatCommands(), isError: false };
+      return { output: formatCommands(isMobile), isError: false };
 
     case "/clear":
       // Handled in component — signals store.clearHistory()
