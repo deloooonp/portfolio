@@ -11,31 +11,33 @@
 - [x] Create command registry (`src/apps/terminal/lib/commands.ts`)
 - [x] Add window config for Terminal app (already in window store)
 
-### Phase 2: Terminal UI Shell
+### Phase 2: Terminal UI Shell ✅
 
-- [ ] Create `src/apps/terminal/index.tsx` entry point
-- [ ] Create `TerminalWindow.tsx` with platform detection
-- [ ] Build responsive layout
-- [ ] Wire store to components
+- [x] Create `src/apps/terminal/index.tsx` entry point
+- [x] Create `TerminalWindow.tsx` with platform detection
+- [x] Build responsive layout
+- [x] Wire store to components
+- [x] Replace old `Terminal.tsx` with new implementation
+- [x] Update apps index export
 
-### Phase 3: Desktop Implementation
+### Phase 3: Desktop Implementation ✅
 
-- [ ] Create `CommandPalette.tsx` (searchable command list)
-- [ ] Add type-to-filter functionality
-- [ ] Implement command execution
+- [x] Create `CommandPalette.tsx` (searchable command list)
+- [x] Add type-to-filter functionality
+- [x] Implement command execution
 
-### Phase 4: Mobile Implementation
+### Phase 4: Mobile Implementation ✅
 
-- [ ] Create `CommandButtons.tsx` (tap targets)
-- [ ] Add mobile-optimized button grid
-- [ ] Implement tap-to-execute
+- [x] Create `CommandButtons.tsx` (tap targets)
+- [x] Add mobile-optimized button grid
+- [x] Implement tap-to-execute
 
-### Phase 5: Command Implementation
+### Phase 5: Command Implementation ✅
 
-- [ ] Implement /skills command
-- [ ] Implement /help command
-- [ ] Implement /clear and /theme
-- [ ] Add /credits command
+- [x] Implement /skills command
+- [x] Implement /help command
+- [x] Implement /clear and /theme
+- [x] Add /credits command
 
 ### Phase 6: Polish & Testing
 
