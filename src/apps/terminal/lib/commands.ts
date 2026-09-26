@@ -1,12 +1,19 @@
+import { TECH_STACK } from "@/data";
 import type { TerminalCommand } from "@/types/terminal";
 
 /** All available terminal commands. */
 export const COMMANDS: TerminalCommand[] = [
   {
     name: "/skills",
+    description: "Show technical skills and technologies",
+    category: "portfolio",
+    usage: "/skills",
+  },
+  {
+    name: "/commands",
     description: "List all available commands",
     category: "tools",
-    usage: "/skills",
+    usage: "/commands",
   },
   {
     name: "/help",
@@ -35,48 +42,44 @@ export const COMMANDS: TerminalCommand[] = [
   },
 ];
 
-const commandMap = new Map(COMMANDS.map((c) => [c.name, c]));
+const formatCommands = () =>
+  COMMANDS.map(
+    (command) => `${command.name.padEnd(12)} — ${command.description}`,
+  ).join("\n");
+
+const formatTechStack = () => {
+  const stacks = TECH_STACK.map(
+    ({ category, items }) => `✓ ${category.padEnd(12)} ${items.join(", ")}`,
+  ).join("\n");
+
+  return [
+    "Tech Stack",
+    "",
+    "Category      Technologies",
+    "────────────────────────────────────────",
+    stacks,
+    "",
+    `✓ ${TECH_STACK.length} of ${TECH_STACK.length} stacks loaded successfully (100%)`,
+  ].join("\n");
+};
 
 /** Execute a command and return its output string. */
-export function executeCommand(input: string): { output: string; isError: boolean } {
-  const [cmd, ...args] = input.trim().split(/\s+/);
+export function executeCommand(input: string): {
+  output: string;
+  isError: boolean;
+} {
+  const cmd = input.trim();
 
   switch (cmd) {
     case "/skills":
-      return {
-        output: COMMANDS.map(
-          (c) => `${c.name.padEnd(12)} — ${c.description}`
-        ).join("\n"),
-        isError: false,
-      };
+      return { output: formatTechStack(), isError: false };
+
+    case "/commands":
+      return { output: formatCommands(), isError: false };
 
     case "/help":
-    case "/h": {
-      if (!args.length) {
-        return {
-          output: "Usage: /help [command]\nExample: /help /skills",
-          isError: false,
-        };
-      }
-      const target = commandMap.get(args[0]);
-      if (!target) {
-        return {
-          output: `Command not found: ${args[0]}. Run /skills to see all commands.`,
-          isError: true,
-        };
-      }
-      return {
-        output: [
-          `${target.name}`,
-          `  ${target.description}`,
-          target.usage ? `  Usage: ${target.usage}` : "",
-          target.aliases ? `  Aliases: ${target.aliases.join(", ")}` : "",
-        ]
-          .filter(Boolean)
-          .join("\n"),
-        isError: false,
-      };
-    }
+    case "/h":
+      return { output: formatCommands(), isError: false };
 
     case "/clear":
       // Handled in component — signals store.clearHistory()
@@ -88,13 +91,14 @@ export function executeCommand(input: string): { output: string; isError: boolea
 
     case "/credits":
       return {
-        output: "Built by deloooonp\nPowered by React, TypeScript, GSAP, Zustand",
+        output:
+          "Built by deloooonp\nPowered by React, TypeScript, GSAP, Zustand",
         isError: false,
       };
 
     default:
       return {
-        output: `Unknown command: ${cmd}. Run /skills to see all commands.`,
+        output: `Unknown command: ${cmd}. Run /commands to see all commands.`,
         isError: true,
       };
   }

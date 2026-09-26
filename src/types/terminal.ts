@@ -19,11 +19,3 @@ export interface TerminalEntry {
   isError: boolean;
   timestamp: number;
 }
-
-export interface TerminalState {
-  history: TerminalEntry[];
-  filter: string;
-  addEntry: (command: string, output: string, isError?: boolean) => void;
-  clearHistory: () => void;
-  setFilter: (filter: string) => void;
-}

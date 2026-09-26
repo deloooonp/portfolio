@@ -1,10 +1,8 @@
-import { useEffect, useRef, useCallback } from "react";
-import useIsMobile from "@/hooks/useIsMobile";
-import useTerminalStore from "@/store/terminal";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { COMMANDS, executeCommand } from "../lib/commands";
 import TerminalOutput from "./TerminalOutput";
 import CommandPalette from "./CommandPalette";
-import CommandButtons from "./CommandButtons";
+import type { TerminalEntry } from "@/types/terminal";
 
 const WELCOME = (() => {
   const cmds = COMMANDS.map(
@@ -14,15 +12,22 @@ const WELCOME = (() => {
 })();
 
 const TerminalWindow = () => {
-  const isMobile = useIsMobile();
-  const { history, addEntry, clearHistory } = useTerminalStore();
+  const [history, setHistory] = useState<TerminalEntry[]>([]);
   const outputRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
 
   // Show welcome message once on mount
   useEffect(() => {
-    if (!initialized.current && history.length === 0) {
-      addEntry("", WELCOME);
+    if (!initialized.current) {
+      setHistory([
+        {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+          command: "",
+          output: WELCOME,
+          isError: false,
+          timestamp: Date.now(),
+        },
+      ]);
       initialized.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,34 +41,41 @@ const TerminalWindow = () => {
     });
   }, [history]);
 
-  const handleExecute = useCallback(
-    (command: string) => {
-      if (!command.trim()) return;
+  const handleExecute = useCallback((command: string) => {
+    if (!command.trim()) return;
 
-      if (command === "/clear") {
-        clearHistory();
-        return;
-      }
-      const { output, isError } = executeCommand(command);
-      addEntry(command, output, isError);
-    },
-    [addEntry, clearHistory],
-  );
+    if (command === "/clear") {
+      setHistory([]);
+      initialized.current = false;
+      return;
+    }
 
-  // Keyboard shortcuts (desktop only)
+    const { output, isError } = executeCommand(command);
+    setHistory((prev) => [
+      ...prev,
+      {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        command,
+        output,
+        isError,
+        timestamp: Date.now(),
+      },
+    ]);
+  }, []);
+
+  // Keyboard shortcuts
   useEffect(() => {
-    if (isMobile) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        clearHistory();
+        setHistory([]);
+        initialized.current = false;
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isMobile, clearHistory]);
+  }, []);
 
   return (
     <div className="flex flex-col h-full">
@@ -72,12 +84,8 @@ const TerminalWindow = () => {
         <TerminalOutput history={history} />
       </div>
 
-      {/* Command controls — platform-specific */}
-      {isMobile ? (
-        <CommandButtons commands={COMMANDS} onExecute={handleExecute} />
-      ) : (
-        <CommandPalette commands={COMMANDS} onExecute={handleExecute} />
-      )}
+      {/* Command palette — all screen sizes */}
+      <CommandPalette commands={COMMANDS} onExecute={handleExecute} />
     </div>
   );
 };

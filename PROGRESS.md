@@ -2,6 +2,8 @@
 
 ## Plan: docs/TERMINAL-REVAMP.md
 
+Status: ✅ COMPLETE
+
 ## Phases
 
 ### Phase 1: Core Infrastructure ✅
@@ -45,4 +47,23 @@
 - [x] Error handling and edge cases (empty command guard)
 - [x] Type safety verification (typecheck + build pass)
 
-## Started: 2026-09-26
+---
+
+## Cleanup: docs/TERMINAL-REVAMP-CLEANUP.md
+
+Status: ✅ COMPLETE
+
+### Cleanup Tasks
+
+- [x] Remove terminal store (use component state instead)
+- [x] Remove mobile CommandButtons component
+- [x] Simplify CommandPalette (remove grouping)
+- [x] Update `/help` to show all commands (no args)
+- [x] Keep `/skills` and other commands as-is
+- [x] Update types (remove TerminalState)
+- [x] Verify typecheck + build pass
+
+## Timeline
+
+- Phases 1-6: Completed 2026-09-26
+- Cleanup: Completed 2026-09-26

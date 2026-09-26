@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '/import SafariWindow/d' /home/lonn/Projects/portfolio/src/apps/index.ts)",
+      "Bash(sed -i '/SafariWindow/d' /home/lonn/Projects/portfolio/src/apps/index.ts)",
+      "Bash(npm run *)",
+      "Bash(sed -i '/Safari,/d' /home/lonn/Projects/portfolio/src/App.tsx)",
+      "Bash(sed -i '/<Safari \\\\/>/d' /home/lonn/Projects/portfolio/src/App.tsx)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'feat: simplify terminal — remove store, mobile buttons, clean /help *)"
+    ]
+  }
+}
