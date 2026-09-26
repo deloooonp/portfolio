@@ -12,7 +12,6 @@ export type WindowKey =
   | "finder"
   | "contact"
   | "resume"
-  | "safari"
   | "photos"
   | "terminal"
   | "txtfile"

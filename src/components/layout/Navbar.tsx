@@ -17,7 +17,7 @@ const NAV_LINKS: NavLink[] = [
   {
     id: 1,
     name: "Projects",
-    type: "safari",
+    type: "finder",
   },
   {
     id: 3,
