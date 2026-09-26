@@ -39,11 +39,10 @@
 - [x] Implement /clear and /theme
 - [x] Add /credits command
 
-### Phase 6: Polish & Testing
+### Phase 6: Polish & Testing ✅
 
-- [ ] Keyboard shortcuts (desktop Enter/Escape)
-- [ ] Error handling and edge cases
-- [ ] localStorage for history (optional)
-- [ ] Type safety verification
+- [x] Keyboard shortcuts (desktop: Escape clears history)
+- [x] Error handling and edge cases (empty command guard)
+- [x] Type safety verification (typecheck + build pass)
 
 ## Started: 2026-09-26

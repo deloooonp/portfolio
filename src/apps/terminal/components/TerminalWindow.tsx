@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import useIsMobile from "@/hooks/useIsMobile";
 import useTerminalStore from "@/store/terminal";
 import { COMMANDS, executeCommand } from "../lib/commands";
@@ -27,14 +27,31 @@ const TerminalWindow = () => {
     outputRef.current?.scrollTo({ top: outputRef.current.scrollHeight, behavior: "smooth" });
   }, [history]);
 
-  const handleExecute = (command: string) => {
+  const handleExecute = useCallback((command: string) => {
+    if (!command.trim()) return;
+
     if (command === "/clear") {
       clearHistory();
       return;
     }
     const { output, isError } = executeCommand(command);
     addEntry(command, output, isError);
-  };
+  }, [addEntry, clearHistory]);
+
+  // Keyboard shortcuts (desktop only)
+  useEffect(() => {
+    if (isMobile) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        clearHistory();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobile, clearHistory]);
 
   return (
     <div className="flex flex-col h-full">
