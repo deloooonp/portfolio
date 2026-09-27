@@ -102,7 +102,7 @@ export function executeCommand(
 
     default:
       return {
-        output: `Unknown command: ${cmd}. Run /commands to see all commands.`,
+        output: `Unknown command: ${cmd}. Run /help to see all commands.`,
         isError: true,
       };
   }
