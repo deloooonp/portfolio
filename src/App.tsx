@@ -2,16 +2,7 @@ import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 
 import { Dock, Home, Navbar, Welcome } from "@/components";
-import {
-  Contact,
-  Finder,
-  Image,
-  Photos,
-  Resume,
-  Safari,
-  Terminal,
-  Text,
-} from "@/apps";
+import { Contact, Finder, Image, Photos, Resume, Terminal, Text } from "@/apps";
 
 import { Analytics } from "@vercel/analytics/react";
 
@@ -25,7 +16,6 @@ const App = () => {
       <Dock />
 
       <Terminal />
-      <Safari />
       <Resume />
       <Finder />
       <Text />

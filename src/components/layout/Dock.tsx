@@ -20,12 +20,12 @@ const DOCK_APPS: DockApp[] = [
     icon: "finder.png",
     canOpen: true,
   },
-  {
-    id: "safari",
-    name: "Articles", // was "Safari"
-    icon: "safari.png",
-    canOpen: true,
-  },
+  // {
+  //   id: "safari",
+  //   name: "Articles", // was "Safari"
+  //   icon: "safari.png",
+  //   canOpen: true,
+  // },
   // {
   //   id: "photos",
   //   name: "Gallery", // was "Photos"
@@ -40,7 +40,7 @@ const DOCK_APPS: DockApp[] = [
   },
   {
     id: "terminal",
-    name: "Skills", // was "Terminal"
+    name: "Terminal", // was "Terminal"
     icon: "terminal.png",
     canOpen: true,
   },
@@ -147,7 +147,7 @@ const Dock = () => {
         <Tooltip
           id="dock-tooltip"
           place="top"
-          className="py-1! px-3! w-fit! text-center! text-xs! rounded-md! bg-blue-200! text-blue-900! shadow-2xl!"
+          className="w-fit! text-center! text-xs! rounded-md! bg-blue-200! text-blue-900! shadow-2xl!"
         />
       </div>
     </section>

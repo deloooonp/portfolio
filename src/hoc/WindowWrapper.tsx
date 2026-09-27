@@ -86,9 +86,8 @@ const WindowWrapper = <P extends object>(
           }}
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-          <div className="mobile-sheet relative w-full bg-white  shadow-2xl overflow-hidden h-dvh rounded-none flex flex-col">
-            <div className="flex justify-center shrink-0"></div>
-            <div className="overflow-y-auto flex-1">
+          <div className="mobile-sheet relative w-full bg-white shadow-2xl overflow-hidden h-dvh rounded-none flex flex-col">
+            <div className="flex flex-1 min-h-0 flex-col [&>#window-header]:shrink-0 [&>:last-child]:flex-1 [&>:last-child]:min-h-0 [&>:last-child]:overflow-y-auto">
               <Component {...props} />
             </div>
           </div>
